@@ -10,10 +10,20 @@
     <generated />
   </component>
   <component name="CMakeSettings">
-    <configurations />
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82ae308a-58ae-4493-a832-041275dd03e1" name="Changes" comment="" />
+    <list default="true" id="82ae308a-58ae-4493-a832-041275dd03e1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/header/config.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/header/parseConfig.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/io/parseConfig.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mconf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +33,9 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/header/readConfig.h" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,6 +54,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/theow/OneDrive/Desktop/Code-Projekts/CivCore/engine",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -48,11 +62,24 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/home/theo/Desktop/COde/CivCore/engine/main.cpp",
+    "settings.editor.selected.configurable": "CMakeSettings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine" />
+      <recent name="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\header" />
+      <recent name="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\io" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="engine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/cmake-build-debug/engine.exe" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -66,7 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1750780178056</updated>
       <workItem from="1750780179248" duration="1397000" />
-      <workItem from="1750783534809" duration="382000" />
+      <workItem from="1750783534809" duration="4455000" />
     </task>
     <servers />
   </component>
