@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-# CivCore-Engine
-Backend / Engine for CivCore Simulation
-=======
+
 # CivCore Engine
 ### Developed by Generic Network
 <hr>
+Backend / Engine for CivCore Simulation
+
 
 ## Frontend Git Repo: 
 ### <a> https://github.com/Generic-Network/CivCore-Frontend </a>
@@ -32,4 +31,4 @@ CivCore is going to be finished in around December with about ~ 10.000 - 15.000 
 ### If you have Questions or other interests contact the creator through this
     Discord: @the_0hd
     GitHub: the_0hdDev
->>>>>>> master
+
