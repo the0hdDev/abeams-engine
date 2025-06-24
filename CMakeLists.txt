@@ -3,4 +3,4 @@ project(engine)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(engine main.cpp)
+add_executable(engine src/main.cpp)
