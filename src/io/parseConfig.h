@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "config.h"  // deine Config-Struktur
+#include "../header/config.h"
 
 class ReadConfig {
 public:
