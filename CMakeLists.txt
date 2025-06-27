@@ -7,8 +7,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(engine
         src/main.cpp
         src/io/parseConfig.cpp
-        src/header/parseConfig.h
+        src/io/parseConfig.h
         src/header/config.h
+        src/datapull/pullDataUsrInput.cpp
+        src/datapull/pullDataUsrInput.h
+        src/datapull/pullDataFrmSpdr.cpp
+        src/datapull/pullDataFrmSpdr.h
 )
 
 target_include_directories(engine PRIVATE

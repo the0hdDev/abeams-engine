@@ -1,5 +1,5 @@
 #include <iostream>
-#include "header/parseConfig.h"
+#include "io/parseConfig.h"
 
 int main() {
 
