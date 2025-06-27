@@ -9,6 +9,7 @@
 
 struct Config {
     int port;
+    void parseConfig();
 };
 
 #endif //CONFIG_H

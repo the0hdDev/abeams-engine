@@ -13,7 +13,7 @@ public:
     Config parseConfig();
 
 
-    int readPort();
+
 
 private:
     std::string configPath;
