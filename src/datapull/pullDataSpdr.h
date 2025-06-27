@@ -7,7 +7,7 @@
 
 
 
-class pullDataFrmSpdr {
+class pullDataSpdr {
 
 };
 

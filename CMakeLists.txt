@@ -9,10 +9,12 @@ add_executable(engine
         src/io/parseConfig.cpp
         src/io/parseConfig.h
         src/header/config.h
-        src/datapull/pullDataUsrInput.cpp
-        src/datapull/pullDataUsrInput.h
-        src/datapull/pullDataFrmSpdr.cpp
-        src/datapull/pullDataFrmSpdr.h
+        src/datapull/pullDataUsr.cpp
+        src/datapull/pullDataUsr.h
+        src/datapull/pullDataSpdr.cpp
+        src/datapull/pullDataSpdr.h
+        src/com/estbComQT.cpp
+        src/com/estbComQT.h
 )
 
 target_include_directories(engine PRIVATE

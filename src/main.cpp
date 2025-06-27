@@ -1,5 +1,6 @@
 #include <iostream>
 #include "io/parseConfig.h"
+#include "com/estbComQT.h"
 
 int main() {
 
@@ -9,8 +10,12 @@ int main() {
     using std::string;
 
 
-    ReadConfig conf = ReadConfig("mconf.json");
+    int sport = 8080;
 
+    ReadConfig conf = ReadConfig("mconf.json");
+    estbComQT comServer;
+
+    comServer.createServer(sport);
 
 
 

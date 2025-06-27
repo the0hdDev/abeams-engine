@@ -3,11 +3,10 @@
 //
 
 #include "parseConfig.h"
-#include <nlohmann/json.hpp>
+
 
 ReadConfig::ReadConfig(const std::string &confPath) {
 
-    std::fstream fs;
 
 
 

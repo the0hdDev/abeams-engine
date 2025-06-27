@@ -7,7 +7,7 @@
 
 
 
-class pullDataUsrInput {
+class pullDataUsr {
 
 };
 

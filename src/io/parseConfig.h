@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <nlohmann/json.hpp>
 #include "../header/config.h"
 
 class ReadConfig {
