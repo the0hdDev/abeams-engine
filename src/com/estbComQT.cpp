@@ -1,69 +1,139 @@
 #include "estbComQT.h"
-#include <cstdio>          // Für printf, perror
-#include <unistd.h>        // Für close()
-#include <netinet/in.h>    // Für sockaddr_in
-#include <sys/socket.h>    // Für socket(), bind(), listen(), accept()
-#include <cstring>         // Für memset() falls du willst
+#include <cstdio>          // printf, perror
+#include <cstring>         // memset, strlen
+
+
+estbComQT::estbComQT() {
+#ifdef _WIN32
+    int result = WSAStartup(MAKEWORD(2,2), &wsaData);
+    if (result != 0) {
+        printf("WSAStartup failed: %d\n", result);
+    }
+#endif
+    running = false;
+}
+void estbComQT::stopServer() {
+
+}
+
+estbComQT::~estbComQT() {
+   // stopServer();
+#ifdef _WIN32
+   // WSACleanup();
+#endif
+}
+
+
 
 void estbComQT::createServer(int port) {
-    // 1) Socket erstellen
-    // AF_INET = IPv4
-    // SOCK_STREAM = TCP
-    // 0 = Protokoll automatisch auswählen (für AF_INET + SOCK_STREAM => TCP)
-    int server = socket(AF_INET, SOCK_STREAM, 0);
-    if (server < 0) {
-        perror("socket failed"); // Gibt Fehlermeldung aus
+#ifdef _WIN32
+    // Windows-Socket erstellen
+    serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (serverSocket == INVALID_SOCKET) {
+        printf("socket failed with error: %d\n", WSAGetLastError());
         return;
     }
+#else
+    // POSIX-Socket erstellen
+    serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (serverSocket < 0) {
+        perror("socket failed");
+        return;
+    }
+#endif
 
-    // 2) Serveradresse konfigurieren
+    // Serveradresse konfigurieren
     sockaddr_in serverAddress{};
-    serverAddress.sin_family = AF_INET;           // IPv4
-    serverAddress.sin_port = htons(port);         // Port in Netzwerk-Byte-Reihenfolge
-    serverAddress.sin_addr.s_addr = INADDR_ANY;   // Auf allen Netzwerkinterfaces lauschen (0.0.0.0)
+    serverAddress.sin_family = AF_INET;
+    serverAddress.sin_port = htons(port);
+    serverAddress.sin_addr.s_addr = INADDR_ANY;
 
-    // 3) Socket an die Adresse binden
-    if (bind(server, (sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
-        perror("bind failed"); // Z.B. wenn Port schon benutzt
-        close(server);
+    // Binden
+#ifdef _WIN32
+    if (bind(serverSocket, (SOCKADDR*)&serverAddress, sizeof(serverAddress)) == SOCKET_ERROR) {
+        printf("bind failed with error: %d\n", WSAGetLastError());
+        closesocket(serverSocket);
         return;
     }
-
-    // 4) Lauschen aktivieren (Verbindungseingang)
-    if (listen(server, SOMAXCONN) < 0) {
-        perror("listen failed"); // Fehler beim Übergang in den Lauschmodus
-        close(server);
+#else
+    if (bind(serverSocket, (sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
+        perror("bind failed");
+        close(serverSocket);
         return;
     }
+#endif
 
-    printf("server is listening on port: %d\n", port);
+    // Lauschen
+#ifdef _WIN32
+    if (listen(serverSocket, SOMAXCONN) == SOCKET_ERROR) {
+        printf("listen failed with error: %d\n", WSAGetLastError());
 
-    // 5) Auf eingehende Verbindung warten
-    sockaddr_in clientAddress{};              // Speichert Client-Infos (IP, Port)
+        return;
+    }
+#else
+    if (listen(serverSocket, SOMAXCONN) < 0) {
+        perror("listen failed");
+        close(serverSocket);
+        return;
+    }
+#endif
+
+    printf("Server is listening on port: %d\n", port);
+
+    // Akzeptieren
+    sockaddr_in clientAddress{};
+#ifdef _WIN32
+    int clientLen = sizeof(clientAddress);
+    SOCKET clientSocket = accept(serverSocket, (SOCKADDR*)&clientAddress, &clientLen);
+    if (clientSocket == INVALID_SOCKET) {
+        printf("accept failed with error: %d\n", WSAGetLastError());
+
+        return;
+    }
+#else
     socklen_t clientLen = sizeof(clientAddress);
-    int clientSocket = accept(server, (sockaddr*)&clientAddress, &clientLen);
+    int clientSocket = accept(serverSocket, (sockaddr*)&clientAddress, &clientLen);
     if (clientSocket < 0) {
-        perror("accept failed"); // Z.B. wenn Verbindungsfehler auftritt
-        close(server);
+        perror("accept failed");
+        close(serverSocket);
         return;
     }
+#endif
 
-    printf("client connected\n");
+    printf("Client connected\n");
 
-    // 6) Daten empfangen
-    char buffer[1024] = {0};  // Empfangsbuffer für Daten
-    ssize_t bytesReceived = read(clientSocket, buffer, sizeof(buffer) - 1);
+    // Daten empfangen
+    char buffer[1024] = {0};
+#ifdef _WIN32
+    int bytesReceived = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
+#else
+    ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
+#endif
     if (bytesReceived > 0) {
-        printf("client-handshake: %s\n", buffer);
+        printf("Client handshake: %s\n", buffer);
 
-        // 7) Antwort zurückschicken
-        const char* reply = "server rec handshake\n";
+        const char* reply = "Server rec handshake\n";
+#ifdef _WIN32
+        send(clientSocket, reply, (int)strlen(reply), 0);
+#else
         send(clientSocket, reply, strlen(reply), 0);
+#endif
     } else if (bytesReceived == 0) {
-        printf("client closed connection\n");
+        printf("Client closed connection\n");
     } else {
-        perror("read failed");
+#ifdef _WIN32
+        printf("recv failed with error: %d\n", WSAGetLastError());
+#else
+        perror("recv failed");
+#endif
     }
 
+    // Sockets schließen
+#ifdef _WIN32
 
+#else
+
+#endif
+
+    printf("Connection closed\n");
 }
