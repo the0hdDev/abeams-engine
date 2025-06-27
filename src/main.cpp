@@ -10,12 +10,18 @@ int main() {
     using std::string;
 
 
-    int sport = 8080;
+
+    int s_port = getPort();
+    bool isDebug = isDebug();
+
+
 
     ReadConfig conf = ReadConfig("mconf.json");
     estbComQT comServer;
 
-    comServer.createServer(sport);
+    comServer.createServer(s_port);
+
+
 
 
 

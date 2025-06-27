@@ -11,7 +11,9 @@ public:
     explicit ReadConfig(const std::string& confPath);
 
 
-    Config parseConfig();
+    nlohmann::json parseConfig();
+    int getPort();
+    bool isDebug();
 
 
 
