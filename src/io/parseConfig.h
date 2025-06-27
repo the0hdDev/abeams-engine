@@ -2,7 +2,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "config.h"  // deine Config-Struktur
+#include <nlohmann/json.hpp>
+#include "../header/config.h"
 
 class ReadConfig {
 public:
@@ -10,10 +11,12 @@ public:
     explicit ReadConfig(const std::string& confPath);
 
 
-    Config parseConfig();
+    nlohmann::json parseConfig();
+    int getPort();
+    bool isDebug();
 
 
-    int readPort();
+
 
 private:
     std::string configPath;

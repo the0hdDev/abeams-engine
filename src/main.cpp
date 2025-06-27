@@ -1,5 +1,7 @@
 #include <iostream>
-#include "header/parseConfig.h"
+#include "io/parseConfig.h"
+#include "com/estbComQT.h"
+#include <thread>
 
 int main() {
 
@@ -9,7 +11,19 @@ int main() {
     using std::string;
 
 
-    ReadConfig conf = ReadConfig("mconf.json");
+
+    int s_port = 4000;
+    // bool isDebug = isDebug("mconf.json");
+
+
+
+    // ReadConfig conf = ReadConfig("mconf.json");
+    estbComQT comServer;
+
+    std::thread serverThread([&]() {
+
+    comServer.createServer(s_port);
+    });
 
 
 

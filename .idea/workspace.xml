@@ -5,7 +5,10 @@
   </component>
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+<<<<<<< HEAD
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+=======
+>>>>>>> 1c9cf495ca74a56512a50aae9c2a28193269711e
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
@@ -26,7 +29,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82ae308a-58ae-4493-a832-041275dd03e1" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/src/header/config.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/header/parseConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/header/parseConfig.h" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/datapull/pullDataUsrInput.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/datapull/pullDataUsrInput.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/header/parseConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/parseConfig.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+>>>>>>> 1e9e551cdedd6e7e05251c5b56fec1c4b9348c08
+>>>>>>> 1c9cf495ca74a56512a50aae9c2a28193269711e
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,14 +57,44 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "the0hdDev"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+<<<<<<< HEAD
+    "url": "https://github.com/Generic-Network/CivCore-Engine.git",
+    "accountId": "e99b4c10-ce9c-4c60-b3ee-84ee09f4d905"
+=======
+    "url": "https://github.com/the0hdDev/abeams-egine.git",
+    "accountId": "98f5acc9-af12-4748-b744-fc181cb2f15e"
+>>>>>>> 1e9e551cdedd6e7e05251c5b56fec1c4b9348c08
+  }
+}]]></component>
+>>>>>>> 1c9cf495ca74a56512a50aae9c2a28193269711e
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/header/readConfig.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
+<<<<<<< HEAD
   "customColor": "",
   "associatedIndex": 5
 }]]></component>
   <component name="ProjectId" id="2z6N9cKJXKx9GN2vZyd1seJiO79" />
+=======
+  "associatedIndex": 7
+}]]></component>
+<<<<<<< HEAD
+  <component name="ProjectId" id="2z0GQe4UplZvsjqVWCNdvrgeSlt" />
+=======
+  <component name="ProjectId" id="2z3j3WbPQ7t6vkFXE2uLOf81otc" />
+>>>>>>> 1e9e551cdedd6e7e05251c5b56fec1c4b9348c08
+>>>>>>> 1c9cf495ca74a56512a50aae9c2a28193269711e
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -80,7 +127,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\Libraries" />
+=======
+      <recent name="$PROJECT_DIR$/src/io" />
+>>>>>>> 1c9cf495ca74a56512a50aae9c2a28193269711e
       <recent name="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine" />
       <recent name="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\header" />
       <recent name="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\io" />
@@ -92,7 +143,7 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="engine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/cmake-build-debug/engine.exe" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="engine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="engine" RUN_TARGET_NAME="engine" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -106,8 +157,17 @@
       <option name="presentableId" value="Default" />
       <updated>1750780178056</updated>
       <workItem from="1750780179248" duration="1397000" />
+<<<<<<< HEAD
       <workItem from="1750783534809" duration="4860000" />
       <workItem from="1751047416077" duration="13000" />
+=======
+      <workItem from="1750783534809" duration="4455000" />
+<<<<<<< HEAD
+      <workItem from="1750860563695" duration="319000" />
+=======
+      <workItem from="1750966462331" duration="383000" />
+>>>>>>> 1e9e551cdedd6e7e05251c5b56fec1c4b9348c08
+>>>>>>> 1c9cf495ca74a56512a50aae9c2a28193269711e
     </task>
     <servers />
   </component>
