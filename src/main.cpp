@@ -11,17 +11,11 @@ int main() {
     using std::string;
 
 
-<<<<<<< HEAD
-    int s_port = 4000;
-    // bool isDebug = isDebug("mconf.json");;
-=======
 
     int s_port = 3405;
+    // bool isDebug = isDebug("mconf.json");;
     bool running = true;
     // bool isDebug = isDebug("mconf.json");
-
-
->>>>>>> 680a2fb45fddbdf1d7bea4fb4fa584b4f19dc3eb
 
     // ReadConfig conf = ReadConfig("mconf.json");
     estbComQT comServer;
