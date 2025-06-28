@@ -21,3 +21,7 @@ target_include_directories(engine PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/header
         Libraries/include
 )
+
+if(WIN32)
+    target_link_libraries(engine ws2_32)
+endif()
