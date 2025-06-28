@@ -26,7 +26,7 @@ int main() {
     });
     serverThread.detach();
 
-
+    cout << "threading working";
     while (running) {
         std::this_thread::sleep_for(std::chrono::hours(24));
     }
