@@ -12,7 +12,8 @@ int main() {
 
 
 
-    int s_port = 4000;
+    int s_port = 3405;
+    bool running = true;
     // bool isDebug = isDebug("mconf.json");
 
 
@@ -21,9 +22,15 @@ int main() {
     estbComQT comServer;
 
     std::thread serverThread([&]() {
-
-    comServer.createServer(s_port);
+      comServer.createServer(s_port);
     });
+    serverThread.detach();
+
+
+    while (running) {
+        std::this_thread::sleep_for(std::chrono::hours(24));
+    }
+
 
 
 

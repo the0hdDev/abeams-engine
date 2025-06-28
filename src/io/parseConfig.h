@@ -9,8 +9,6 @@ class ReadConfig {
 public:
 
     explicit ReadConfig(const std::string& confPath);
-
-
     nlohmann::json parseConfig();
     int getPort();
     bool isDebug();
