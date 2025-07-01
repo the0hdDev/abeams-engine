@@ -39,6 +39,8 @@ jobs:
       run: xcode-select --install || true
       # '|| true' prevents the step from failing if tools are already installed.
 
+     
+  
     - name: Set reusable strings
       id: strings
       shell: bash
@@ -52,7 +54,15 @@ jobs:
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
-
+        
+    - name: Install GCC on macOS via Homebrew
+      run: |
+        # Aktualisiere Homebrew, um sicherzustellen, dass die Paketliste aktuell ist
+        brew update
+        # Installiere GCC über Homebrew. Homebrew ist auf macOS-Runnern vorinstalliert.
+        brew install gcc
+      shell: bash
+    
     - name: Build
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
