@@ -27,6 +27,10 @@ jobs:
           - os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
+          - os: macos-latest
+            c_compiler: gcc-13
+            cpp_compiler: g++-13
+            base_compiler: gcc
         exclude: [] # Windows is completely removed
 
     steps:
@@ -37,6 +41,10 @@ jobs:
       if: runner.os == 'macOS'
       run: xcode-select --install || true
       # '|| true' prevents the step from failing if tools are already installed
+
+    - name: Install GCC (macOS only)
+      if: runner.os == 'macOS' && matrix.base_compiler == 'gcc'
+      run: brew install gcc@13
 
     - name: Set reusable strings
       id: strings
