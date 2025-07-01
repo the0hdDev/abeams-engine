@@ -1,4 +1,4 @@
-[200~name: CMake on Linux and macOS
+name: CMake on Linux and macOS
 
 on:
   push:
@@ -36,11 +36,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # This step is crucial for macOS builds to ensure Clang/Clang++ are available
+    # This step is crucial for macOS builds to ensure Clang/Clang++ are available.
+    # Even if you use CLion locally, GitHub Actions runners need these tools.
     - name: Install Xcode Command Line Tools (macOS only)
       if: runner.os == 'macOS'
       run: xcode-select --install || true
-      # '|| true' prevents the step from failing if tools are already installed
+      # '|| true' prevents the step from failing if tools are already installed.
+
 
     - name: Install GCC (macOS only)
       if: runner.os == 'macOS' && matrix.base_compiler == 'gcc'
@@ -59,7 +61,15 @@ jobs:
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
-
+        
+    - name: Install GCC on macOS via Homebrew
+      run: |
+        # Aktualisiere Homebrew, um sicherzustellen, dass die Paketliste aktuell ist
+        brew update
+        # Installiere GCC über Homebrew. Homebrew ist auf macOS-Runnern vorinstalliert.
+        brew install gcc
+      shell: bash
+    
     - name: Build
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
