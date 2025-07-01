@@ -12,11 +12,12 @@ int main() {
 
 
 
-    int s_port = 3405;
-    // bool isDebug = isDebug("mconf.json");;
+    const int s_port = 3405;
+    const string confpath = "./src/mconf.json";
     bool running = true;
-    // bool isDebug = isDebug("mconf.json");
-
+    ReadConfig conf;
+    bool isDebug = conf.isDebug(confpath);
+    cout << isDebug << endl;
     // ReadConfig conf = ReadConfig("mconf.json");
     estbComQT comServer;
     std::thread serverThread([&]() {
