@@ -17,6 +17,8 @@ add_executable(engine
         src/com/estbComQT.h
 )
 
+file(COPY src/mconf.json DESTINATION ${CMAKE_BINARY_DIR})
+
 target_include_directories(engine PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/header
         Libraries/include

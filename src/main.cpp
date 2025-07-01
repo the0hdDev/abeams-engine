@@ -3,17 +3,15 @@
 #include "com/estbComQT.h"
 #include <thread>
 
+        using std::cout;
+        using std::endl;
+        using std::cin;
+        using std::string;
+
 int main() {
 
-    using std::cout;
-    using std::endl;
-    using std::cin;
-    using std::string;
-
-
-
     const int s_port = 3405;
-    const string confpath = "./src/mconf.json";
+    const string confpath = "mconf.json";
     bool running = true;
     ReadConfig conf;
     bool isDebug = conf.isDebug(confpath);
