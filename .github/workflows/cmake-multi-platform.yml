@@ -1,4 +1,4 @@
-name: CMake on Linux and macOS
+[200~name: CMake on Linux and macOS
 
 on:
   push:
@@ -15,6 +15,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         build_type: [Release]
+        # These are base compilers; the 'include' section specifies the actual ones
         c_compiler: [gcc, clang]
         include:
           - os: ubuntu-latest
@@ -26,11 +27,16 @@ jobs:
           - os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
-        # Windows ist komplett entfernt
-        exclude: []
+        exclude: [] # Windows is completely removed
 
     steps:
     - uses: actions/checkout@v4
+
+    # This step is crucial for macOS builds to ensure Clang/Clang++ are available
+    - name: Install Xcode Command Line Tools (macOS only)
+      if: runner.os == 'macOS'
+      run: xcode-select --install || true
+      # '|| true' prevents the step from failing if tools are already installed
 
     - name: Set reusable strings
       id: strings
