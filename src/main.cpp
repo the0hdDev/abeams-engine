@@ -13,19 +13,20 @@ int main() {
     const int s_port = 3405;
     const string confpath = "mconf.json";
     bool running = true;
-    ReadConfig conf;
-    bool isDebug = conf.isDebug(confpath);
+    ReadConfig* conf = new ReadConfig();
+    bool isDebug = conf->isDebug(confpath);
+    delete(conf);
     cout << isDebug << endl;
-    // ReadConfig conf = ReadConfig("mconf.json");
+
     estbComQT comServer;
     std::thread serverThread([&]() {
       comServer.createServer(s_port);
     });
     serverThread.detach();
 
-    cout << "threading working";
-    while (running) {
-        std::this_thread::sleep_for(std::chrono::hours(24));
+    cout << "threading working" << endl;
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
 
