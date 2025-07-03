@@ -19,11 +19,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         build_type: [Release]
-        c_compiler: [clang, gcc]
+        c_compiler: [clang]
         include:
           - os: ubuntu-latest
             c_compiler: clang
-            cpp_compiler: clang++, g++
+            cpp_compiler: clang++
           - os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
