@@ -1,3 +1,4 @@
+# CMake workflow for macOS and Linux with Clang compiler
 name: Build MacOS Linux Clang++
 on:
   push:
@@ -22,6 +23,9 @@ jobs:
             cpp_compiler: clang++
     steps:
       - uses: actions/checkout@v4
+        # NEUE ZEILE HINZUGEFÜGT:
+        with:
+          submodules: recursive # Diese Zeile stellt sicher, dass Git-Submodule geklont werden
 
       - name: Set reusable strings
         id: strings
@@ -29,7 +33,6 @@ jobs:
         run: |
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-      # --- Start: Fixes für Vcpkg und Build-Tools ---
       - name: Install Build-Essentials (Linux)
         if: runner.os == 'Linux'
         run: |
@@ -37,15 +40,14 @@ jobs:
           sudo apt-get install -y build-essential
 
       - name: Bootstrap Vcpkg
-        # Führt das Vcpkg Bootstrap-Skript aus, um Vcpkg zu initialisieren und die Toolchain-Datei zu generieren.
-        # Der Pfad zur Vcpkg-Installation wird direkt über github.workspace referenziert.
         run: |
+          # Stelle sicher, dass das Skript ausführbar ist, falls es nicht sowieso schon ist
+          chmod +x ./vcpkg/bootstrap-vcpkg.sh
           ./vcpkg/bootstrap-vcpkg.sh
+        # Das working-directory ist hier kritisch. ${{ github.workspace }} ist der Pfad zum Repo-Root.
         working-directory: ${{ github.workspace }}
-      # --- Ende: Fixes für Vcpkg und Build-Tools ---
 
       - name: Configure CMake
-        # Fügt -DCMAKE_TOOLCHAIN_FILE hinzu, um Vcpkg korrekt zu integrieren.
         run: >
           cmake -B ${{ steps.strings.outputs.build-output-dir }}
           -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
