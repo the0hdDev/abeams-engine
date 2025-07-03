@@ -1,5 +1,5 @@
 # CMake workflow for macOS and Linux with Clang compiler
-name: CLang on Linux and MacOS
+name: Build MacOS Linux Clang++
 on:
   push:
     branches: [ "main" ]
@@ -19,11 +19,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         build_type: [Release]
-        c_compiler: [clang]
+        c_compiler: [clang, gcc]
         include:
           - os: ubuntu-latest
             c_compiler: clang
-            cpp_compiler: clang++
+            cpp_compiler: clang++, g++
           - os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++

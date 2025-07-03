@@ -10,7 +10,7 @@
 
 int main() {
 
-    const int s_port = 3405;
+    const uint16_t s_port = 3405;
     const string confpath = "mconf.json";
     bool running = true;
     ReadConfig* conf = new ReadConfig();
@@ -24,7 +24,7 @@ int main() {
     });
     serverThread.detach();
 
-    cout << "threading working" << endl;
+
     while (true) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
