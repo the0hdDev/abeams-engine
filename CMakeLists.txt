@@ -1,13 +1,16 @@
 cmake_minimum_required(VERSION 3.31)
-set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
 
+
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        CACHE STRING "Vcpkg toolchain file")
 
 project(engine)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
+find_package(fmt CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
 
 add_executable(engine
         src/main.cpp
@@ -24,11 +27,20 @@ add_executable(engine
 
 file(COPY src/mconf.json DESTINATION ${CMAKE_BINARY_DIR})
 
+
 target_include_directories(engine PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/header
-        Libraries/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/Libraries/include
 )
 
+
+target_link_libraries(engine
+        PRIVATE
+        fmt::fmt
+        spdlog::spdlog
+)
+
+
 if(WIN32)
-    target_link_libraries(engine ws2_32)
+    target_link_libraries(engine PRIVATE ws2_32)
 endif()
