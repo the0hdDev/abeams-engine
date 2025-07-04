@@ -1,34 +1,61 @@
+# Agent-Based Economy and Market Simulation (BEAMS) Engine
 
-# Agent based Economy and Market Simulation (abeams) Engine
-### Developed by Generic Network
-<hr>
-Backend / Engine for Abeams Simulation
+---
 
+**Developed and Distributed by Generic Network**
 
-## Frontend Git Repo: 
-### <a> https://github.com/the0hdDev/abeams-qt </a>
+---
 
+## Engine BEAMS Simulation
 
-Abeams is a Project founded by Theo to compete in the 2026 JuFo competition. 
+Beams is an ambitious project aiming to create a **complex economic and political simulation** engine. It will model intricate interactions within an agent-based framework, providing a dynamic and insightful platform for understanding market and political behaviors.
 
-Abeams is going to be a complex economycal and politic simulation. 
+---
 
+## Frontend Git Repository
 
+You can find the frontend code for Beams here:
+[https://github.com/the0hdDev/beams-frontend](https://github.com/the0hdDev/beams-frontend)
 
+---
 
-Abeams is going to be finished in around December with about ~ 10.000 - 15.000 Lines of Code
+## Development Timeline
 
+We anticipate Beams will be feature-complete around **December 2025**, with an estimated codebase of **10,000 - 15,000 lines of code**.
 
-## Upcoming Features:
-    The Simulation
-    Multithreading
-    QT Frontend
-    REST api
-    and many more
+---
 
+## Upcoming Features
 
-### Currently, one Person in charge of the Development of Abeams: 
-### If you have Questions or other interests contact the creator through this
-    Discord: @the_0hd
-    GitHub: the_0hdDev
+We're actively working on bringing the following key features to Beams:
 
+* **Core Simulation Engine:** The heart of Beams, enabling detailed agent interactions and system evolution.
+* **Multithreading Support:** Enhancing performance and scalability for complex simulations.
+* **Electron Frontend:** A robust and user-friendly graphical interface for interacting with the simulation.
+* **REST API:** Providing programmatic access to simulation data and controls.
+* **Advanced Economic Models:** Implementing diverse economic theories and scenarios.
+* **Political Agent Behaviors:** Simulating political decision-making and its impact on the economy.
+* **Data Visualization Tools:** Intuitive graphs and charts to help users analyze simulation outcomes.
+* **Scenario Editor:** Allowing users to create and customize their own simulation environments.
+* **Modding Support:** Opening up possibilities for community-driven extensions and new features.
+
+---
+
+## Development Team
+
+Currently, **one dedicated developer** is in charge of the Beams project.
+
+---
+
+## Contributing
+
+We welcome contributions from the community! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to get involved.
+
+---
+
+### Contact the Creator
+
+If you have any questions, collaboration interests, or would like to contribute, feel free to reach out:
+
+* **Discord:** `@the_0hd`
+* **GitHub:** `the_0hdDev`
