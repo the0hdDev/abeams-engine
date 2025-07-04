@@ -49,7 +49,7 @@ public:
 
     // This function will now be blocking, as it calls ioc_.run().
     // It is intended to be called from a separate thread, as in your main().
-    void createServer(int port);
+    void createServer(int port, std::string ip_addr);
 
     void stopServer();              // Stop the HTTP server
 

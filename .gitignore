@@ -4,6 +4,8 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 
+/vcpkg/
+
 # Build artifacts
 /cmake-build-*/
 

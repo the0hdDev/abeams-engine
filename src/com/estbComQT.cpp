@@ -3,6 +3,8 @@
 #include <string> // For std::string
 #include <utility> // For std::move
 
+
+
 // --- Helper Classes (Session and Listener) for Boost.Beast ---
 
 // Session class: Handles a single HTTP server connection.
@@ -184,7 +186,7 @@ http::response<http::string_body> estbComQT::handle_request(http::request_type c
 }
 
 // This function is now blocking and intended to be called from a separate thread.
-void estbComQT::createServer(int port) {
+void estbComQT::createServer(int port, std::string ip_addr) {
     if (running) {
         std::cerr << "Server is already running." << std::endl;
         return;
@@ -197,7 +199,7 @@ void estbComQT::createServer(int port) {
         running = true; // Set flag to true
 
         // Set up the endpoint to listen on (e.g., 0.0.0.0:8080)
-        auto const address = net::ip::make_address("0.0.0.0");
+        auto const address = net::ip::make_address(ip_addr.c_str());
         tcp::endpoint endpoint{address, static_cast<unsigned short>(port)};
 
         // Create and start the listener, passing the static request handler
