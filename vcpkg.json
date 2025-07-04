@@ -1,0 +1,11 @@
+{
+  "name": "engine",
+  "version": "0.1.0",
+  "dependencies": [
+    "fmt",
+    "spdlog",
+    "boost"
+  ],
+  "overrides": [],
+  "builtin-baseline": "latest"
+}

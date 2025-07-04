@@ -206,7 +206,7 @@ void estbComQT::createServer(int port, std::string ip_addr) {
         listener_ = std::make_shared<Listener>(*ioc_, endpoint, estbComQT::handle_request);
         listener_->run(); // Initiates the first accept operation
 
-        std::cout << "HTTP Server is listening on 0.0.0.0:" << port << std::endl;
+        std::cout << "HTTP Server is listening on :" << ip_addr << ':' << port << std::endl;
 
         // Run the io_context. This call will block until io_context::stop() is called.
         ioc_->run();

@@ -1,19 +1,19 @@
-# CMake workflow for macOS and Linux with Clang compiler
-name: Build MacOS Linux Clang++
+name: Build MacOS Linux Windows
+
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
         build_type: [Release]
-        c_compiler: [clang]
         include:
           - os: ubuntu-latest
             c_compiler: clang
@@ -21,44 +21,71 @@ jobs:
           - os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
+          - os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+
     steps:
-      - uses: actions/checkout@v4
-        # NEUE ZEILE HINZUGEFÜGT:
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          submodules: recursive # Diese Zeile stellt sicher, dass Git-Submodule geklont werden
+          submodules: recursive
 
-      - name: Set reusable strings
-        id: strings
+      - name: Set build output directory
+        id: vars
         shell: bash
-        run: |
-          echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+        run: echo "dir=${{ github.workspace }}/build" >> $GITHUB_OUTPUT
 
-      - name: Install Build-Essentials (Linux)
+      # Nur Linux: Build-Essentials installieren
+      - name: Install build tools (Linux)
         if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential
+        run: sudo apt-get update && sudo apt-get install -y build-essential
 
-      - name: Bootstrap Vcpkg
-        run: |
-          # Stelle sicher, dass das Skript ausführbar ist, falls es nicht sowieso schon ist
-          chmod +x ./vcpkg/bootstrap-vcpkg.sh
-          ./vcpkg/bootstrap-vcpkg.sh
-        # Das working-directory ist hier kritisch. ${{ github.workspace }} ist der Pfad zum Repo-Root.
+      # Vcpkg bootstrappen je nach OS
+      - name: Bootstrap vcpkg (Windows)
+        if: runner.os == 'Windows'
+        run: .\vcpkg\bootstrap-vcpkg.bat
         working-directory: ${{ github.workspace }}
 
+      - name: Bootstrap vcpkg (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: |
+          chmod +x ./vcpkg/bootstrap-vcpkg.sh
+          ./vcpkg/bootstrap-vcpkg.sh
+        working-directory: ${{ github.workspace }}
+
+      # Cache für vcpkg
+      - name: Cache vcpkg build trees and installed packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ github.workspace }}/vcpkg/installed
+            ${{ github.workspace }}/vcpkg/buildtrees
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-
+
+      # Dependencies installieren
+      - name: Install dependencies with vcpkg
+        run: ./vcpkg/vcpkg install
+        working-directory: ${{ github.workspace }}
+        shell: bash
+
+      # CMake konfigurieren
       - name: Configure CMake
         run: >
-          cmake -B ${{ steps.strings.outputs.build-output-dir }}
+          cmake -B "${{ steps.vars.outputs.dir }}"
           -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
           -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          -S ${{ github.workspace }}
-          -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+          -S "${{ github.workspace }}"
+          -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
+      # Bauen
       - name: Build
-        run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+        run: cmake --build "${{ steps.vars.outputs.dir }}" --config ${{ matrix.build_type }}
 
+      # Tests ausführen
       - name: Test
-        working-directory: ${{ steps.strings.outputs.build-output-dir }}
+        working-directory: "${{ steps.vars.outputs.dir }}"
         run: ctest --build-config ${{ matrix.build_type }}
