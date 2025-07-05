@@ -1,4 +1,4 @@
-#include "estbComQT.h"
+ #include "estbComQT.h"
 #include <iostream>
 #include <string> // For std::string
 #include <utility> // For std::move
@@ -162,30 +162,11 @@ estbComQT::~estbComQT() {
     stopServer(); // Ensure server is stopped and resources are released
 }
 
-// Static method to handle HTTP requests. This is where your application logic goes.
-http::response<http::string_body> estbComQT::handle_request(http::request_type const& req) {
-    // Respond to GET request with "Hello, World!"
-    if (req.method() == http::verb::get) {
-        http::response_type res{http::status::ok, req.version()};
-        res.set(http::field::server, BOOST_BEAST_VERSION_STRING); // Standard server header
-        res.set(http::field::content_type, "text/plain");
-        res.keep_alive(req.keep_alive()); // Maintain keep-alive if client requested it
-        res.body() = "Hello, World from Boost.Beast!";
-        res.prepare_payload(); // Calculate Content-Length
-        return res;
-    }
+// IMPORTANT THIS IS THE FUNCTION TO IMPLEMENT ENDPOINTS
 
-    // Default response for unsupported methods or invalid requests
-    http::response_type res{http::status::bad_request, req.version()};
-    res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
-    res.set(http::field::content_type, "text/plain");
-    res.keep_alive(req.keep_alive());
-    res.body() = "Unsupported HTTP method or invalid request.";
-    res.prepare_payload();
-    return res;
-}
 
-// This function is now blocking and intended to be called from a separate thread.
+
+// This erjfunction is now blocking and intended to be called from a separate thread.
 void estbComQT::createServer(int port, std::string ip_addr) {
     if (running) {
         std::cerr << "Server is already running." << std::endl;

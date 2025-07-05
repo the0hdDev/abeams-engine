@@ -2,6 +2,7 @@
 #include "io/parseConfig.h"
 #include "com/estbComQT.h"
 #include <thread>
+#include "com/httpReqResHandler.h"
 
         using std::cout;
         using std::endl;
@@ -24,6 +25,17 @@ int main() {
     estbComQT comServer;
     std::thread serverThread([&]() {
       comServer.createServer(s_port, ip_addr);
+
+        if (global_handler) {
+        // Beispiel-Request
+        http::request<http::string_body> dummy_req{http::verb::get, "/", 11};
+        auto res = (*global_handler)(dummy_req);
+        std::cout << res.body() << std::endl;
+    } else {
+        std::cerr << "No handler assigned!" << std::endl;
+    }
+
+
     });
     serverThread.detach();
 

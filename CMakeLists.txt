@@ -23,6 +23,8 @@ add_executable(engine
         src/datapull/pullDataSpdr.h
         src/com/estbComQT.cpp
         src/com/estbComQT.h
+        src/com/httpReqResHandler.cpp
+        src/com/httpReqResHandler.h
 )
 
 file(COPY src/mconf.json DESTINATION ${CMAKE_BINARY_DIR})
