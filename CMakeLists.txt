@@ -21,8 +21,8 @@ add_executable(engine
         src/datapull/pullDataUsr.h
         src/datapull/pullDataSpdr.cpp
         src/datapull/pullDataSpdr.h
-        src/com/estbComQT.cpp
-        src/com/estbComQT.h
+        src/com/estbComFD.cpp
+        src/com/estbComFD.h
         src/com/httpReqResHandler.cpp
         src/com/httpReqResHandler.h
 )

@@ -25,7 +25,7 @@ std::shared_ptr<std::function<http::response<http::string_body>(const http::requ
 void setupHandler() {
     global_handler = std::make_shared<std::function<http::response<http::string_body>(const http::request<http::string_body>&)>>(
         [](const http::request<http::string_body>& req) -> http::response<http::string_body> {
-            std::string target = req.target().to_string();
+            std::string target = req.target();
 
             if (req.method() != http::verb::get) {
                 return make_response("Method not allowed", http::status::method_not_allowed, req.version());

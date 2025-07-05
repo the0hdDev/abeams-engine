@@ -42,10 +42,10 @@ using tcp = net::ip::tcp;
 class Listener;
 class Session;
 
-class estbComQT {
+class estbComFD {
 public:
-    estbComQT();                    // Constructor
-    ~estbComQT();                   // Destructor
+    estbComFD();                    // Constructor
+    ~estbComFD();                   // Destructor
 
     // This function will now be blocking, as it calls ioc_.run().
     // It is intended to be called from a separate thread, as in your main().

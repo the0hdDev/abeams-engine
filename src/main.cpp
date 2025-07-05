@@ -1,6 +1,6 @@
 #include <iostream>
 #include "io/parseConfig.h"
-#include "com/estbComQT.h"
+#include "com/estbComFD.h"
 #include <thread>
 #include "com/httpReqResHandler.h"
 
@@ -22,7 +22,7 @@ int main() {
 
     cout << isDebug << endl;
 
-    estbComQT comServer;
+    estbComFD comServer;
     std::thread serverThread([&]() {
       comServer.createServer(s_port, ip_addr);
 

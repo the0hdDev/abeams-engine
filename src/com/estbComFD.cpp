@@ -1,7 +1,8 @@
- #include "estbComQT.h"
+ #include "estbComFD.h"
 #include <iostream>
 #include <string> // For std::string
 #include <utility> // For std::move
+#include "httpReqResHandler.h"
 
 
 
@@ -153,12 +154,12 @@ public:
 
 // --- estbComQT Class Implementation ---
 
-estbComQT::estbComQT() : running(false) {
+estbComFD::estbComFD() : running(false) {
     // Boost.Asio handles its own platform-specific initialization (e.g., Winsock on Windows).
     // No explicit WSAStartup/WSACleanup needed here for Boost.Asio's usage.
 }
 
-estbComQT::~estbComQT() {
+estbComFD::~estbComFD() {
     stopServer(); // Ensure server is stopped and resources are released
 }
 
@@ -167,7 +168,7 @@ estbComQT::~estbComQT() {
 
 
 // This erjfunction is now blocking and intended to be called from a separate thread.
-void estbComQT::createServer(int port, std::string ip_addr) {
+void estbComFD::createServer(int port, std::string ip_addr) {
     if (running) {
         std::cerr << "Server is already running." << std::endl;
         return;
@@ -184,7 +185,7 @@ void estbComQT::createServer(int port, std::string ip_addr) {
         tcp::endpoint endpoint{address, static_cast<unsigned short>(port)};
 
         // Create and start the listener, passing the static request handler
-        listener_ = std::make_shared<Listener>(*ioc_, endpoint, estbComQT::handle_request);
+        listener_ = std::make_shared<Listener>(*ioc_, endpoint, httpReqResHandler::global_handler);
         listener_->run(); // Initiates the first accept operation
 
         std::cout << "HTTP Server is listening on :" << ip_addr << ':' << port << std::endl;
@@ -203,7 +204,7 @@ void estbComQT::createServer(int port, std::string ip_addr) {
     running = false;   // Ensure running flag is false
 }
 
-void estbComQT::stopServer() {
+void estbComFD::stopServer() {
     if (!running) {
         std::cout << "Server is not running." << std::endl;
         return;
