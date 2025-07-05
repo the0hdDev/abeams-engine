@@ -49,7 +49,13 @@ Currently, **one dedicated developer** is in charge of the Beams project.
 
 ## Contributing
 
-We welcome contributions from the community! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to get involved.
+We welcome contributions from the community! Please see our [CONTRIBUTING.md](docs/CONTRIBUTING.md) file for guidelines on how to get involved.
+
+---
+
+## Compiling
+
+To compile please consult [COMPILING](docs/COMPILING.md).
 
 ---
 
