@@ -4,9 +4,17 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 
+<<<<<<< HEAD
 /vcpkg/
 /vcpkg_installed/
 
+=======
+# vcpkg
+vcpkg/buildtrees
+vcpkg/downloads
+vcpkg/installed
+vcpkg/packages
+>>>>>>> 7e0b24f (pull conflict)
 # Build artifacts
 /cmake-build-*/
 
