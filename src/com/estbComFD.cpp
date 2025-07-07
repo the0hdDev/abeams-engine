@@ -165,8 +165,6 @@ estbComFD::~estbComFD() {
 
 // IMPORTANT THIS IS THE FUNCTION TO IMPLEMENT ENDPOINTS
 
-
-
 // This erjfunction is now blocking and intended to be called from a separate thread.
 void estbComFD::createServer(int port, std::string ip_addr) {
     if (running) {
@@ -183,9 +181,9 @@ void estbComFD::createServer(int port, std::string ip_addr) {
         // Set up the endpoint to listen on (e.g., 0.0.0.0:8080)
         auto const address = net::ip::make_address(ip_addr.c_str());
         tcp::endpoint endpoint{address, static_cast<unsigned short>(port)};
-
+    // Important
         // Create and start the listener, passing the static request handler
-        listener_ = std::make_shared<Listener>(*ioc_, endpoint, httpReqResHandler::global_handler);
+        listener_ = std::make_shared<Listener>(*ioc_, endpoint, *global_handler);
         listener_->run(); // Initiates the first accept operation
 
         std::cout << "HTTP Server is listening on :" << ip_addr << ':' << port << std::endl;

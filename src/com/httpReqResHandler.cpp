@@ -19,7 +19,7 @@ http::response<http::string_body> make_response(
 }
 
 // global_handler als shared_ptr auf eine Funktion, die HTTP-Requests beantwortet
-std::shared_ptr<std::function<http::response<http::string_body>(const http::request<http::string_body>&)>> global_handler = nullptr;
+std::shared_ptr<std::function<http::response<http::string_body>(const http::request<http::string_body>&)>> global_handler;
 
 // Setup-Funktion, die den Handler mit mehreren Endpunkten initialisiert
 void setupHandler() {

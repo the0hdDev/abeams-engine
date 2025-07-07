@@ -42,8 +42,7 @@ target_link_libraries(engine
         PRIVATE
         fmt::fmt
         spdlog::spdlog
-        ws2_32
-        mswsock
+
 )
 
 
