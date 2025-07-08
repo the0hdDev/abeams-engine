@@ -190,7 +190,7 @@ void estbComFD::createServer(int port, std::string ip_addr) {
     *ioc_,
         endpoint,
         *global_handler
-    );
+        );
 
         listener_->run(); // Initiates the first accept operation
 
