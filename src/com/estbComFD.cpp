@@ -6,6 +6,8 @@
 
 
 
+
+
 // --- Helper Classes (Session and Listener) for Boost.Beast ---
 
 // Session class: Handles a single HTTP server connection.
@@ -164,11 +166,14 @@ estbComFD::~estbComFD() {
 }
 
 
+
+
 void estbComFD::createServer(int port, std::string ip_addr) {
     if (running) {
         std::cerr << "Server is already running." << std::endl;
         return;
     }
+    setupHandler();
 
     // The io_context must be created here, as it will be run in the current thread.
     ioc_ = std::make_unique<net::io_context>(1); // One thread hint
@@ -181,10 +186,15 @@ void estbComFD::createServer(int port, std::string ip_addr) {
         tcp::endpoint endpoint{address, static_cast<unsigned short>(port)};
     // Important
         // Create and start the listener, passing the static request handler
-        
+        listener_ = std::make_shared<Listener>(
+    *ioc_,
+        endpoint,
+        *global_handler
+    );
+
         listener_->run(); // Initiates the first accept operation
 
-        std::cout << "HTTP Server is listening on :" << ip_addr << ':' << port << std::endl;
+        std::cout << "HTTP Server is listening on: " << ip_addr << ':' << port << std::endl;
 
         // Run the io_context. This call will block until io_context::stop() is called.
          ioc_->run();

@@ -16,6 +16,6 @@ class httpReqResHandler {
 };
 
 extern std::shared_ptr<std::function<http::response<http::string_body>(const http::request<http::string_body>&)>> global_handler;
-
+void setupHandler();
 
 #endif //HANDLER_H
