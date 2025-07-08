@@ -9,8 +9,10 @@
         using std::cin;
         using std::string;
 
-int main() {
+void setupHandler();
 
+int main() {
+    setupHandler();
     const uint16_t s_port = 3405;
     const string confpath = "mconf.json";
     bool running = true;
@@ -25,17 +27,6 @@ int main() {
     estbComFD comServer;
     std::thread serverThread([&]() {
       comServer.createServer(s_port, ip_addr);
-
-        if (global_handler) {
-        // Beispiel-Request
-        http::request<http::string_body> dummy_req{http::verb::get, "/", 11};
-        auto res = (*global_handler)(dummy_req);
-        std::cout << res.body() << std::endl;
-    } else {
-        std::cerr << "No handler assigned!" << std::endl;
-    }
-
-
     });
     serverThread.detach();
 
