@@ -29,7 +29,7 @@ add_executable(engine
         src/com/httpReqResHandler.h
 )
 
-file(COPY src/mconf.json DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY src/config/mconf.json DESTINATION ${CMAKE_BINARY_DIR})
 
 
 target_include_directories(engine PRIVATE
@@ -47,5 +47,5 @@ target_link_libraries(engine
 
 
 if(WIN32)
-    target_link_libraries(engine PRIVATE ws2_32)
+    target_link_libraries(engine PRIVATE ws2_32 mswsock)
 endif()
