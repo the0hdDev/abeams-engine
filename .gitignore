@@ -52,6 +52,8 @@ Makefile
 *.dll
 *.pdb
 
+/.idea
+
 *.out
 *.o
 *.obj
@@ -82,5 +84,7 @@ cmake_install.cmake
 .LSOverride
 Icon?
 ._*
+.cmake/
+Testing/
 
 .idea/
