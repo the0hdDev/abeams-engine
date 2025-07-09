@@ -38,9 +38,7 @@ namespace http = beast::http;
 namespace net = boost::asio;
 using tcp = net::ip::tcp;
 
-// Forward declare Listener and Session classes which will be defined in the .cpp file
 class Listener;
-class Session;
 
 class estbComFD {
 public:
@@ -54,10 +52,6 @@ public:
     void stopServer();              // Stop the HTTP server
 
 private:
-    // This function produces an HTTP response for the given request.
-    // Made static as it doesn't depend on an estbComQT instance's state.
-    static http::response_type handle_request(http::request_type const& req);
-
     std::atomic<bool> running;                  // Flag to indicate if server is running
 
     // Boost.Asio and Boost.Beast components
