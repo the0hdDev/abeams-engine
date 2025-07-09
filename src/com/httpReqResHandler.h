@@ -7,6 +7,7 @@
 
 #include <functional>
 #include <boost/beast/http.hpp>
+#include <nlohmann/json.hpp>
 
 namespace http = boost::beast::http;
 
