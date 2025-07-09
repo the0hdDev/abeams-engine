@@ -57,7 +57,7 @@ We welcome contributions from the community! Please see our [CONTRIBUTING.md](do
 
 If you want compile Beams yourself please consult [COMPILING.md](docs/COMPILING.md). This will only work
 if your Plattform specific [Github Action](https://github.com/the0hdDev/beams-engine/actions) passes. If not you can either
-choose the pre-compiled Binary in the [Release Tab](https://github.com/the0hdDev/beams-engine/releases) or clone the latest passing Commit and Compile that. 
+choose the pre-compiled Binary in the [Release Tab](https://github.com/the0hdDev/beams-engine/releases) or clone the 'stable' branch and Compile that. 
 
 ---
 
