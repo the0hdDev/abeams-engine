@@ -5,13 +5,13 @@
 #include "com/httpReqResHandler.h"
 #include "io/util/logsys/logsys.h"
 
-        using std::cout;
-        using std::endl;
-        using std::cin;
-        using std::string;
+using std::cout;
+using std::endl;
+using std::cin;
+using std::string;
 
-void setupHandler();
 
+string sigma = "goon";
 int main() {
     setupHandler();
     const uint16_t s_port = 3405;
@@ -31,8 +31,8 @@ int main() {
     });
     serverThread.detach();
 
-    cout << "threading working\n";
-    logsys::print("ohio sigma");
+    cout << "\033[0m" << "threading working\n";
+    logsys::print(sigma);
 
     for (;;) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
