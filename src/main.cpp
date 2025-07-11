@@ -1,8 +1,9 @@
 #include <iostream>
-#include "io/parseConfig.h"
+#include "io/util/parseConfig.h"
 #include "com/estbComFD.h"
 #include <thread>
 #include "com/httpReqResHandler.h"
+#include "io/util/logsys/logsys.h"
 
         using std::cout;
         using std::endl;
@@ -31,7 +32,7 @@ int main() {
     serverThread.detach();
 
     cout << "threading working\n";
-
+    logsys::print("ohio sigma");
 
     for (;;) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));

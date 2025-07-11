@@ -16,8 +16,8 @@ find_package(spdlog CONFIG REQUIRED)
 
 add_executable(engine
         src/main.cpp
-        src/io/parseConfig.cpp
-        src/io/parseConfig.h
+        src/io/util/parseConfig.cpp
+        src/io/util/parseConfig.h
         src/header/config.h
         src/datapull/pullDataUsr.cpp
         src/datapull/pullDataUsr.h
@@ -27,6 +27,8 @@ add_executable(engine
         src/com/estbComFD.h
         src/com/httpReqResHandler.cpp
         src/com/httpReqResHandler.h
+        src/io/util/logsys/logsys.cpp
+        src/io/util/logsys/logsys.h
 )
 
 file(COPY src/config/mconf.json DESTINATION ${CMAKE_BINARY_DIR})
