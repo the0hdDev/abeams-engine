@@ -37,14 +37,14 @@ private:
     void do_read() {
         auto self(shared_from_this()); // Keep session alive
         http::async_read(socket_, buffer_, req_,
-            [this, self](beast::error_code ec, std::size_t bytes_transferred) {
+            [this](const beast::error_code& err, std::size_t bytes_transferred) {
                 // If no error, process the request and send a response
-                if (!ec) {
+                if (!err) {
                     do_write(request_handler_(req_));
-                } else if (ec == http::error::end_of_stream) {
+                } else if (err == http::error::end_of_stream) {
                     // Client closed the connection gracefully. Nothing to do.
                 } else {
-                    std::cerr << "Session read error: " << ec.message() << std::endl;
+                    std::cerr << "Session read error: " << err.message() << std::endl;
                 }
             });
     }
@@ -56,18 +56,18 @@ private:
         auto sp = std::make_shared<http::response_type>(std::move(res));
 
         http::async_write(socket_, *sp,
-            [this, self, sp](beast::error_code ec, std::size_t bytes_transferred) {
-                if (!ec) {
+            [this, sp](const beast::error_code& err, std::size_t bytes_transferred) {
+                if (!err) {
                     // If the connection is keep-alive, initiate another read for the next request
                     if (sp->keep_alive()) {
                         run(); // Continue reading
                     } else {
-                        // Otherwise, shut down the write half of the socket
+                        // Otherwise, shut down the write-half of the socket
                         beast::error_code ignored_ec;
                         socket_.shutdown(tcp::socket::shutdown_send, ignored_ec);
                     }
                 } else {
-                    std::cerr << "Session write error: " << ec.message() << std::endl;
+                    std::cerr << "Session write error: " << err.message() << std::endl;
                 }
             });
     }
@@ -129,15 +129,15 @@ private:
         // The new connection is accepted on a new strand to prevent deadlock
         // if the handler also needs to access the acceptor's strand.
         acceptor_.async_accept(net::make_strand(ioc_),
-                               [this](beast::error_code ec, tcp::socket socket) {
-            if (!ec) {
+                               [this](const beast::error_code& err, tcp::socket socket) {
+            if (!err) {
                 // On successful accept, create a new session and run it
                 std::make_shared<Session>(std::move(socket), request_handler_)->run();
             } else {
                 // An error occurred during accept. If it's not operation_aborted
                 // (which happens when ioc.stop() is called), then print it.
-                if (ec != net::error::operation_aborted) {
-                    std::cerr << "Listener accept error: " << ec.message() << std::endl;
+                if (err != net::error::operation_aborted) {
+                    std::cerr << "Listener accept error: " << err.message() << std::endl;
                 }
             }
             // Always continue to accept new connections, unless acceptor was explicitly closed
@@ -146,12 +146,6 @@ private:
         });
     }
 
-public:
-    // A dummy run method, primarily to align with previous examples.
-    // The actual accepting starts in the constructor.
-    void run() {
-        // do_accept() is called in the constructor, so nothing more is strictly needed here.
-    }
 };
 
 // --- estbComQT Class Implementation ---
@@ -192,7 +186,7 @@ void estbComFD::createServer(int port, std::string ip_addr) {
         *global_handler
         );
 
-        listener_->run(); // Initiates the first accept operation
+        // listener_->run(); // Initiates the first accept operation
 
         std::cout << "HTTP Server is listening on: " << ip_addr << ':' << port << std::endl;
 
