@@ -35,13 +35,13 @@ int main() {
     Log<string> log;
     uint8_t logLevel = 6;
     log.setLogLevel(logLevel);
-    log.logerr("normal error test", 2);
-    log.logdebug("log debug test", 3);
-    log.logcritical("critical test", 1);
-    log.logtrace("log trace test", 4);
-    log.loginfo("log info test", 5);
-    log.logwarning("log warning test", 6);
-    log.logsevere("log severe test", 7);
+    log.error("normal error test", 2);
+    log.debug("log debug test", 3);
+    log.critical("critical test", 1);
+    log.trace("log trace test", 4);
+    log.info("log info test", 5);
+    log.warning("log warning test", 6);
+    log.severe("log severe test", 7);
 
     for (;;) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));

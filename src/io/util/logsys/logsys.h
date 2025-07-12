@@ -3,22 +3,13 @@
 #include <string>
 #include <cstdint>
 
-enum class LogLevel {
-    INFO, // 0
-    SEVERE,  // 1
-    CRITICAL, // 2
-    ERROR, // 3
-    WARNING, // 4
-    DEBUG, // 5
-    TRACE // 6
-};
 
 template <typename T>
 class Log {
 private:
     uint8_t LogLevel = 6; // Default to TRACE level
 public:
-    void setLogLevel(uint8_t& LogLevelSet) {
+    void setLogLevel(uint8_t LogLevelSet) {
       LogLevel = LogLevelSet;
     }
     Log() {
@@ -32,7 +23,7 @@ public:
         std::cout << WHITE << message << RESET << std::endl;
     }
 
-    void loginfo(const T& infcode, uint16_t errint)
+    void info(const T& infcode, uint16_t errint = 0)
     {
         if (LogLevel >= 0)
         {
@@ -40,7 +31,7 @@ public:
         }
     }
 
-    void logerr(const T& err, uint16_t errint)
+    void error(const T& err, uint16_t errint = 0)
     {
         if (LogLevel >= 3)
         {
@@ -48,7 +39,7 @@ public:
         }
     }
 
-    void logcritical(const T& err, uint16_t errint)
+    void critical(const T& err, uint16_t errint = 0)
     {
         if (LogLevel >= 2)
         {
@@ -56,21 +47,21 @@ public:
         }
     }
 
-    void logsevere(const T& err, uint16_t errint) {
+    void severe(const T& err, uint16_t errint = 0) {
         if (LogLevel >= 1)
         {
             std::cerr << RED << "[SEVERE ERROR:] " << err << "Error Code: " << errint << RESET << std::endl;
         }
     }
 
-    void logtrace(const T& trcmsg, uint16_t dbgint) {
+    void trace(const T& trcmsg, uint16_t dbgint = 0) {
         if (LogLevel >= 6)
         {
             std::cout << BLUE << "[TRACE:] " << trcmsg << "Trace Code: " << dbgint << RESET << std::endl;
         }
     }
 
-    void logdebug(const T& dbgmsg, uint16_t dbgint) {
+    void debug(const T& dbgmsg, uint16_t dbgint = 0) {
         if (LogLevel >= 5)
         {
             std::cout << GREEN << "[DEBUG:] " << dbgmsg << "Debug Code: " << dbgint << RESET << std::endl;
@@ -78,7 +69,7 @@ public:
 
     }
 
-    void logwarning(const T& warning, uint16_t warnint) {
+    void warning(const T& warning, uint16_t warnint = 0) {
         if (LogLevel >= 4)
         {
             std::cerr << YELLOW << "[WARNING:] " << warning << "Warning Code: " << warnint << RESET << std::endl;
