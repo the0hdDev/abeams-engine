@@ -11,7 +11,8 @@ using std::cin;
 using std::string;
 
 
-string sigma = "goon";
+
+
 int main() {
     setupHandler();
     const uint16_t s_port = 3405;
@@ -31,8 +32,15 @@ int main() {
     });
     serverThread.detach();
 
-    cout << "\033[0m" << "threading working\n";
-    logsys::print(sigma);
+    Log<string> log;
+
+    log.logerr("normal error test", 2);
+    log.logdebug("log debug test", 3);
+    log.logcritical("critical test", 1);
+    log.logtrace("log trace test", 4);
+    log.loginfo("log info test", 5);
+    log.logwarning("log warning test", 6);
+    log.logsevere("log severe test", 7);
 
     for (;;) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
