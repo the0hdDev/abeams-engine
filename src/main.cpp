@@ -33,7 +33,8 @@ int main() {
     serverThread.detach();
 
     Log<string> log;
-
+    uint8_t logLevel = 6;
+    log.setLogLevel(logLevel);
     log.logerr("normal error test", 2);
     log.logdebug("log debug test", 3);
     log.logcritical("critical test", 1);
