@@ -20,7 +20,13 @@ void  logsys::print(std::string& message) {
     std::cout << RED << message;
 }
 template<typename errstr>
-void logsys::logerr(const errstr& err, uint16_t errint) {
+static void logsys::logerr(const errstr& err, uint16_t errint) {
     std::cerr << "Error Message: " << err << std::endl << "Error Code: " << errint << std::endl;
 }
+
+
+static void loginfo(const auto& infcode, const uint16_t infint) {
+
+}
+
 

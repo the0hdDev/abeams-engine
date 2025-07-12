@@ -23,7 +23,7 @@ class logsys
     public:
         // Generic
         static void print(std::string& message); // General Print Function
-        static void loginfo(const auto& infcode, const uint16_t errint);
+        static void loginfo(const auto& infcode, const uint16_t infint);
 
         // Error
         static void logerr(const auto& err, const uint16_t errint); // General Error Log Function
