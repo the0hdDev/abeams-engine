@@ -20,7 +20,7 @@ Makefile
 *.dSYM
 *.DS_STORE
 
-**/*
+
 
 !**/*.c
 !**/*.cpp
@@ -85,6 +85,6 @@ cmake_install.cmake
 Icon?
 ._*
 .cmake/
-Testing/
+
 
 .idea/

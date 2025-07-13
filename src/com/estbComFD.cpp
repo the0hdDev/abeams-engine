@@ -3,6 +3,7 @@
 #include <string> // For std::string
 #include <utility> // For std::move
 #include "httpReqResHandler.h"
+#include "../io/util/logsys/logsys.h"
 
 
 
@@ -12,10 +13,14 @@
 
 // Session class: Handles a single HTTP server connection.
 // Implemented as a helper class within the .cpp file for encapsulation.
-class Session : public std::enable_shared_from_this<Session> {
+
+// Removed the global logger instance.
+class Session : public std::enable_shared_from_this<Session>
+{
     tcp::socket socket_;
     beast::flat_buffer buffer_; // Buffer for reads
     http::request_type req_;    // The HTTP request object
+    Log<std::string> logger;    // Logger instance for this session
 
     // A function pointer/lambda to the request handler (e.g., estbComQT::handle_request)
     std::function<http::response_type(http::request_type const&)> request_handler_;
@@ -26,7 +31,8 @@ public:
         : socket_(std::move(socket)), request_handler_(std::move(handler)) {}
 
     // Start the session by initiating a read operation
-    void run() {
+    void run()
+    {
         // Reset the request object for a new read, crucial for keep-alive connections
         req_ = {};
         do_read();
@@ -34,40 +40,57 @@ public:
 
 private:
     // Initiates an asynchronous read for the HTTP request
-    void do_read() {
+    void do_read()
+    {
         auto self(shared_from_this()); // Keep session alive
         http::async_read(socket_, buffer_, req_,
             [this](const beast::error_code& err, std::size_t bytes_transferred) {
                 // If no error, process the request and send a response
-                if (!err) {
+                if (!err)
+                {
                     do_write(request_handler_(req_));
-                } else if (err == http::error::end_of_stream) {
-                    // Client closed the connection gracefully. Nothing to do.
-                } else {
-                    std::cerr << "Session read error: " << err.message() << std::endl;
+                } else if (err == http::error::end_of_stream)
+                {
+                    logger.info("Session closed by client.");
+                    // Client closed the connection gracefully
+                }
+                else
+                {
+
+                    logger.error("Session read error: " + err.message(), 500);
                 }
             });
     }
 
     // Initiates an asynchronous write for the HTTP response
-    void do_write(http::response_type res) {
+    void do_write(http::response_type res)
+    {
         auto self(shared_from_this()); // Keep session alive
         // Use a shared_ptr for the response to ensure it lives until async_write completes
         auto sp = std::make_shared<http::response_type>(std::move(res));
 
         http::async_write(socket_, *sp,
-            [this, sp](const beast::error_code& err, std::size_t bytes_transferred) {
-                if (!err) {
+            [this, sp](const beast::error_code& err, std::size_t bytes_transferred)
+            {
+                if (!err)
+                    {
                     // If the connection is keep-alive, initiate another read for the next request
-                    if (sp->keep_alive()) {
+                    if (sp->keep_alive())
+                    {
                         run(); // Continue reading
-                    } else {
+                    }
+                    else
+                    {
                         // Otherwise, shut down the write-half of the socket
+                        logger.info("Session write completed, shutting down socket.");
                         beast::error_code ignored_ec;
                         socket_.shutdown(tcp::socket::shutdown_send, ignored_ec);
                     }
-                } else {
-                    std::cerr << "Session write error: " << err.message() << std::endl;
+                }
+                else
+                {
+
+                    logger.error("Session write error: " + err.message(), 500);
                 }
             });
     }
@@ -75,7 +98,8 @@ private:
 
 // Listener class: Accepts incoming TCP connections and creates Session objects.
 // Implemented as a helper class within the .cpp file for encapsulation.
-class Listener : public std::enable_shared_from_this<Listener> {
+class Listener : public std::enable_shared_from_this<Listener>
+{
     net::io_context& ioc_;
     tcp::acceptor acceptor_;
     // A function pointer/lambda to the request handler (e.g., estbComQT::handle_request)
@@ -89,55 +113,54 @@ public:
 
         // Open the acceptor
         acceptor_.open(endpoint.protocol(), ec);
-        if (ec) {
-            std::cerr << "Listener open error: " << ec.message() << std::endl;
-            // Handle error, maybe throw or log more robustly
+        if (ec)
+        {
+            logger.error("Listener open error: " + ec.message(), 404);
             return;
         }
-
-        // Allow address reuse (important for restarting servers quickly)
         acceptor_.set_option(net::socket_base::reuse_address(true), ec);
-        if (ec) {
-            std::cerr << "Listener set_option error: " << ec.message() << std::endl;
-            // Handle error
+        if (ec)
+        {
             return;
         }
-
         // Bind to the specified address and port
         acceptor_.bind(endpoint, ec);
-        if (ec) {
-            std::cerr << "Listener bind error: " << ec.message() << std::endl;
-            // Handle error
+        if (ec)
+        {
+            logger.error("Listener bind error: " + ec.message());
             return;
         }
-
-        // Start listening for connections
+// Line 132 removed as it is redundant and misleading.
         acceptor_.listen(net::socket_base::max_listen_connections, ec);
-        if (ec) {
-            std::cerr << "Listener listen error: " << ec.message() << std::endl;
-            // Handle error
+
+        if (ec)
+        {
+            logger.error("Listener listen error: " + ec.message());
             return;
         }
-
-        // Immediately start accepting the first connection
+        // Start accepting connections
         do_accept();
     }
-
 private:
     // Initiates an asynchronous accept operation
-    void do_accept() {
+    void do_accept()
+    {
         // The new connection is accepted on a new strand to prevent deadlock
         // if the handler also needs to access the acceptor's strand.
         acceptor_.async_accept(net::make_strand(ioc_),
-                               [this](const beast::error_code& err, tcp::socket socket) {
-            if (!err) {
+        [this](const beast::error_code& err, tcp::socket socket)
+        {
+            if (!err)
+            {
                 // On successful accept, create a new session and run it
                 std::make_shared<Session>(std::move(socket), request_handler_)->run();
-            } else {
+            } else
+                {
                 // An error occurred during accept. If it's not operation_aborted
                 // (which happens when ioc.stop() is called), then print it.
-                if (err != net::error::operation_aborted) {
-                    std::cerr << "Listener accept error: " << err.message() << std::endl;
+                if (err != net::error::operation_aborted)
+                {
+                    logger.error("Listener accept error: " + err.message());
                 }
             }
             // Always continue to accept new connections, unless acceptor was explicitly closed
@@ -150,12 +173,14 @@ private:
 
 // --- estbComQT Class Implementation ---
 
-estbComFD::estbComFD() : running(false) {
+estbComFD::estbComFD() : running(false)
+{
     // Boost.Asio handles its own platform-specific initialization (e.g., Winsock on Windows).
     // No explicit WSAStartup/WSACleanup needed here for Boost.Asio's usage.
 }
 
-estbComFD::~estbComFD() {
+estbComFD::~estbComFD()
+{
     stopServer(); // Ensure server is stopped and resources are released
 }
 
@@ -164,11 +189,10 @@ estbComFD::~estbComFD() {
 
 void estbComFD::createServer(int port, std::string ip_addr) {
     if (running) {
-        std::cerr << "Server is already running." << std::endl;
+        logger.error("Server is already running.", 409);
         return;
     }
     setupHandler();
-
     // The io_context must be created here, as it will be run in the current thread.
     ioc_ = std::make_unique<net::io_context>(1); // One thread hint
 
