@@ -130,7 +130,7 @@ public:
             logger.error("Listener bind error: " + ec.message());
             return;
         }
-        logger.error("Listener set_option error: " + ec.message(), 500);
+// Line 132 removed as it is redundant and misleading.
         acceptor_.listen(net::socket_base::max_listen_connections, ec);
 
         if (ec)
