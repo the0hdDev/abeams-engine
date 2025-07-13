@@ -31,8 +31,6 @@ int main()
     });
     serverThread.detach();
 
-    Log<string> log;
-
     for (;;) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     };
