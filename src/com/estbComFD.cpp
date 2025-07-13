@@ -14,12 +14,13 @@
 // Session class: Handles a single HTTP server connection.
 // Implemented as a helper class within the .cpp file for encapsulation.
 
-Log<std::string> logger;
+// Removed the global logger instance.
 class Session : public std::enable_shared_from_this<Session>
 {
     tcp::socket socket_;
     beast::flat_buffer buffer_; // Buffer for reads
     http::request_type req_;    // The HTTP request object
+    Log<std::string> logger;    // Logger instance for this session
 
     // A function pointer/lambda to the request handler (e.g., estbComQT::handle_request)
     std::function<http::response_type(http::request_type const&)> request_handler_;
