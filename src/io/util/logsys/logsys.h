@@ -3,31 +3,30 @@
 #include <string>
 #include <cstdint>
 
-
 template <typename T>
-class Log {
+class Log
+{
 private:
     uint8_t LogLevel = 6; // Default to TRACE level
 public:
-    void setLogLevel(uint8_t LogLevelSet) {
-      LogLevel = LogLevelSet;
-    }
-    Log() {
+     Log() = default;
+     ~Log() = default;
 
+    void setLogLevel(uint8_t LogLevelSet)
+    {
+        LogLevel = LogLevelSet;
     }
-    ~Log() {
 
-    }
     void print(const T& message)
     {
         std::cout << WHITE << message << RESET << std::endl;
     }
 
-    void info(const T& infcode, uint16_t errint = 0)
+    void info(const T& infcode)
     {
         if (LogLevel >= 0)
         {
-            std::cout << WHITE << "[INFO:] " << infcode  << "Info Code: " << errint << RESET << std::endl;
+            std::cout << WHITE << "[INFO:] " << infcode << RESET << std::endl;
         }
     }
 
@@ -35,7 +34,7 @@ public:
     {
         if (LogLevel >= 3)
         {
-            std::cerr << RED << "[ERROR:] " << err << "Error Code: " << errint << RESET << std::endl;
+            std::cerr << RED << "[ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
     }
 
@@ -43,36 +42,39 @@ public:
     {
         if (LogLevel >= 2)
         {
-            std::cerr << RED << "[CRITICAL ERROR:] " << err << "Error Code: " << errint << RESET<< std::endl;
+            std::cerr << RED << "[CRITICAL ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
     }
 
-    void severe(const T& err, uint16_t errint = 0) {
+    void severe(const T& err, uint16_t errint = 0)
+    {
         if (LogLevel >= 1)
         {
-            std::cerr << RED << "[SEVERE ERROR:] " << err << "Error Code: " << errint << RESET << std::endl;
+            std::cerr << RED << "[SEVERE ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
     }
 
-    void trace(const T& trcmsg, uint16_t dbgint = 0) {
+    void trace(const T& trcmsg)
+    {
         if (LogLevel >= 6)
         {
-            std::cout << BLUE << "[TRACE:] " << trcmsg << "Trace Code: " << dbgint << RESET << std::endl;
+            std::cout << BLUE << "[TRACE:] " << trcmsg << RESET << std::endl;
         }
     }
 
-    void debug(const T& dbgmsg, uint16_t dbgint = 0) {
+    void debug(const T& dbgmsg)
+    {
         if (LogLevel >= 5)
         {
-            std::cout << GREEN << "[DEBUG:] " << dbgmsg << "Debug Code: " << dbgint << RESET << std::endl;
+            std::cout << GREEN << "[DEBUG:] " << dbgmsg << RESET << std::endl;
         }
-
     }
 
-    void warning(const T& warning, uint16_t warnint = 0) {
+    void warning(const T& warning, uint16_t warnint = 0)
+    {
         if (LogLevel >= 4)
         {
-            std::cerr << YELLOW << "[WARNING:] " << warning << "Warning Code: " << warnint << RESET << std::endl;
+            std::cerr << YELLOW << "[WARNING:] " << warning << " Warning Code: " << warnint << RESET << std::endl;
         }
     }
 

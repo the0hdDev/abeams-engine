@@ -3,66 +3,75 @@
 //
 
 #include "parseConfig.h"
+#include "logsys/logsys.h"
 
 using json = nlohmann::json;
 
 
 
-json ParseConfig(const std::string &confPath) {
-
-    std::ifstream ifs(confPath);
-
-    if (!ifs.is_open()) {
-        std::cerr << "Cannot open config file " << confPath << std::endl;
-    }
+Log<std::string> logger2;
+json ParseConfig(const std::string &confPath)
+{
 
     nlohmann::json jsonConfig;
-
+    std::ifstream ifs(confPath);
     ifs >> jsonConfig;
 
-    if (confPath == "") {
-        std::cerr << "No config file found or specified at: " << confPath << std::endl;
+
+    if (!ifs.is_open())
+    {
+        logger2.error("Cannot open config file " + confPath, 403);
     }
-    std::cout << "jsonconf was read" << std::endl;
+    if (confPath == "")
+    {
+        logger2.error("No config file found or specified at: " + confPath, 404);
+    }
+
+    logger2.info("jsonconf was read");
     return jsonConfig;
 }
 
-int getPort(const std::string confPath) {
-
+int getPort(const std::string confPath)
+{
     json data = ParseConfig(confPath);
     int port = data["port"];
-    std::cout << port << std::endl;
+    std::string stringPort = std::to_string(port);
+    logger2.info(stringPort);
     return port;
 }
 
 int checkDebug(const std::string confPath) {
     json data = ParseConfig(confPath);
     bool dbgBool = data["general"]["isDebug"];
-    std::cout << dbgBool << std::endl;
+    std::string dbgBoolStr = std::to_string(dbgBool);
+    logger2.info(dbgBoolStr);
     return dbgBool;
 }
 
-nlohmann::json ReadConfig::ParseConfig() {
+nlohmann::json ReadConfig::ParseConfig()
+{
     std::ifstream ifs(configPath);
-
-    if (!ifs.is_open()) {
-        std::cerr << "Cannot open config file " << configPath << std::endl;
-    }
-
     nlohmann::json jsonConfig;
-
+    if (!ifs.is_open())
+    {
+        logger2.error("Cannot open config file " + configPath);
+    }
     ifs >> jsonConfig;
 
-    if (configPath == "") {
-        std::cerr << "No config file found or specified at: " << configPath << std::endl;
+    if (configPath == "")
+    {
+        logger2.error("No config file found or specified at: " + configPath);
     }
-    std::cout << "jsonconf was read" << std::endl;
+
+    logger2.info("jsonconf was read");
     return jsonConfig;
 }
+
 bool ReadConfig::isDebug(std::string confpath) {
     this->configPath = confpath;
     json data = ParseConfig();
     bool dbgBool = data["general"]["isDebug"];
-    std::cout << dbgBool << std::endl;
+    std::string dbgBoolStr = std::to_string(dbgBool);
+    logger2.info(dbgBoolStr);
     return dbgBool;
 }
