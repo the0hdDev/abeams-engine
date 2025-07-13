@@ -15,6 +15,8 @@
 // Implemented as a helper class within the .cpp file for encapsulation.
 
 // Removed the global logger instance.
+
+Log<std::string> logger;
 class Session : public std::enable_shared_from_this<Session>
 {
     tcp::socket socket_;
@@ -211,14 +213,14 @@ void estbComFD::createServer(int port, std::string ip_addr) {
         );
 
         // listener_->run(); // Initiates the first accept operation
-
-        std::cout << "HTTP Server is listening on: " << ip_addr << ':' << port << std::endl;
+        std::string strPort =std::to_string(port);
+        logger.info("HTTP Server is listening on: "  + ip_addr + ':' + strPort);
 
         // Run the io_context. This call will block until io_context::stop() is called.
          ioc_->run();
-         std::cout << "HTTP Server io_context stopped cleanly." << std::endl;
+         logger.info("HTTP Server io_context stopped cleanly.");
     } catch (const std::exception& e) {
-        std::cerr << "HTTP Server error: " << e.what() << std::endl;
+        logger.error("HTTP Server error: ", 500);
         running = false; // Mark as not running if an exception occurs
     }
 
@@ -230,7 +232,7 @@ void estbComFD::createServer(int port, std::string ip_addr) {
 
 void estbComFD::stopServer() {
     if (!running) {
-        std::cout << "Server is not running." << std::endl;
+        logger.info("Server is not running.");
         return;
     }
 
@@ -241,5 +243,5 @@ void estbComFD::stopServer() {
     }
     // No need to join a thread here, as main() manages the thread.
     // The destructor will ensure cleanup happens if stopServer() wasn't explicitly called.
-    std::cout << "HTTP Server stop signal sent." << std::endl;
+    logger.info("HTTP Server stop signal sent.");
 }
