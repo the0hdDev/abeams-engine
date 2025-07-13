@@ -15,13 +15,12 @@ json ParseConfig(const std::string &confPath)
 
     nlohmann::json jsonConfig;
     std::ifstream ifs(confPath);
-    ifs >> jsonConfig;
-
-
     if (!ifs.is_open())
     {
         logger2.error("Cannot open config file " + confPath, 403);
+        return jsonConfig; // Return an empty json object
     }
+    ifs >> jsonConfig;
     if (confPath == "")
     {
         logger2.error("No config file found or specified at: " + confPath, 404);
