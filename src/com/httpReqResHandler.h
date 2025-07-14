@@ -1,22 +1,13 @@
-//
-// Created by theow on 05.07.2025.
-//
-#pragma once
-#ifndef HANDLER_H
-#define HANDLER_H
-
-#include <functional>
-#include <boost/beast/http.hpp>
 #include <nlohmann/json.hpp>
+#include <boost/beast/core.hpp>
+#include <../io/util/logsys/logsys.h>
+#include <string>
 
-namespace http = boost::beast::http;
+#include "boost/beast/websocket/stream.hpp"
 
-
-class httpReqResHandler {
-
+class handler {
+public:
+    handler();
+    ~handler();
+    void handle(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws, boost::beast::flat_buffer& buffer);
 };
-
-extern std::shared_ptr<std::function<http::response<http::string_body>(const http::request<http::string_body>&)>> global_handler;
-void setupHandler();
-
-#endif //HANDLER_H

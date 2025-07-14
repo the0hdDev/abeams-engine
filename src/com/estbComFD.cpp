@@ -10,7 +10,7 @@ using tcp = net::ip::tcp;
 
 Log<std::string> logger;
 
-// Konstruktor: Speichert Portnummer.
+// ---Konstruktor: Speichert Portnummer.
 estbComFD::estbComFD(uint16_t port)
     : port_(port) {}
 
