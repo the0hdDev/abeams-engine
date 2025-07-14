@@ -24,10 +24,10 @@ int main()
     bool isDebug = conf.isDebug(confpath);
 
 
-    estbComFD comServer;
+    estbComFD* comSocket = new estbComFD(3405);
     std::thread serverThread([&]()
     {
-      comServer.createServer(s_port, ip_addr);
+      comSocket->run();
     });
     serverThread.detach();
 
