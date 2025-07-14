@@ -1,11 +1,14 @@
 #include "estbComFD.h"
 #include <boost/beast/core.hpp>
-#include <iostream>
+#include <../io/util/logsys/logsys.h>
+#include <string>
 
 namespace beast = boost::beast;
 namespace websocket = beast::websocket;
 namespace net = boost::asio;
 using tcp = net::ip::tcp;
+
+Log<std::string> logger;
 
 // Konstruktor: Speichert Portnummer.
 estbComFD::estbComFD(uint16_t port)
@@ -18,32 +21,32 @@ void estbComFD::run() {
 
       // 2. TCP-Akzeptor auf dem gewünschten Port erzeugen.
       tcp::acceptor acceptor(ioc, tcp::endpoint(tcp::v4(), port_));
-      std::cout << "WebSocket Server läuft auf Port " << port_ << std::endl;
-
+      logger.info("comserv is runnning on: " + port_);
       // 3. Auf eine eingehende Verbindung warten.
       tcp::socket socket(ioc);
       acceptor.accept(socket);
-      std::cout << "Client verbunden!" << std::endl;
+       logger.info("client connected");
 
       // 4. WebSocket-Stream initialisieren.
       websocket::stream<tcp::socket> ws(std::move(socket));
 
       // 5. WebSocket-Handshake durchführen.
       ws.accept();
-      std::cout << "WebSocket Handshake abgeschlossen." << std::endl;
+      logger.info("websocker handshake completed successfully");
 
       // 6. Nachrichten empfangen und zurückschicken (Echo).
       for (;;) {
          beast::flat_buffer buffer;
          ws.read(buffer); // Empfang einer Nachricht
          std::string received = beast::buffers_to_string(buffer.data());
-         std::cout << "Empfangen: " << received << std::endl;
+         logger.info("Empfangen: " + received);
 
          ws.text(ws.got_text()); // Modus setzen
          // Sende eine Nachricht aus beast::flat_buffer
          ws.write(boost::asio::buffer(buffer.data(), buffer.size()));
       }
    } catch (const std::exception& e) {
-      std::cerr << "Fehler: " << e.what() << std::endl;
+
+      logger.error("error", 0);
    }
 }
