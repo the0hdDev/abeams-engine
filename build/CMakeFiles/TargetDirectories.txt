@@ -1,0 +1,3 @@
+C:/Users/theow/OneDrive/Desktop/Code-Projekts/CivCore/engine/build/CMakeFiles/engine.dir
+C:/Users/theow/OneDrive/Desktop/Code-Projekts/CivCore/engine/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/theow/OneDrive/Desktop/Code-Projekts/CivCore/engine/build/CMakeFiles/ZERO_CHECK.dir

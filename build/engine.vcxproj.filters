@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\io\util\parseConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\datapull\pullDataUsr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\datapull\pullDataSpdr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\com\estbComFD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\com\httpReqResHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\io\util\logsys\logsys.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\io\util\parseConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\header\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\datapull\pullDataUsr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\datapull\pullDataSpdr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\com\estbComFD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\com\httpReqResHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\src\io\util\logsys\logsys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\theow\OneDrive\Desktop\Code-Projekts\CivCore\engine\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{D5562014-88E8-3D10-9CDC-7B7CC5A51684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{A0CFC0FE-C586-35B5-919D-529D7F9A01C3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
