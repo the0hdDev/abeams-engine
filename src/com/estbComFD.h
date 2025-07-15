@@ -1,6 +1,7 @@
 #pragma once
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
+#include "httpReqResHandler.h"
 
 // Einfache WebSocket-Server-Klasse mit Boost Beast.
 // Benutze run(), um einen synchronen Echo-WebSocket-Server zu starten.

@@ -14,7 +14,9 @@ Log<std::string> logger;
 estbComFD::estbComFD(uint16_t port)
     : port_(port) {}
 
+
 void estbComFD::run() {
+      Handler handler;
    try {
       // 1. IO-Kontext für Netzwerkoperationen.
       net::io_context ioc;
@@ -37,13 +39,7 @@ void estbComFD::run() {
       // 6. Nachrichten empfangen und zurückschicken (Echo).
       for (;;) {
          beast::flat_buffer buffer;
-         ws.read(buffer); // Empfang einer Nachricht
-         std::string received = beast::buffers_to_string(buffer.data());
-         logger.info("Empfangen: " + received);
-
-         ws.text(ws.got_text()); // Modus setzen
-         // Sende eine Nachricht aus beast::flat_buffer
-         ws.write(boost::asio::buffer(buffer.data(), buffer.size()));
+         handler.echo(ws, buffer);
       }
    } catch (const std::exception& e) {
 

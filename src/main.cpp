@@ -15,7 +15,7 @@ using std::string;
 
 int main()
 {
-    setupHandler();
+
     const uint16_t s_port = 3405;
     const string confpath = "mconf.json";
     bool running = true;
