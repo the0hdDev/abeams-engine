@@ -10,7 +10,7 @@ Makefile
 
 # Build artifacts
 /cmake-build-*/
-/build
+./build
 
 # Other
 .DS_Store
