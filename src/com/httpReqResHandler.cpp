@@ -16,13 +16,13 @@ void Handler::wsHandler(boost::beast::websocket::stream<boost::asio::ip::tcp::so
 {
 
 }
-
 void Handler::echo(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws, boost::beast::flat_buffer& buffer)
 {
     buffer.clear(); // Buffer leeren
     ws.read(buffer); // Nachricht lesen
-    logger3.info("Received message: " + boost::beast::buffers_to_string(buffer.data()));
+    logger3.info(std::to_string(ws.read(buffer)));
     ws.text(ws.got_text()); // Text/Binary setzen
     ws.write(buffer.data()); // Antwort schicken (Echo)
-
 }
+
+
