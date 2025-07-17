@@ -14,9 +14,10 @@ Log<std::string> logger;
 estbComFD::estbComFD(uint16_t port)
     : port_(port) {}
 
+Handler handler;
 
 void estbComFD::run() {
-      Handler handler;
+
    try {
       // 1. IO-Kontext für Netzwerkoperationen.
       net::io_context ioc;
@@ -43,6 +44,6 @@ void estbComFD::run() {
       }
    } catch (const std::exception& e) {
 
-      logger.error("error", 0);
+      std::cout << "error" << e.what() << std::endl;
    }
 }
