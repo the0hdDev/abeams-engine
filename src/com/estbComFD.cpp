@@ -1,5 +1,4 @@
 #include "estbComFD.h"
-#include <boost/beast/core.hpp>
 #include <../io/util/logsys/logsys.h>
 #include <string>
 
@@ -10,34 +9,32 @@ using tcp = net::ip::tcp;
 
 Log<std::string> logger;
 
-// ---Konstruktor: Speichert Portnummer.
+
 estbComFD::estbComFD(uint16_t port)
     : port_(port) {}
 
 Handler handler;
 
-void estbComFD::run() {
+void estbComFD::run() const {
 
    try {
-      // 1. IO-Kontext für Netzwerkoperationen.
+
       net::io_context ioc;
 
-      // 2. TCP-Akzeptor auf dem gewünschten Port erzeugen.
+      // generate tcp acceptor at given port
       tcp::acceptor acceptor(ioc, tcp::endpoint(tcp::v4(), port_));
-      logger.info("comserv is runnning on: " + port_);
-      // 3. Auf eine eingehende Verbindung warten.
+      logger.info("Communication Server is running at: " + port_);
+      // wait for incoming connections
       tcp::socket socket(ioc);
       acceptor.accept(socket);
        logger.info("client connected");
 
-      // 4. WebSocket-Stream initialisieren.
+      // initialise websocket
       websocket::stream<tcp::socket> ws(std::move(socket));
-
-      // 5. WebSocket-Handshake durchführen.
       ws.accept();
-      logger.info("websocker handshake completed successfully");
+      logger.info("websocket handshake completed successfully");
 
-      // 6. Nachrichten empfangen und zurückschicken (Echo).
+      // enter the main loop to handle incoming messages
       for (;;) {
          beast::flat_buffer buffer;
          handler.echo(ws, buffer);

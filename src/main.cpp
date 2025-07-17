@@ -2,12 +2,8 @@
 #include "io/util/parseConfig.h"
 #include "com/estbComFD.h"
 #include <thread>
-#include "com/httpReqResHandler.h"
 #include "io/util/logsys/logsys.h"
 
-using std::cout;
-using std::endl;
-using std::cin;
 using std::string;
 
 
@@ -15,18 +11,19 @@ using std::string;
 
 int main()
 {
-
     const uint16_t s_port = 3405;
     const string confpath = "mconf.json";
-    bool running = true;
-    string ip_addr = "127.0.0.1";
+
+    Log<std::string> logger4;
     ReadConfig conf;
+    string ip_addr = "127.0.0.1";
     bool isDebug = conf.isDebug(confpath);
 
 
     estbComFD* comSocket = new estbComFD(3405);
     std::thread serverThread([&]()
     {
+
       comSocket->run();
     });
     serverThread.detach();
