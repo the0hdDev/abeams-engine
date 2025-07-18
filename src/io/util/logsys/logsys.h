@@ -7,7 +7,7 @@ template <typename T>
 class Log
 {
 private:
-    uint8_t LogLevel = 6; // Default to TRACE level
+    uint8_t LogLevel = 1; // Default to TRACE level
 public:
     Log() {
         std::cout << WHITE << "[INFO:] LogSys created successfully" << RESET << std::endl;
@@ -34,7 +34,7 @@ public:
 
     void error(const T& err, uint16_t errint = 0)
     {
-        if (LogLevel >= 3)
+        if (LogLevel >= 0)
         {
             std::cerr << RED << "[ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
@@ -42,7 +42,7 @@ public:
 
     void critical(const T& err, uint16_t errint = 0)
     {
-        if (LogLevel >= 2)
+        if (LogLevel >= 0)
         {
             std::cerr << RED << "[CRITICAL ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
@@ -50,7 +50,7 @@ public:
 
     void severe(const T& err, uint16_t errint = 0)
     {
-        if (LogLevel >= 1)
+        if (LogLevel >= 0)
         {
             std::cerr << RED << "[SEVERE ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
@@ -58,7 +58,7 @@ public:
 
     void trace(const T& trcmsg)
     {
-        if (LogLevel >= 6)
+        if (LogLevel >= 3)
         {
             std::cout << BLUE << "[TRACE:] " << trcmsg << RESET << std::endl;
         }
@@ -66,7 +66,7 @@ public:
 
     void debug(const T& dbgmsg)
     {
-        if (LogLevel >= 5)
+        if (LogLevel >= 1)
         {
             std::cout << GREEN << "[DEBUG:] " << dbgmsg << RESET << std::endl;
         }
@@ -74,7 +74,7 @@ public:
 
     void warning(const T& warning, uint16_t warnint = 0)
     {
-        if (LogLevel >= 4)
+        if (LogLevel >= 2)
         {
             std::cerr << YELLOW << "[WARNING:] " << warning << " Warning Code: " << warnint << RESET << std::endl;
         }

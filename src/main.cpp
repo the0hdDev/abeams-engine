@@ -6,25 +6,19 @@
 
 using std::string;
 
-
-
-
 int main()
 {
-    const uint16_t s_port = 3405;
-    const string confpath = "mconf.json";
-
+    const string confPath = "config.json";
     logSys.info("LogSys started successfully");
     ReadConfig conf;
-    if (conf.isDebug(confpath) == true) {
+    // const uint32_t port = conf.getPort(confPath);
+    const uint32_t port = 3405;
 
-    };
+    logSys.setLogLevel(conf.getLogLevel("config.json"));
 
-
-    estbComFD* comSocket = new estbComFD(3405);
+    estbComFD* comSocket = new estbComFD(port);
     std::thread serverThread([&]()
     {
-
       comSocket->run();
     });
     serverThread.detach();

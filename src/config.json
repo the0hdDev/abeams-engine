@@ -1,0 +1,11 @@
+{
+  "general": {
+    "communication": {
+      "port": 4000
+    },
+    "logging": {
+      "logLevel": 5,
+      "logFile": "app.log"
+    }
+  }
+}
