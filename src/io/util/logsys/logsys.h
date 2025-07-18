@@ -9,9 +9,11 @@ class Log
 private:
     uint8_t LogLevel = 6; // Default to TRACE level
 public:
-     Log() = default;
-     ~Log() = default;
+    Log() {
+        std::cout << WHITE << "[INFO:] LogSys created successfully" << RESET << std::endl;
+    };
 
+    ~Log() = default;
     void setLogLevel(uint8_t LogLevelSet)
     {
         LogLevel = LogLevelSet;
@@ -88,3 +90,6 @@ public:
     static const std::string WHITE;
     static const std::string RESET;
 };
+
+extern Log<std::string> logSys;
+

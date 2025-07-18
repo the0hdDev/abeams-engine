@@ -14,10 +14,11 @@ int main()
     const uint16_t s_port = 3405;
     const string confpath = "mconf.json";
 
-    Log<std::string> logger4;
+    logSys.info("LogSys started successfully");
     ReadConfig conf;
-    string ip_addr = "127.0.0.1";
-    bool isDebug = conf.isDebug(confpath);
+    if (conf.isDebug(confpath) == true) {
+
+    };
 
 
     estbComFD* comSocket = new estbComFD(3405);

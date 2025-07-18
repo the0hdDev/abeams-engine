@@ -7,11 +7,11 @@ namespace websocket = beast::websocket;
 namespace net = boost::asio;
 using tcp = net::ip::tcp;
 
-Log<std::string> logger;
 
-
-estbComFD::estbComFD(uint16_t port)
-    : port_(port) {}
+estbComFD::estbComFD(unsigned short port)
+    : port_(port) {
+        logSys.info("Starting File Descriptor");
+    }
 
 Handler handler;
 
@@ -23,16 +23,16 @@ void estbComFD::run() const {
 
       // generate tcp acceptor at given port
       tcp::acceptor acceptor(ioc, tcp::endpoint(tcp::v4(), port_));
-      logger.info("Communication Server is running at: " + port_);
+      logSys.info("Communication Server is running at: " + std::to_string(port_));
       // wait for incoming connections
       tcp::socket socket(ioc);
       acceptor.accept(socket);
-       logger.info("client connected");
+       logSys.info("client connected");
 
       // initialise websocket
       websocket::stream<tcp::socket> ws(std::move(socket));
       ws.accept();
-      logger.info("websocket handshake completed successfully");
+      logSys.info("websocket handshake completed successfully");
 
       // enter the main loop to handle incoming messages
       for (;;) {
