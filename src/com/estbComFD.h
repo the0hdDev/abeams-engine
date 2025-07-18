@@ -14,7 +14,7 @@ public:
     explicit estbComFD(unsigned short port = 8080);
 
     // Startet den WebSocket-Server (blockierend, echo).
-    void run();
+    void run() const;
 
 private:
     unsigned short port_;

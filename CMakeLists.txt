@@ -31,7 +31,7 @@ add_executable(engine
         src/io/util/logsys/logsys.h
 )
 
-file(COPY src/config/mconf.json DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY src/config.json DESTINATION ${CMAKE_BINARY_DIR})
 
 
 target_include_directories(engine PRIVATE

@@ -2,29 +2,21 @@
 #include "io/util/parseConfig.h"
 #include "com/estbComFD.h"
 #include <thread>
-#include "com/httpReqResHandler.h"
 #include "io/util/logsys/logsys.h"
 
-using std::cout;
-using std::endl;
-using std::cin;
 using std::string;
-
-
-
 
 int main()
 {
-
-    const uint16_t s_port = 3405;
-    const string confpath = "mconf.json";
-    bool running = true;
-    string ip_addr = "127.0.0.1";
+    const string confPath = "config.json";
+    logSys.info("LogSys started successfully");
     ReadConfig conf;
-    bool isDebug = conf.isDebug(confpath);
+    // const uint32_t port = conf.getPort(confPath);
+    const uint32_t port = 3405;
 
+    logSys.setLogLevel(conf.getLogLevel("config.json"));
 
-    estbComFD* comSocket = new estbComFD(3405);
+    estbComFD* comSocket = new estbComFD(port);
     std::thread serverThread([&]()
     {
       comSocket->run();
