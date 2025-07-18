@@ -2,8 +2,20 @@
 #include <iostream>
 #include <string>
 #include <cstdint>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
+#include "logToFile.h"
 
-template <typename T>
+std::string currentDateTime() {
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&now_time), "%Y-%m-%d %H:%M:%S");
+    return ss.str();
+}
+
 class Log
 {
 private:
@@ -19,64 +31,65 @@ public:
         LogLevel = LogLevelSet;
     }
 
-    void print(const T& message)
+    void print(const std::string& message)
     {
         std::cout << WHITE << message << RESET << std::endl;
     }
 
-    void info(const T& infcode)
+    void info(const std::string& infcode)
     {
         if (LogLevel >= 0)
         {
-            std::cout << WHITE << "[INFO:] " << infcode << RESET << std::endl;
+            logToFile::writeToLogFile("/skibidi", "00:00", "goon");
+            std::cout << WHITE << "[" << currentDateTime() <<" | INFO:] " << infcode << RESET << std::endl;
         }
     }
 
-    void error(const T& err, uint16_t errint = 0)
+    void error(const std::string& err, uint16_t errint = 0)
     {
         if (LogLevel >= 0)
         {
-            std::cerr << RED << "[ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
+            std::cerr << RED << "[" << currentDateTime() << " | ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
     }
 
-    void critical(const T& err, uint16_t errint = 0)
+    void critical(const std::string& err, uint16_t errint = 0)
     {
         if (LogLevel >= 0)
         {
-            std::cerr << RED << "[CRITICAL ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
+            std::cerr << RED  << "[" << currentDateTime() << " | CRITICAL ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
     }
 
-    void severe(const T& err, uint16_t errint = 0)
+    void severe(const std::string& err, uint16_t errint = 0)
     {
         if (LogLevel >= 0)
         {
-            std::cerr << RED << "[SEVERE ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
+            std::cerr << RED  << "[" << currentDateTime() << " | SEVERE ERROR:] " << err << " Error Code: " << errint << RESET << std::endl;
         }
     }
 
-    void trace(const T& trcmsg)
+    void trace(const std::string& trcmsg)
     {
         if (LogLevel >= 3)
         {
-            std::cout << BLUE << "[TRACE:] " << trcmsg << RESET << std::endl;
+            std::cout << BLUE  << "[ " << currentDateTime() << " | TRACE:] " << trcmsg << RESET << std::endl;
         }
     }
 
-    void debug(const T& dbgmsg)
+    void debug(const std::string& dbgmsg)
     {
         if (LogLevel >= 1)
         {
-            std::cout << GREEN << "[DEBUG:] " << dbgmsg << RESET << std::endl;
+            std::cout << GREEN  << "[ " << currentDateTime() << " | DEBUG:] " << dbgmsg << RESET << std::endl;
         }
     }
 
-    void warning(const T& warning, uint16_t warnint = 0)
+    void warning(const std::string& warning, uint16_t warnint = 0)
     {
         if (LogLevel >= 2)
         {
-            std::cerr << YELLOW << "[WARNING:] " << warning << " Warning Code: " << warnint << RESET << std::endl;
+            std::cerr << YELLOW  << "[ " << currentDateTime() << " | WARNING:] " << warning << " Warning Code: " << warnint << RESET << std::endl;
         }
     }
 
@@ -91,5 +104,5 @@ public:
     static const std::string RESET;
 };
 
-extern Log<std::string> logSys;
+extern Log logSys;
 
