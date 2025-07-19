@@ -1,34 +1,21 @@
-Copyright (c) 2025 abeams. - Developed and Distributed through Generic Network
+MIT License
 
+Copyright (c) 2025 BEAMS - DEVELOPED BY THE0HD
 
-1. License Grant
-   The licensee is granted a non-exclusive, non-transferable, worldwide right
-   to use, copy, and execute the CivCore source code
-   solely for **non-commercial purposes**.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights  
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+copies of the Software, and to permit persons to whom the Software is  
+furnished to do so, subject to the following conditions:
 
-2. Modifications and Forks
-   a) Modifications to the source code may only be submitted via official Pull Requests (PRs).
-   b) Private modifications (forks) that are not publicly distributed are permitted.
-   c) Publicly accessible forks or distributions of modified code are **only allowed with explicit written permission** from the copyright holder.
+The above copyright notice and this permission notice shall be included in all  
+copies or substantial portions of the Software.
 
-3. Commercial Use
-   Commercial use, redistribution, leasing, sublicensing, sale, or any other
-   commercial exploitation of the code or derivative works is strictly prohibited
-   without explicit written consent from the copyright holder.
-
-4. Media and Content
-   Creation and publication of videos, tutorials, reviews, or other content that
-   use or explain CivCore is explicitly permitted.
-
-5. Disclaimer
-   The software is provided "as is," without any express or implied warranties.
-
-6. Governing Law
-   This license is governed by the laws of the Federal Republic of Germany.
-
-7. Contact
-   For permissions or inquiries, please contact: [Your Contact Information]
-
----
-
-End of License
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
+SOFTWARE.
