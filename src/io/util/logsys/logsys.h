@@ -33,7 +33,7 @@ public:
         if (LogLevel >= 0)
         {
 
-            logToFile::writeToLogFile("skibidi.txt", "00:00", "goon");
+            logToFile::writeInfoToLogFile("skibidi.txt", currentDateTime() , infcode);
             std::cout << WHITE << "[" << currentDateTime() <<" | INFO:] " << infcode << RESET << std::endl;
         }
     }
