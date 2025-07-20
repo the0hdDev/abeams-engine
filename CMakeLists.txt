@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.31)
 
-
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         CACHE STRING "Vcpkg toolchain file")
 
@@ -8,8 +7,6 @@ project(engine)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-
 
 find_package(fmt CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
@@ -33,23 +30,31 @@ add_executable(engine
         src/io/util/logsys/logToFile.h
 )
 
+# 🔧 Konfig- und Log-Dateien in Binary-Dir kopieren
 file(COPY src/config.json DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY src/skibidi.txt DESTINATION ${CMAKE_BINARY_DIR})
 
+# 🔧 Log-Ordner erstellen, falls nicht vorhanden
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/log")
+
+# 🔧 default.log aus src kopieren (alternativ: touch leer)
+file(COPY src/default.log DESTINATION "${CMAKE_BINARY_DIR}/log")
+
+# 💡 Alternativ: Wenn du KEINE default.log-Datei im repo hast, dann:
+ add_custom_command(
+     TARGET engine POST_BUILD
+     COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/log/default.log"
+)
 
 target_include_directories(engine PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/header
         ${CMAKE_CURRENT_SOURCE_DIR}/Libraries/include
 )
 
-
 target_link_libraries(engine
         PRIVATE
         fmt::fmt
         spdlog::spdlog
-
 )
-
 
 if(WIN32)
     target_link_libraries(engine PRIVATE ws2_32 mswsock)
