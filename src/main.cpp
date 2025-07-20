@@ -23,7 +23,10 @@ int main()
     });
     serverThread.detach();
 
+
+    // Main loop
     for (;;) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+        logSys.info(std::to_string(std::cin.get()));
     };
 }
