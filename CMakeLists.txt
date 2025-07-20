@@ -34,6 +34,7 @@ add_executable(engine
 )
 
 file(COPY src/config.json DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY src/skibidi.txt DESTINATION ${CMAKE_BINARY_DIR})
 
 
 target_include_directories(engine PRIVATE

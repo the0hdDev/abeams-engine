@@ -4,12 +4,11 @@
 
 #include "logToFile.h"
 
+#include <iostream>
 
-void logToFile::writeToLogFile(const std::string path, std::string time, std::string premessage) {
+void logToFile::writeInfoToLogFile(const std::string path, std::string time, std::string premessage) {
     std::ofstream logFile(path);
-    logSys.info("Writing to log file: " + path);
-    logFile << "goon";
-
+    std::cout << path << std::endl;
+    logFile << "[ " << time << " | " << "INFO: " << " ] " << premessage << std::endl;
 }
-
 
