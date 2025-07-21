@@ -1,131 +1,62 @@
-# Compiling Beams 
+# Building and Running Beams with Docker
 
+This document describes how to compile and run the Beams Engine using Docker.
 
-## For Compiling Beams on Windows you're going to need:
+## Requirements
 
-- [CMake](https://cmake.org/download/)
-- [Git](https://git-scm.com/downloads)
-- [Visual Studio 2022 Build Tools](https://visualstudio.microsoft.com/de/downloads/)
+- Docker
+- Git
 
-## For Compiling Beams on MacOs you're going to need:
-
-- [CMake]()
-- [Git (Included in XCode Command Line Tools)](#installing-needed-dependencies-macos)
-- [XCode Command Line Tools](#installing-needed-dependencies-macos)
-- [Homebrew](https://brew.sh/)
-
-### Installing needed Dependencies (MacOS)
-Installing XCode CLT (and Git)
-```bash
-    xcode-select --install
-```
-Installing Brew
-``` Bash
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-Installing CMake:
-```bash
-    brew install cmake 
-```
-
-
-
-## For Compiling Beams on Linux you're going to need:
-
-
-- [CMake](https://cmake.org/download/)
-- [Git](https://git-scm.com/downloads)
-- [Build Essentials]() 
-
-### Installing Dependencies
-Ubuntu / Debian Based Distributions 
+## Clone the Repository
 
 ```bash
-    sudo apt install cmake git build-essential
-```
-Fedora / RHEL >8 / CentOS Stream
-
-```bash
-    sudo dnf groupinstall "Development Tools"
-    sudo dnf install cmake git 
-```
-
-Arch / Manjaro
-
-```bash
-    sudo pacman -S cmake git base-essentials
-```
-
-# Actually Compiling:
-
-
-## Windows
-
-Setting Up
-
-```shell
   git clone https://github.com/the0hdDev/beams-engine
   cd beams-engine
-  git clone https://github.com/microsoft/vcpkg
-  cd vcpkg
-  ./bootstrap-vcpkg.bat
-  ./vcpkg.exe install boost-beast boost-asio fmt spdlog
-  cd .. 
 ```
 
-```shell
-   mkdir build
-   cd build
-   cmake ..
-   cmake --build .. --config Release 
+## Build the Docker Image
+
+```bash
+  docker build -t beams-engine .
 ```
 
-## MacOS
+This will:
+- Clone and bootstrap vcpkg
+- Install required dependencies (boost-beast, boost-asio, fmt, spdlog)
+- Configure and build the project using CMake
+- Create a `conf.json` and a `log/default.log` inside the container
 
-Setting Up
+## Run the Container
 
-```shell
-  git clone https://github.com/the0hdDev/beams-engine
-  cd beams-engine
-  git clone https://github.com/microsoft/vcpkg
-  cd vcpkg
-  ./bootstrap-vcpkg.sh
-  ./vcpkg install boost-beast boost-asio fmt spdlog
-  cd .. 
+```bash
+  docker run -p 3405:3405 beams-engine
 ```
 
-```shell
-   mkdir build
-   cd build
-   cmake ..
-   cmake --build .. 
+This will start the compiled binary and expose port `3405` for WebSocket communication.
+
+## Mounting Configuration and Log Files (Optional)
+
+To use a custom configuration or persist log files, use volume mounts:
+
+```bash
+  docker run -p 3405:3405 \
+    -v $(pwd)/conf.json:/app/conf.json \
+    -v $(pwd)/log:/app/log \
+    beams-engine
 ```
 
-!!! There may be a Issue with uninstalled Config Flies. Please consult the [Issues Page](https://github.com/the0hdDev/beams-engine/issues).
+## Output
 
+- The compiled binary is located in `/app/build` inside the container.
+- Logs are written to `/app/log/default.log`.
 
-## Linux
+## Rebuilding After Code Changes
 
-Setting Up
-
-```shell
-  git clone https://github.com/the0hdDev/beams-engine
-  cd beams-engine
-  git clone https://github.com/microsoft/vcpkg
-  cd vcpkg
-  ./bootstrap-vcpkg.sh
-  ./vcpkg install boost-beast boost-asio fmt spdlog
-  cd .. 
+```bash
+  docker build --no-cache -t beams-engine .
 ```
 
-```shell
-   mkdir build
-   cd build
-   cmake ..
-   cmake --build .. 
-```
+## Troubleshooting
 
-!!! There may be a Issue with uninstalled Config Flies. Please consult the [Issues Page](https://github.com/the0hdDev/beams-engine/issues).
-
-
-## Now you should find a engine.exe / engine in the build directory
+If you encounter any issues, please refer to the Issues page:
+https://github.com/the0hdDev/beams-engine/issues
