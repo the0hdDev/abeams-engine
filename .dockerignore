@@ -1,0 +1,4 @@
+/vcpkg
+/vcpkg_installed
+/build
+/cmake-build-debug
