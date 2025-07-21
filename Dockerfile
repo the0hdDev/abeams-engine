@@ -40,6 +40,8 @@ RUN echo '\
   }\n\
 }' > conf.json
 
+EXPOSE 3405
+
 # Log-Verzeichnis & Datei
 RUN mkdir -p log && touch log/default.log
 
