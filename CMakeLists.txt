@@ -15,7 +15,7 @@ add_executable(engine
         src/main.cpp
         src/io/util/parseConfig.cpp
         src/io/util/parseConfig.h
-        src/header/config.h
+        src/header/config.hpp
         src/datapull/pullDataUsr.cpp
         src/datapull/pullDataUsr.h
         src/datapull/pullDataSpdr.cpp

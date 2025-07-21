@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <nlohmann/json.hpp>
-#include "../../header/config.h"
+#include "../../header/config.hpp"
 
 class ReadConfig
 {
