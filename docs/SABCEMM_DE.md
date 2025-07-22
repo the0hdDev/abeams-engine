@@ -74,25 +74,24 @@ Das Herzstück jedes ABCEM-Modells sind die Agenten, die die individuellen Markt
 
 2. **Öffentliche Informationen:** Diese Informationen sind für alle Agenten zugänglich und werden ebenfalls im Investitionsentscheidungsprozess genutzt. Beispiele sind Nachrichten, die den Markt beeinflussen, oder der aktuelle Aktienkurs. Das Konzept der öffentlichen Informationen ermöglicht es, dass verschiedene Agententypen auf demselben Markt handeln, aber unterschiedliche öffentliche Informationen für ihre Entscheidungen heranziehen können. So könnte ein Agententyp Nachrichten von außerhalb des Marktes nutzen, während ein anderer die Kursentwicklung über die letzten $n$ Zeitschritte betrachtet.[^1]
 
-3. **Investitionsentscheidungsprozess:** Dies ist eine mathematische Abbildung, die alle verfügbaren Informationen des Agenten – sowohl individuelle als auch öffentliche – verarbeitet, um neue individuelle Informationen für den nächsten Zeitschritt zu generieren und eine Preisentscheidung zu treffen. Formal wird dies als 
-   $$
-   A_i: \Omega \rightarrow \mathbb{R}^{J_i} \times \mathbb{R}
-   $$
+3. **Investitionsentscheidungsprozess:** Dies ist eine mathematische Abbildung, die alle verfügbaren Informationen des Agenten – sowohl individuelle als auch öffentliche – verarbeitet, um neue individuelle Informationen für den nächsten Zeitschritt zu generieren und eine Preisentscheidung zu treffen. Formal wird dies als
+   
+   ### $A_i: \Omega \rightarrow \mathbb{R}^{J_i} \times \mathbb{R}$
+
    beschrieben, wobei $\Omega$ die Menge aller relevanten Informationen darstellt und $J_i$ die Anzahl der individuellen Informationsstücke des Agenten $i$.[^1] Der von der Abbildung $A_i$ generierte Preis muss für alle Agenten übereinstimmen.
 
 Das Design der Agenten in ABCEM-Modellen weicht bewusst vom idealisierten "homo oeconomicus"-Paradigma ab. Stattdessen werden Agenten oft als "bounded rational agents" im Sinne von Herbert Simon modelliert.[^1] Dies bedeutet, dass Investoren ihre Entscheidungen eher auf Heuristiken oder Verhaltensregeln basieren, anstatt komplexe Optimierungsprobleme zu lösen. Solche suboptimalen Handelsstrategien erweisen sich oft als erstaunlich gute Annäherungen an reale Investitionsprozesse und können psychologische Aspekte in die Entscheidungsfindung integrieren.[^1] Der SABCEMM-Simulator ist flexibel genug, um auch andere Konzepte wie den "Zero-Intelligence-Trader" zu unterstützen, der keine spezifische Strategie verfolgt.[^1]
 
 **Beispielhafte Investorentypen und Formeln:**
-- **Fundamentalisten:** Diese Investoren glauben an die Existenz eines "fairen Preises" ($S_f$) für einen Vermögenswert und erwarten, dass der Marktpreis zu diesem Wert konvergieren wird. Ihre Überschussnachfrage ($ed_{F}^i(S)$) ist eine monoton steigende Funktion der Differenz zwischen dem fairen und dem aktuellen Preis:
-  $$
-  ed_{F}^i(S) := D_i (S_f - S)
-  $$
-- **Chartisten (Technische Händler):** Im einfachsten Fall hängt ihre Überschussnachfrage ($ed_{C}^i(S)$) von der Differenz zwischen dem aktuellen Kurs ($S_k$) und dem Kurs des vorherigen Zeitschritts ($S_{k-1}$) ab:
-  $$
-  ed_{C}^i(S) := D_i (S_k - S_{k-1})
-  $$
+- **Fundamentalisten:** Diese Investoren glauben an die Existenz eines "fairen Preises" ($S_f$) für einen Vermögenswert und erwarten, dass der Marktpreis zu diesem Wert konvergieren wird. Ihre Überschussnachfrage ( $ed_{F}^i(S)$ ) ist eine monoton steigende Funktion der Differenz zwischen dem fairen und dem aktuellen Preis:
+  
+  ### $ed_{F}^i(S) := D_i (S_f - S)$
+  
+- **Chartisten (Technische Händler):** Im einfachsten Fall hängt ihre Überschussnachfrage ($ed_{C}^i(S)$) von der Differenz zwischen dem aktuellen Kurs ($S_k$) und dem Kurs des vorherigen Zeitschritts ( $S_{k-1}$ ) ab:
+  
+  ### $ed_{C}^i(S) := D_i (S_k - S_{k-1})$
 
-Zwei Agenten $A_i$ und $A_j$ ($i \neq j$) werden als vom selben Agententyp definiert, wenn ihre Investitionsentscheidungsabbildungen $A_i$ und $A_j$ identisch sind. Dies ist der Fall, wenn eine Abbildung durch eine einfache Permutation des Eingangsvektors der anderen erhalten werden kann.[^1]
+Zwei Agenten $A_i$ und $A_j$ ( $i \neq j$ ) werden als vom selben Agententyp definiert, wenn ihre Investitionsentscheidungsabbildungen $A_i$ und $A_j$ identisch sind. Dies ist der Fall, wenn eine Abbildung durch eine einfache Permutation des Eingangsvektors der anderen erhalten werden kann.[^1]
 
 ### 3.2 Marktmechanismen
 
@@ -100,15 +99,15 @@ Der Marktmechanismus ist der zweite grundlegende Baustein und beschreibt, wie di
 
 #### **Aggregierte Überschussnachfrage (ED):**
 Die aggregierte Überschussnachfrage $ED$ von $N$ Agenten ist definiert als der Durchschnitt der mikroskopischen Überschussnachfragen $ed^i$ jedes einzelnen Agenten:
-$$
-ED(S) := \frac{1}{N} \sum_{i=1}^{N} ed^i(S)
-$$
+
+### $ED(S) := \frac{1}{N} \sum_{i=1}^{N} ed^i(S)$
+
 Hierbei ist $S$ der Aktienkurs, von dem die individuelle Überschussnachfrage $ed^i$ abhängt. Ein Wert von $ed^i = 0$ bedeutet, dass der Agent keine Aufträge erteilt. Ein positiver Wert ($ed^i > 0$) repräsentiert einen Kaufauftrag, während ein negativer Wert ($ed^i < 0$) einen Verkaufsauftrag widerspiegelt.[^1] Die genaue Form von $ed^i$ ist modellspezifisch.
 
 **Beispiel aus dem Harras-Modell:**
-$$
-ed^i(S) = \frac{\sigma^i(S) S^{\gamma^i(S)} w^i(S)}{}
-$$
+
+### $ed^i(S) = \frac{\sigma^i(S) S^{\gamma^i(S)} w^i(S)}{}$
+
 wobei $\sigma^i$ die Investitionsposition (kaufen, halten, verkaufen), $\gamma^i$ den Investitionsanteil und $w^i$ das Vermögen des Agenten darstellt.[^1]
 
 #### **Clearing-Mechanismen:**
@@ -116,46 +115,45 @@ wobei $\sigma^i$ die Investitionsposition (kaufen, halten, verkaufen), $\gamma^i
 SABCEMM bietet zwei Haupttypen von Clearing-Mechanismen zur Preisanpassung[^1]:
 
 - **Rationaler Markt:** Der Preis ($S$) wird so bestimmt, dass die aggregierte Überschussnachfrage genau Null ist ($ED(S) = 0$). Aus mathematischer Sicht ist dies ein Problem der Nullstellensuche:
-  $$
-  0 \equiv \frac{1}{N} \sum_{i=1}^{N} \sigma^i(S) S^{\gamma^i(S)} w^i(S)
-  $$
+  
+  ### $0 \equiv \frac{1}{N} \sum_{i=1}^{N} \sigma^i(S) S^{\gamma^i(S)} w^i(S)$
+  
 - **Irrationaler Markt:** Der Preis im nächsten Zeitschritt ($S_{k+1}$) wird basierend auf dem aktuellen Preis ($S_k$), der aggregierten Überschussnachfrage ($ED$) und einem Rauschterm ($\eta$) berechnet:
-  $$
-  S_{k+1} = M(S_k, ED, \eta)
-  $$
+
+  ### $S_{k+1} = M(S_k, ED, \eta)$
+
   Ein Beispiel für einen irrationalen Markt (z.B. im Harras-Modell):
-  $$
-  S_{k+1} = S_k + \frac{\lambda}{N}\sum_{i=1}^{N} \sigma^i(S) S^{\gamma^i(S)} w^i(S)
-  $$
+  
+  ### $S_{k+1} = S_k + \frac{\lambda}{N}\sum_{i=1}^{N} \sigma^i(S) S^{\gamma^i(S)} w^i(S)$
+  
   wobei $\lambda > 0$ die Markttiefe darstellt.
 
 #### Das Disequilibrium-Modell von Beja und Goldman
 
 Hier wird die Preisänderungsrate proportional zur aggregierten Überschussnachfrage modelliert:
-$$
-\frac{d}{dt}P = H(ED(P)), \quad P := \log(S)
-$$
+
+### $\frac{d}{dt}P = H(ED(P)), \quad P := \log(S)$
+
 $H$ ist eine monoton steigende Funktion der Überschussnachfrage $ED$, die bei Null verschwindet.
 
 Eine Linearisierung erster Ordnung von $H$ um $H(0) = \lambda$ führt zu:
-$$
-\frac{d}{dt}P = \lambda ED(P)
-$$
+
+### $\frac{d}{dt}P = \lambda ED(P)$
+
 Um zufällige Fehler oder externe Nachrichten zu berücksichtigen:
-$$
-\frac{d}{dt}P = \lambda ED(P) + \eta, \quad \eta \sim N(0,1)
-$$
+
+## $\frac{d}{dt}P = \lambda ED(P) + \eta, \quad \eta \sim N(0,1)$
 
 Die allgemeinste Form einer stochastischen Differentialgleichung, die viele Marktmechanismen in ABCEM-Modellen abdeckt:
-$$
-dS = F(S, ED)dt + G(S, ED)dW
-$$
+
+### $dS = F(S, ED)dt + G(S, ED)dW$
+
 wobei $dW$ ein Wiener-Prozess ist.
 
 Diskretisierte Version (Euler-Verfahren):
-$$
-S_{k+1} = S_k + F(S_k, ED_k) + G(S_k, ED_k)\eta
-$$
+
+### $S_{k+1} = S_k + F(S_k, ED_k) + G(S_k, ED_k)\eta$
+
 
 **Technische Begriffe:**
 - _Numerische Diskretisierung:_ Um kontinuierliche Modelle auf dem Computer zu simulieren, werden sie in diskrete Zeitschritte zerlegt (z.B. Euler-Verfahren).
@@ -169,13 +167,8 @@ Der dritte Aspekt des abstrakten Meta-Modells ist die "Umgebung" oder "Kopplung"
 Ein häufig verwendeter Umgebungsmechanismus ist der Herding-Mechanismus. Kirman war wohl der erste, der dieses Konzept in ökonomischen Modellen anwandte.[^1] Herding führt dazu, dass Investoren dazu neigen, den Entscheidungen anderer zu folgen, was hohe Korrelationen zwischen Finanzagenten erzeugt.
 
 **Beispiel (Cross-Modell) für den Herding-Mechanismus:**
-$$
-c_i(t+\Delta t) =
-\begin{cases}
-c_i(t) + \Delta t |ED(t)|, & \text{wenn } \sigma_i(t)ED(t) < 0 \\
-c_i(t), & \text{sonst}
-\end{cases}
-$$
+### $`c_i(t+\Delta t) =\begin{cases}c_i(t) + \Delta t |ED(t)|, & \text{wenn } \sigma_i(t)ED(t) < 0 \\c_i(t), & \text{sonst}\end{cases}`$
+
 Erreicht der Herding-Druck $c_i$ einen individuellen Schwellenwert $\alpha_i > 0$, wechselt der Agent seine Position und $c_i$ wird auf Null zurückgesetzt.[^1]
 
 Ein weiterer wichtiger Kopplungsmechanismus ist der Switching-Mechanismus zwischen verschiedenen Agentengruppen, häufig ausgelöst durch ein "Fitnessmaß", das z.B. vergangene Gewinne verschiedener Strategien vergleicht.
