@@ -5,6 +5,7 @@
 #ifndef TASKHANDLER_H
 #define TASKHANDLER_H
 #include <condition_variable>
+#include <functional>
 #include <mutex>
 #include <queue>
 
@@ -23,8 +24,15 @@ class taskHandler
 class task
 {
     public:
-
+        int taskSize;
+        int taskPriority;
+        std::function<void()> taskFunction;
+        size_t taskId;
+        int maxRetryCount = 3;
+        std::mutex taskMutex;
 };
+
+
 class taskQueue
 {
     public:
