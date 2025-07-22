@@ -24,9 +24,11 @@ int main()
     serverThread.detach();
 
 
+
+
+
     // Main loop
     for (;;) {
-
-        logSys.info(std::to_string(std::cin.get()));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     };
 }
