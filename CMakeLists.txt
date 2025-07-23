@@ -35,13 +35,13 @@ add_executable(engine
 )
 
 # 🔧 Konfig- und Log-Dateien in Binary-Dir kopieren
-file(COPY src/config.json DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY config.json DESTINATION ${CMAKE_BINARY_DIR})
 
 # 🔧 Log-Ordner erstellen, falls nicht vorhanden
 file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/log")
 
 # 🔧 default.log aus src kopieren (alternativ: touch leer)
-file(COPY src/default.log DESTINATION "${CMAKE_BINARY_DIR}/log")
+file(COPY default.log DESTINATION "${CMAKE_BINARY_DIR}/log")
 
 # 💡 Alternativ: Wenn du KEINE default.log-Datei im repo hast, dann:
  add_custom_command(
