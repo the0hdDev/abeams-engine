@@ -1,4 +1,4 @@
-# Agent-Based Economy and Market Simulation (BEAMS) Engine
+# Agent-Based Economy and Market Simulation (ABEAMS) Engine
 
 ---
 
@@ -6,30 +6,30 @@
 
 ---
 
-## Engine BEAMS Simulation
+## ABEAMS Simulation Engine
 
-Beams is an ambitious project aiming to create a **complex economic and political simulation** engine. It will model intricate interactions within an agent-based framework, providing a dynamic and insightful platform for understanding market and political behaviors.
+ABeams is an ambitious project aiming to create a **complex economic and political simulation** engine. It will model intricate interactions within an agent-based framework, providing a dynamic and insightful platform for understanding market and political behaviors.
 
 ---
 
 ## Frontend Git Repository
 
-You can find the frontend code for Beams here:
-[https://github.com/the0hdDev/beams-frontend](https://github.com/the0hdDev/beams-frontend)
+You can find the frontend code for ABeams here:
+[https://github.com/the0hdDev/abeams-frontend](https://github.com/the0hdDev/beams-frontend)
 
 ---
 
 ## Development Timeline
 
-We anticipate Beams will be feature-complete around **December 2025**, with an estimated codebase of **10,000 - 15,000 lines of code**.
+We anticipate ABeams will be feature-complete around **December 2025**, with an estimated codebase of **10,000 - 15,000 lines of code**.
 
 ---
 
 ## Upcoming Features
 
-We're actively working on bringing the following key features to Beams:
+We're actively working on bringing the following key features to ABeams:
 
-* **Core Simulation Engine:** The heart of Beams, enabling detailed agent interactions and system evolution.
+* **Core Simulation Engine:** The heart of ABeams, enabling detailed agent interactions and system evolution.
 * **Multithreading Support:** Enhancing performance and scalability for complex simulations.
 * **Electron Frontend:** A robust and user-friendly graphical interface for interacting with the simulation.
 * **REST API:** Providing programmatic access to simulation data and controls.
@@ -43,7 +43,7 @@ We're actively working on bringing the following key features to Beams:
 
 ## Development Team
 
-Currently, **one dedicated developer** is in charge of the Beams project.
+Currently, **one dedicated developer** is in charge of the ABeams project.
 
 ---
 
@@ -55,7 +55,7 @@ We welcome contributions from the community! Please see our [CONTRIBUTING.md](do
 
 ## Compiling
 
-If you want compile Beams yourself please consult [COMPILING.md](docs/COMPILING.md). This will only work
+If you want compile ABeams yourself please consult [COMPILING.md](docs/COMPILING.md). This will only work
 if your Plattform specific [Github Action](https://github.com/the0hdDev/beams-engine/actions) passes. If not you can either
 choose the pre-compiled Binary in the [Release Tab](https://github.com/the0hdDev/beams-engine/releases) or clone the 'stable' branch and Compile that. 
 

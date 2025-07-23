@@ -1,6 +1,6 @@
-# Building and Running Beams with Docker
+# Building and Running ABeams with Docker
 
-This document describes how to compile and run the Beams Engine using Docker.
+This document describes how to compile and run the ABeams-Engine using Docker.
 
 ## Requirements
 
@@ -42,7 +42,7 @@ To use a custom configuration or persist log files, use volume mounts:
   docker run -p 3405:3405 \
     -v $(pwd)/conf.json:/app/conf.json \
     -v $(pwd)/log:/app/log \
-    beams-engine
+    ABeams-engine
 ```
 
 ## Output
@@ -59,4 +59,4 @@ To use a custom configuration or persist log files, use volume mounts:
 ## Troubleshooting
 
 If you encounter any issues, please refer to the Issues page:
-https://github.com/the0hdDev/beams-engine/issues
+https://github.com/the0hdDev/abeams-engine/issues

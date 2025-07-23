@@ -1,10 +1,10 @@
-# Contributing to BEAMS
+# Contributing to ABEAMS
 
 We're thrilled you're interested in contributing to the Agent-Based Economy and Market Simulation (BEAMS) Engine! Your help is invaluable in making this project a success.
 
 ## How to Contribute
 
-There are many ways you can contribute to BEAMS, even if you're not a seasoned developer or don't know C++:
+There are many ways you can contribute to ABeams, even if you're not a seasoned developer or don't know C++:
 
 ### Don't know C++? No Problem!
 
@@ -32,7 +32,7 @@ Currently, not having native Windows support isn't critical. The console applica
 1.  **Fork the repository** and create your branch from `main`.
 2.  **Ensure your code adheres to our coding style.** (We'll establish clear style guidelines as the project grows.)
 3.  **Write clear, concise commit messages** explaining your changes.
-4.  **Open a pull request** to the `main` branch of the BEAMS repository.
+4.  **Open a pull request** to the `main` branch of the ABeams repository.
 5.  **Describe your changes thoroughly** in the pull request description.
 6.  **Ensure all tests pass** before submitting your pull request.
 
@@ -57,17 +57,17 @@ Even if you don't write code, your insights are valuable:
 Help others by:
 
 * Answering questions from other users on Discord or GitHub.
-* Sharing your experiences with BEAMS.
+* Sharing your experiences with ABeams.
 
 ---
 
 ## Getting Started
 
-1.  **Fork the BEAMS engine repository:** [https://github.com/the0hdDev/beams-engine](https://github.com/the0hdDev/beams-engine)
+1.  **Fork the ABeams engine repository:** [https://github.com/the0hdDev/beams-engine](https://github.com/the0hdDev/beams-engine)
 2.  **Clone your forked repository:**
     ```bash
-    git clone [https://github.com/YOUR_GITHUB_USERNAME/beams-engine.git](https://github.com/YOUR_GITHUB_USERNAME/beams-engine.git)
-    cd beams-engine
+    git clone [https://github.com/YOUR_GITHUB_USERNAME/abeams-engine.git](https://github.com/YOUR_GITHUB_USERNAME/beams-engine.git)
+    cd abeams-engine
     ```
     *(Remember to replace `YOUR_GITHUB_USERNAME` with your actual GitHub username.)*
 3.  **Set up your development environment.** Details will be provided in the main repository's `README.md` for the backend. For the frontend, refer to its [README.md](https://github.com/the0hdDev/beams-frontend/blob/main/README.md).
@@ -82,7 +82,7 @@ Help others by:
 5.  **Make your changes.**
 6.  **Commit your changes** with a clear and descriptive message.
 7.  **Push your branch** to your forked repository.
-8.  **Open a Pull Request** against the `main` branch of the original BEAMS repository.
+8.  **Open a Pull Request** against the `main` branch of the original ABeams repository.
 
 ---
 
@@ -90,4 +90,4 @@ Help others by:
 
 We aim to foster an open and welcoming environment. Please review and adhere to our (forthcoming) Code of Conduct in all interactions.
 
-Thank you for helping us build BEAMS!
+Thank you for helping us build ABeams!
