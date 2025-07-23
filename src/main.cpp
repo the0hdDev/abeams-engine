@@ -6,6 +6,8 @@
 
 using std::string;
 
+void shutdownSystem();
+
 int main()
 {
     const string confPath = "config.json";
@@ -24,11 +26,27 @@ int main()
     serverThread.detach();
 
 
-
-
-
     // Main loop
+    logSys.info("Entering main loop");
     for (;;) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::cin.get();
+        std::string input{};
+        std::cin >> input;
+        if (input == "exit") {
+            shutdownSystem();
+            delete comSocket;
+            break;
+        } else if (input == "info") {
+            logSys.info("Received info command");
+        } else {
+            logSys.warning("Unknown command: " + input);
+        }
     };
+
+}
+
+void shutdownSystem() {
+    logSys.info("Shutting down system...");
+    logSys.info("System shutdown complete.");
 }

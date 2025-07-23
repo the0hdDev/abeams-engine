@@ -13,6 +13,12 @@ estbComFD::estbComFD(unsigned short port)
         logSys.info("Starting File Descriptor");
     }
 
+estbComFD::~estbComFD() {
+      websocket::close_code::normal;
+      logSys.info("Communication Server stopped");
+}
+
+
 Handler handler;
 
 void estbComFD::run() const {
