@@ -1,7 +1,7 @@
-# Base image mit CMake und Build Tools
+# Base image with CMake and build tools
 FROM ubuntu:24.04
 
-# System-Dependencies installieren
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     cmake \
     g++ \
@@ -14,20 +14,25 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-# Arbeitsverzeichnis
+# Set working directory
 WORKDIR /app
 
-# Projektdateien kopieren
+# Copy project files
 COPY . .
 
-RUN git clone https://github.com/microsoft/vcpkg && cd vcpkg && sh bootstrap-vcpkg.sh && ./vcpkg install fmt nlohmann-json spdlog boost-beast boost-asio && cd ..
+# Clone vcpkg and install dependencies
+RUN git clone https://github.com/microsoft/vcpkg && \
+    cd vcpkg && \
+    sh bootstrap-vcpkg.sh && \
+    ./vcpkg install fmt nlohmann-json spdlog boost-beast boost-asio && \
+    cd ..
 
-# Build-Verzeichnis anlegen und kompilieren
+# Create build directory, compile project
 RUN mkdir -p build && cd build && \
     cmake .. && \
     make
 
-# Konfigurationsdatei anlegen
+# Create configuration file
 RUN echo '\
 {\n\
   "general": {\n\
@@ -42,7 +47,8 @@ RUN echo '\
 
 EXPOSE 3405
 
-# Log-Verzeichnis & Datei
+# Create log directory and default log file
 RUN mkdir -p log && touch log/default.log
 
-# Falls dein Binary z.B. "main" heißt
+# Start the compiled binary "main" by default
+CMD ["./build/engine"]

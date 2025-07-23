@@ -30,7 +30,7 @@ int main()
     logSys.info("Entering main loop");
     for (;;) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        std::cin.get();
+        /* std::cin.get();
         std::string input{};
         std::cin >> input;
         if (input == "exit") {
@@ -41,7 +41,7 @@ int main()
             logSys.info("Received info command");
         } else {
             logSys.warning("Unknown command: " + input);
-        }
+        } */
     };
 
 }
