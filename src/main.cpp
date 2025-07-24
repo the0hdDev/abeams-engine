@@ -13,15 +13,9 @@ int main()
 {
     logSys.info("LogSys started successfully");
 
-
-    // Variable initialization
-    const string confPath = "config.json";
-    ReadConfig conf;
-
-    // Constructor initialization
-    estbComFD* comSocket = new estbComFD(conf.getPort(confPath));
-
-    logSys.setLogLevel(conf.getLogLevel("config.json"));
+    readConfig conf("config.json");
+    estbComFD* comSocket = new estbComFD(conf.getPort());
+    logSys.setLogLevel(conf.getLogLevel());
 
     std::thread serverThread([&]()
     {
@@ -48,14 +42,10 @@ int main()
         } else {
             logSys.warning("Unknown command: " + input);
         }
-
-
     };
-
 }
 
 void shutdownSystem() {
     logSys.info("Shutting down system...");
     delete comSocket;
-    com
 }

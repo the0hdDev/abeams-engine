@@ -28,8 +28,6 @@ add_executable(engine
         src/io/util/logsys/logsys.h
         src/io/util/logsys/logToFile.cpp
         src/io/util/logsys/logToFile.h
-        src/io/thread/task/taskHandler.cpp
-        src/io/thread/task/taskHandler.h
         src/io/thread/threadpool/threadpool.cpp
         src/io/thread/threadpool/threadpool.h
 )

@@ -4,12 +4,12 @@
 
 Handler::Handler()
 {
-    logSys.info("Handler created");
+    logSys.info("WebSocketHandler created successfully");
 }
 
 Handler::~Handler()
 {
-    logSys.info("Handler destroyed");
+    logSys.info("WebSocket Handler destroyed successfully");
 }
 
 void Handler::wsHandler(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws, boost::beast::flat_buffer& buffer)
@@ -20,7 +20,7 @@ void Handler::echo(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>
 {
     buffer.clear(); // Buffer leeren
     ws.read(buffer); // Nachricht lesen
-    // logger3.info(std::to_string(ws.read(buffer)));
+    // logSys.info(ws.read(buffer));
     ws.text(ws.got_text()); // Text/Binary setzen
     ws.write(buffer.data()); // Antwort schicken (Echo)
 }

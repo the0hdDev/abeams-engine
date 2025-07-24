@@ -16,8 +16,9 @@ private:
 
 public:
     Log() {
-        std::cout << WHITE << "[INFO:] LogSys created successfully" << RESET << std::endl;
-        logToFile.setLogPath("log/default.log");
+        logToFile.writeInfo(currentDateTime(), "LogSys created successfully");
+        std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << "LogSys created Successfully" << RESET << std::endl;
+
     }
 
     ~Log() = default;

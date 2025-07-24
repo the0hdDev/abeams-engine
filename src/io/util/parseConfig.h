@@ -1,17 +1,23 @@
 #pragma once
 #include <string>
-#include <iostream>
-#include <fstream>
 #include <nlohmann/json.hpp>
-#include "../../header/config.hpp"
+#include "logsys/logsys.h"
 
-class readConfig
-{
+class readConfig {
 public:
+    readConfig(std::string& confPath)
+    {
+        confPath = readConfig::configPath;
+        logSys.info("Config path set to: " + confPath);
+    };
+    ;
+    ~readConfig() {};
+    explicit readConfig(const std::string& path);
     nlohmann::json parseConfig();
-    void setConfPath();
     uint32_t getPort();
     uint32_t getLogLevel();
+    bool isDebug();
+
 private:
     std::string configPath;
 };
