@@ -7,18 +7,22 @@
 using std::string;
 
 void shutdownSystem();
+estbComFD* comSocket = nullptr;
 
 int main()
 {
-    const string confPath = "config.json";
     logSys.info("LogSys started successfully");
+
+
+    // Variable initialization
+    const string confPath = "config.json";
     ReadConfig conf;
-    // const uint32_t port = conf.getPort(confPath);
-    const uint32_t port = 3405;
+
+    // Constructor initialization
+    estbComFD* comSocket = new estbComFD(conf.getPort(confPath));
 
     logSys.setLogLevel(conf.getLogLevel("config.json"));
 
-    estbComFD* comSocket = new estbComFD(port);
     std::thread serverThread([&]()
     {
       comSocket->run();
@@ -30,23 +34,28 @@ int main()
     logSys.info("Entering main loop");
     for (;;) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        /* std::cin.get();
+
+        // CLI
+        std::cin.get();
         std::string input{};
         std::cin >> input;
         if (input == "exit") {
             shutdownSystem();
-            delete comSocket;
+            return 0;
             break;
         } else if (input == "info") {
             logSys.info("Received info command");
         } else {
             logSys.warning("Unknown command: " + input);
-        } */
+        }
+
+
     };
 
 }
 
 void shutdownSystem() {
     logSys.info("Shutting down system...");
-    logSys.info("System shutdown complete.");
+    delete comSocket;
+    com
 }

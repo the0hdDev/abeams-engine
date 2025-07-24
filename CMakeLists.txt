@@ -34,17 +34,11 @@ add_executable(engine
         src/io/thread/threadpool/threadpool.h
 )
 
-# 🔧 Konfig- und Log-Dateien in Binary-Dir kopieren
+# Copying config.json and default.log to the build directory
 file(COPY config.json DESTINATION ${CMAKE_BINARY_DIR})
-
-# 🔧 Log-Ordner erstellen, falls nicht vorhanden
 file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/log")
-
-# 🔧 default.log aus src kopieren (alternativ: touch leer)
 file(COPY default.log DESTINATION "${CMAKE_BINARY_DIR}/log")
-
-# 💡 Alternativ: Wenn du KEINE default.log-Datei im repo hast, dann:
- add_custom_command(
+add_custom_command(
      TARGET engine POST_BUILD
      COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_BINARY_DIR}/log/default.log"
 )

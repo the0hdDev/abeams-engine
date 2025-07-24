@@ -5,12 +5,13 @@
 #include <nlohmann/json.hpp>
 #include "../../header/config.hpp"
 
-class ReadConfig
+class readConfig
 {
 public:
-    nlohmann::json ParseConfig();
-    uint32_t getPort(std::string confpath);
-    uint32_t getLogLevel(std::string confpath);
+    nlohmann::json parseConfig();
+    void setConfPath();
+    uint32_t getPort();
+    uint32_t getLogLevel();
 private:
     std::string configPath;
 };

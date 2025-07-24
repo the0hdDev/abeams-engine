@@ -25,53 +25,60 @@ public:
     void setLogLevel(uint8_t LogLevelSet) {
         LogLevel = LogLevelSet;
     }
-
-    void print(const std::string& message) {
+    template<typename T>
+    void print(const T& message) {
         std::cout << WHITE << message << RESET << std::endl;
     }
 
-    void info(const std::string& msg) {
+    template<typename T>
+    void info(const T& message) {
         if (LogLevel >= 0) {
-            logToFile.writeInfo(currentDateTime(), msg);
-            std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << msg << RESET << std::endl;
+            logToFile.writeInfo(currentDateTime(), message);
+            std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << message << RESET << std::endl;
         }
     }
 
-    void error(const std::string& msg, uint16_t code = 0) {
+    template<typename T>
+    void error(const T& msg, uint16_t code = 0) {
         if (LogLevel >= 0) {
             std::cerr << RED << "[" << currentDateTime() << " | ERROR:] " << msg << " Error Code: " << code << RESET << std::endl;
         }
     }
 
-    void critical(const std::string& msg, uint16_t code = 0) {
+    template<typename T>
+    void critical(const T& msg, uint16_t code = 0) {
         if (LogLevel >= 0) {
             logToFile.writeCritical(currentDateTime(), msg);
             std::cerr << RED << "[" << currentDateTime() << " | CRITICAL ERROR:] " << msg << " Error Code: " << code << RESET << std::endl;
         }
     }
 
-    void severe(const std::string& msg, uint16_t code = 0) {
+    template<typename T>
+    void severe(const T& msg, uint16_t code = 0) {
         if (LogLevel >= 0) {
             logToFile.writeSevere(currentDateTime(), msg);
             std::cerr << RED << "[" << currentDateTime() << " | SEVERE ERROR:] " << msg << " Error Code: " << code << RESET << std::endl;
         }
     }
 
-    void trace(const std::string& msg) {
+    template<typename T>
+    void trace(const T& msg) {
         if (LogLevel >= 3) {
             logToFile.writeTrace(currentDateTime(), msg);
             std::cout << BLUE << "[" << currentDateTime() << " | TRACE:] " << msg << RESET << std::endl;
         }
     }
 
-    void debug(const std::string& msg) {
+    template<typename T>
+    void debug(const T& msg) {
         if (LogLevel >= 1) {
             logToFile.writeDebug(currentDateTime(), msg);
             std::cout << GREEN << "[" << currentDateTime() << " | DEBUG:] " << msg << RESET << std::endl;
         }
     }
 
-    void warning(const std::string& msg, uint16_t code = 0) {
+    template<typename T>
+    void warning(const T& msg, uint16_t code = 0) {
         if (LogLevel >= 2) {
             logToFile.writeWarning(currentDateTime(), msg);
             std::cerr << YELLOW << "[" << currentDateTime() << " | WARNING:] " << msg << " Warning Code: " << code << RESET << std::endl;

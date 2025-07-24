@@ -3,7 +3,7 @@
 
 using json = nlohmann::json;
 
-nlohmann::json ParseConfig(const std::string confPath) {
+nlohmann::json parseConfig(const std::string confPath) {
     logSys.info("Parsing config file: " + confPath);
     std::ifstream ifs(confPath);
     nlohmann::json jsonConfig;
@@ -20,9 +20,15 @@ nlohmann::json ParseConfig(const std::string confPath) {
     return jsonConfig;
 }
 
-uint32_t getPort(const std::string confPath)
+uint32_t getPort()
 {
-    json data = ParseConfig(confPath);
+    std::string configPath = readConfig::configPath;
+    if (configPath.empty()) {
+        logSys.critical("ConfigPath is not set. Please set the config path before calling getPort.");
+
+    }
+
+    json data = parseConfig();
     uint32_t port = data["general"]["communication"]["port"];
     std::string stringPort = std::to_string(port);
     logSys.info(stringPort);
