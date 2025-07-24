@@ -7,26 +7,28 @@
 
 // Constructors
 
-task::taskQueue::taskQueue() {
+taskQueue::taskQueue() {
 
 logSys.info("Task Queue created");
 
 }
 
-task::taskQueue::~taskQueue() {
+taskQueue::~taskQueue() {
     logSys.info("Task Queue destroyed");
 }
 
-threadpool::pool::pool() {
+threadPool::threadPool(uint8_t threadcount) {
     logSys.info("Pool created");
+    std::cout << std::thread::hardware_concurrency() << std::endl;
+
+
 }
 
-threadpool::pool::~pool() {
+threadPool::~threadPool() {
     logSys.info("Pool destroyed");
 }
 
-void task::task::createTask(int taskPriority, std::function<void()> func, size_t taskId) {
-
+void task::createTask(int taskPriority, std::function<void()> func, size_t taskId) {
 
 
 }

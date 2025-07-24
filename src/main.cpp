@@ -3,6 +3,7 @@
 #include "com/estbComFD.h"
 #include <thread>
 #include "io/util/logsys/logsys.h"
+#include "io/thread/threadpool/threadpool.h"
 
 using std::string;
 
@@ -15,6 +16,7 @@ int main()
 
     readConfig conf("config.json");
     estbComFD* comSocket = new estbComFD(conf.getPort());
+    threadPool threadpool(4);
     logSys.setLogLevel(conf.getLogLevel());
 
     std::thread serverThread([&]()

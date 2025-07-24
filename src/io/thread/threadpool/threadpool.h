@@ -9,11 +9,7 @@
 #pragma once
 #include <vector>
 #include <thread>
-namespace task
-{
-
-
-    class task
+   class task
     {
     public:
         void createTask(int taskPriority, std::function<void()> func, size_t taskId);
@@ -26,8 +22,8 @@ namespace task
     };
 
 
-    class taskQueue
-    {
+class taskQueue
+{
     public:
         taskQueue();
         ~taskQueue();
@@ -36,18 +32,18 @@ namespace task
         std::condition_variable condition;
         size_t maxqueueSize = 100;
         bool stop = false;
-    };
-}
+};
 
-namespace threadpool {
-    class pool
-    {
+
+
+class threadPool
+{
     public:
-        pool();
-        ~pool();
+        threadPool(uint8_t threadcount);
+        ~threadPool();
+        void startThreadPool(std::string threadPoolName);
         std::vector<std::thread> threads;
-        task::taskQueue queue;
+        taskQueue queue;
         std::mutex threadpoolMutex;
+};
 
-    };
-}
