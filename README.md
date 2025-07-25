@@ -1,6 +1,8 @@
 # Agent-Based Economy and Market Simulation (ABEAMS) Engine
 [![GitHub repo size](https://img.shields.io/github/repo-size/the0hdDev/beams-engine?style=flat-square)](github.com/the0hdDev/abeams-engine)
 [![wakatime](https://wakatime.com/badge/user/eb9893e1-ec3a-4a52-94f4-337993c32696/project/0575ae3c-e5e0-40b7-a902-535f58426f61.svg)](https://wakatime.com/badge/user/eb9893e1-ec3a-4a52-94f4-337993c32696/project/0575ae3c-e5e0-40b7-a902-535f58426f61)
+[![Builds](https://github.com/the0hdDev/abeams-engine/actions/workflows/build-mlc.yml/badge.svg)](https://github.com/the0hdDev/abeams-engine/actions/workflows/build-mlc.yml)
+[![CodeQL](https://github.com/the0hdDev/abeams-engine/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/the0hdDev/abeams-engine/actions/workflows/github-code-scanning/codeql)
 ---
 
 **Developed and Distributed by Generic Network**
