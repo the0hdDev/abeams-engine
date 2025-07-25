@@ -39,7 +39,7 @@ class taskQueue
 class threadPool
 {
     public:
-        threadPool(uint16_t threadcount);
+        threadPool(uint16_t threadcount = std::thread::hardware_concurrency());
         ~threadPool();
         void assingWorkerThreads(uint16_t threadcount);
         std::vector<std::thread> threads;

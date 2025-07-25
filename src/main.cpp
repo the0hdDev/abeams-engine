@@ -15,16 +15,15 @@ int main()
     logSys.info("LogSys started successfully");
 
     readConfig conf("config.json");
-    estbComFD* comSocket = new estbComFD(conf.getPort());
-    threadPool threadpool(8);
-    logSys.setLogLevel(conf.getLogLevel());
+    comSocket = new estbComFD(conf.getPort());
+    logSys.setLogLevel(6);
+    threadPool threadpool(32);
 
     std::thread serverThread([&]()
     {
       comSocket->run();
     });
     serverThread.detach();
-
 
     // Main loop
     logSys.info("Entering main loop");

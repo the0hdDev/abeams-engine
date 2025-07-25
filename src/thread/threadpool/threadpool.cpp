@@ -7,6 +7,9 @@
 
 // Constructors
 
+
+
+
 taskQueue::taskQueue() {
 
 logSys.info("Task Queue created");
@@ -27,10 +30,10 @@ threadPool::threadPool(uint16_t threadcount) {
         logSys.critical("Thread count must be greater than 0");
         return;
     }
-
-        logSys.warning("Thread count exceeds hardware concurrency, using maximum available threads");
-        logSys.warning("Using more thread than available cores may lead to performance degradation");
-
+    if (threadcount > std::thread::hardware_concurrency())
+    {
+        logSys.warning("Thread count exceeds hardware concurrency, this will impact performance negatively!");
+    }
 
     std::cout << std::thread::hardware_concurrency() << std::endl;
 
@@ -48,6 +51,7 @@ void task::createTask(int taskPriority, std::function<void()> func, size_t taskI
 
 void threadPool::assingWorkerThreads(uint16_t threadcount)
 {
+
 
     for (int i = 0; i < threadcount; i++)
     {
