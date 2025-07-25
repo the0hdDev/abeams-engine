@@ -1,12 +1,12 @@
 //
 // Created by theow on 22.07.2025.
 //
+
 #pragma once
 #include <condition_variable>
 #include <functional>
 #include <mutex>
 #include <queue>
-#pragma once
 #include <vector>
 #include <thread>
    class task
@@ -39,9 +39,9 @@ class taskQueue
 class threadPool
 {
     public:
-        threadPool(uint8_t threadcount);
+        threadPool(uint16_t threadcount);
         ~threadPool();
-        void startThreadPool(std::string threadPoolName);
+        void assingWorkerThreads(uint16_t threadcount);
         std::vector<std::thread> threads;
         taskQueue queue;
         std::mutex threadpoolMutex;

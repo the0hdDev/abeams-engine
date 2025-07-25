@@ -28,8 +28,8 @@ add_executable(engine
         src/io/util/logsys/logsys.h
         src/io/util/logsys/logToFile.cpp
         src/io/util/logsys/logToFile.h
-        src/io/thread/threadpool/threadpool.cpp
-        src/io/thread/threadpool/threadpool.h
+        src/thread/threadpool/threadpool.cpp
+        src/thread/threadpool/threadpool.h
 )
 
 # Copying config.json and default.log to the build directory

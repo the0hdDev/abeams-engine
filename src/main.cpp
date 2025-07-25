@@ -3,7 +3,7 @@
 #include "com/estbComFD.h"
 #include <thread>
 #include "io/util/logsys/logsys.h"
-#include "io/thread/threadpool/threadpool.h"
+#include "thread/threadpool/threadpool.h"
 
 using std::string;
 
@@ -16,7 +16,7 @@ int main()
 
     readConfig conf("config.json");
     estbComFD* comSocket = new estbComFD(conf.getPort());
-    threadPool threadpool(4);
+    threadPool threadpool(8);
     logSys.setLogLevel(conf.getLogLevel());
 
     std::thread serverThread([&]()
@@ -37,8 +37,8 @@ int main()
         std::cin >> input;
         if (input == "exit") {
             shutdownSystem();
+            serverThread.join();
             return 0;
-            break;
         } else if (input == "info") {
             logSys.info("Received info command");
         } else {
