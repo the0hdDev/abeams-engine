@@ -26,10 +26,11 @@ threadPool::threadPool(uint16_t threadcount) {
     {
         logSys.critical("Thread count must be greater than 0");
         return;
-    } else if (threadcount > std::thread::hardware_concurrency()) {
-        logSys.warning("Thread count exceeds hardware concurrency, using maximum available threads.");
-        logSys.warning("Using more thread than available cores may lead to performance degradation.");
     }
+
+        logSys.warning("Thread count exceeds hardware concurrency, using maximum available threads");
+        logSys.warning("Using more thread than available cores may lead to performance degradation");
+
 
     std::cout << std::thread::hardware_concurrency() << std::endl;
 
