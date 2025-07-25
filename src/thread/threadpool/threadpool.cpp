@@ -25,6 +25,7 @@ taskQueue::~taskQueue() {
 threadPool::threadPool(uint16_t threadcount) {
     logSys.info("Pool created");
     threadPool::assingWorkerThreads(threadcount);
+    threadPool::threads = new std::vector<std::thread>();
     if (threadcount <= 0)
     {
         logSys.critical("Thread count must be greater than 0");
@@ -51,10 +52,8 @@ void task::createTask(int taskPriority, std::function<void()> func, size_t taskI
 
 void threadPool::assingWorkerThreads(uint16_t threadcount)
 {
-
-
     for (int i = 0; i < threadcount; i++)
     {
-        logSys.info("ohio goon");
+        threadPool::threads->push_back(std::thread );
     }
 }

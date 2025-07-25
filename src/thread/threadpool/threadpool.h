@@ -42,7 +42,7 @@ class threadPool
         threadPool(uint16_t threadcount = std::thread::hardware_concurrency());
         ~threadPool();
         void assingWorkerThreads(uint16_t threadcount);
-        std::vector<std::thread> threads;
+        std::vector<std::thread>* threads = nullptr;
         taskQueue queue;
         std::mutex threadpoolMutex;
 };
