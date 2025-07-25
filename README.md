@@ -1,6 +1,11 @@
 # Agent-Based Economy and Market Simulation (ABEAMS) Engine
 [![GitHub repo size](https://img.shields.io/github/repo-size/the0hdDev/beams-engine?style=flat-square)](github.com/the0hdDev/abeams-engine)
 [![wakatime](https://wakatime.com/badge/user/eb9893e1-ec3a-4a52-94f4-337993c32696/project/0575ae3c-e5e0-40b7-a902-535f58426f61.svg)](https://wakatime.com/badge/user/eb9893e1-ec3a-4a52-94f4-337993c32696/project/0575ae3c-e5e0-40b7-a902-535f58426f61)
+<<<<<<< HEAD
+=======
+[![Builds](https://github.com/the0hdDev/abeams-engine/actions/workflows/build-mlc.yml/badge.svg)](https://github.com/the0hdDev/abeams-engine/actions/workflows/build-mlc.yml)
+[![CodeQL](https://github.com/the0hdDev/abeams-engine/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/the0hdDev/abeams-engine/actions/workflows/github-code-scanning/codeql)
+>>>>>>> aa97300881d0e0408f7eab93f8502dbca7bfd553
 ---
 
 **Developed and Distributed by Generic Network**
@@ -58,7 +63,7 @@ We welcome contributions from the community! Please see our [CONTRIBUTING.md](do
 
 If you want compile ABeams yourself please consult [COMPILING.md](docs/COMPILING.md). This will only work
 if your Plattform specific [Github Action](https://github.com/the0hdDev/beams-engine/actions) passes. If not you can either
-choose the pre-compiled Binary in the [Release Tab](https://github.com/the0hdDev/beams-engine/releases) or clone the 'stable' branch and Compile that. 
+choose the pre-compiled Binary in the [Release Tab](https://github.com/the0hdDev/beams-engine/releases) or clone the 'stable' branch and Compile that.
 
 ---
 
