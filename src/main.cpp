@@ -4,29 +4,20 @@
 #include <thread>
 #include "io/util/logsys/logsys.h"
 #include "thread/threadpool/threadpool.h"
+#include "initalize.h"
 
 using std::string;
 
 void shutdownSystem();
-estbComFD* comSocket = nullptr;
 
 int main()
 {
-    logSys.info("LogSys started successfully");
 
-    readConfig conf("config.json");
-    comSocket = new estbComFD(conf.getPort());
-    logSys.setLogLevel(6);
-    threadPool threadpool(4);
-
-    std::thread serverThread([&]()
-    {
-      comSocket->run();
-    });
-    serverThread.detach();
+    init::initialize();
 
     // Main loop
     logSys.info("Entering main loop");
+    std::cout.clear();
     for (;;) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
@@ -48,5 +39,5 @@ int main()
 
 void shutdownSystem() {
     logSys.info("Shutting down system...");
-    delete comSocket;
+    delete comps->comSocket;
 }
