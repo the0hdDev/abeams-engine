@@ -17,7 +17,7 @@ int main()
     readConfig conf("config.json");
     comSocket = new estbComFD(conf.getPort());
     logSys.setLogLevel(6);
-    threadPool threadpool(32);
+    threadPool threadpool(4);
 
     std::thread serverThread([&]()
     {
