@@ -28,14 +28,9 @@ add_executable(engine
         src/io/util/logsys/logsys.h
         src/io/util/logsys/logToFile.cpp
         src/io/util/logsys/logToFile.h
-<<<<<<< HEAD
         src/thread/threadpool/threadpool.cpp
         src/thread/threadpool/threadpool.h
-=======
-        src/io/thread/threadpool/threadpool.cpp
-        src/io/thread/threadpool/threadpool.h
->>>>>>> aa97300881d0e0408f7eab93f8502dbca7bfd553
-)
+ )
 
 # Copying config.json and default.log to the build directory
 file(COPY config.json DESTINATION ${CMAKE_BINARY_DIR})
