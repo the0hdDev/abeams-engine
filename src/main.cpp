@@ -29,9 +29,6 @@ int main()
         std::cin >> input;
         if (input == "exit" || input == "eexit") {
             delete comps->comSocket;
-            if (comps->serverThread->joinable()) {
-                comps->serverThread->join();
-            }
             shutdownSystem();
             return 0;
         } else if (input == "info") {
@@ -44,9 +41,7 @@ int main()
 
 void shutdownSystem() {
     logSys.info("Shutting down system...");
-<<<<<<< HEAD
-    delete components::comSocket;
-=======
     delete comps;
->>>>>>> 6e0098629e83509c23b85073b537404d17951237
+    logSys.info("Shut down complete.");
+
 }

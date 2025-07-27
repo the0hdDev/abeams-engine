@@ -30,6 +30,29 @@ public:
         // Init File System + Logging
         std::filesystem::create_directory("log");
         std::ofstream("log/default.log");
+        std::ifstream configCheck("config.json");
+
+
+        if (configCheck.tellg() == std::ifstream::traits_type::eof()) {
+            std::ofstream configFile("config.json");
+            if (!configFile.is_open()) {
+                logSys.critical("Failed to create config.json file");
+                return;
+            }
+
+            configFile << R"({
+                "general": {
+                    "communication": {
+                        "port": 3405
+                },
+                "logging": {
+                    "logLevel": 5,
+                    "logFile": "app.log"
+                    }
+            })";
+
+        }
+                  ;
 
         // Init Components
         auto comps = std::make_unique<components>();
