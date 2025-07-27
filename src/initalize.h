@@ -14,10 +14,8 @@ class components {
 public:
     components() = default;
     ~components() {
-        delete comSocket;
         delete conf;
         delete threadpool;
-        delete serverThread;
     }
 
     estbComFD* comSocket = nullptr;
@@ -36,10 +34,12 @@ public:
         // Init Components
         auto comps = std::make_unique<components>();
 
+        // Variables
+        uint16_t threadcount = std::thread::hardware_concurrency();
+
         comps->conf = new readConfig("config.json");
         comps->comSocket = new estbComFD(comps->conf->getPort());
-        comps->threadpool = new threadPool(32);
-
+        comps->threadpool = new threadPool(std::thread::hardware_concurrency());
         logSys.setLogLevel(6);
 
 

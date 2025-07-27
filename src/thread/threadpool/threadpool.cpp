@@ -1,71 +1,45 @@
-//
-// Created by theow on 22.07.2025.
-//
-
 #include "threadpool.h"
 #include "../io/util/logSys/logsys.h"
 
-// Constructors
-
-
-
-
 taskQueue::taskQueue() {
 
-logSys.info("Task Queue created");
-
+    logSys.info("Task Queue created");
 }
 
 taskQueue::~taskQueue() {
-    logSys.info("Task Queue destroyed");
 
+    logSys.info("Task Queue destroyed");
 }
 
-
+void doWork(int i) {
+    std::this_thread::sleep_for(std::chrono::microseconds(100)); // Simulate work
+}
 
 threadPool::threadPool(uint16_t threadcount) {
-    logSys.info("Pool created");
-    threadPool::threads = new std::vector<std::thread>();
-    threadPool::assingWorkerThreads(threadcount);
-
-    if (threadcount <= 0)
-    {
+    if (threadcount <= 0) {
         logSys.critical("Thread count must be greater than 0");
         return;
     }
-    if (threadcount > std::thread::hardware_concurrency())
-    {
+    if (threadcount > std::thread::hardware_concurrency()) {
         logSys.warning("Thread count exceeds hardware concurrency, this will impact performance negatively!");
     }
-
-    std::cout << std::thread::hardware_concurrency() << std::endl;
+    assingWorkerThreads(threadcount);
+    logSys.info("Pool created");
 }
 
 threadPool::~threadPool() {
-    for (auto& t : *threads) {
+    for (auto& t : threads) {
         if (t.joinable()) {
             t.join();
         }
     }
-    delete threadPool::threads;
     logSys.info("Pool destroyed");
-}
-
-void task::createTask(int taskPriority, std::function<void()> func, size_t taskId) {
-
-
-}
-
-void doWork(int i) {
-    logSys.info("Thread Nr. " + std::to_string(i) + " ID: " + std::to_string(std::hash<std::thread::id>()(std::this_thread::get_id())));
-
-
 }
 
 void threadPool::assingWorkerThreads(uint16_t threadcount)
 {
-    for (int i = 0; i < threadcount; i++)
-    {
-        threadPool::threads->emplace_back(doWork, i);
+    for (int i = 0; i < threadcount; i++) {
+        threads.emplace_back(doWork, i);
     }
+    logSys.info("Created " + std::to_string(threadcount) + " worker threads");
 }
