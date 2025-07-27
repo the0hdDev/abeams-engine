@@ -10,10 +10,13 @@ using std::string;
 
 void shutdownSystem();
 
+components* comps = nullptr;
+
 int main()
 {
 
     init::initialize();
+    comps = new components;
 
     // Main loop
     logSys.info("Entering main loop");
@@ -22,12 +25,14 @@ int main()
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
         // CLI
-        std::cin.get();
         std::string input{};
         std::cin >> input;
-        if (input == "exit") {
+        if (input == "exit" || input == "eexit") {
+            delete comps->comSocket;
+            if (comps->serverThread->joinable()) {
+                comps->serverThread->join();
+            }
             shutdownSystem();
-            serverThread.join();
             return 0;
         } else if (input == "info") {
             logSys.info("Received info command");
@@ -39,5 +44,9 @@ int main()
 
 void shutdownSystem() {
     logSys.info("Shutting down system...");
+<<<<<<< HEAD
     delete components::comSocket;
+=======
+    delete comps;
+>>>>>>> 6e0098629e83509c23b85073b537404d17951237
 }
