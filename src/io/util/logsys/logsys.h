@@ -6,8 +6,14 @@
 #include <iomanip>
 #include <sstream>
 #include "logToFile.h"
+#ifdef _WIN32
+#include <winsock2.h>
+#include <windows.h>
+#endif
 
 std::string currentDateTime();
+
+
 
 class Log {
 private:
@@ -16,12 +22,24 @@ private:
 
 public:
     Log() {
+#ifdef _WIN32
+        Log::enableANSIColors();
+#endif
         logToFile.writeInfo(currentDateTime(), "LogSys created successfully");
         std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << "LogSys created Successfully" << RESET << std::endl;
 
     }
 
     ~Log() = default;
+#ifdef _WIN32
+    void enableANSIColors() {
+        HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+        DWORD dwMode = 0;
+        GetConsoleMode(hOut, &dwMode);
+        dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+        SetConsoleMode(hOut, dwMode);
+    }
+#endif
 
     void setLogLevel(uint8_t LogLevelSet) {
         LogLevel = LogLevelSet;
