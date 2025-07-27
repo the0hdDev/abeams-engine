@@ -31,6 +31,7 @@ add_executable(engine
         src/thread/threadpool/threadpool.cpp
         src/thread/threadpool/threadpool.h
         src/initalize.h
+
 )
 
 # Copying config.json and default.log to the build directory
