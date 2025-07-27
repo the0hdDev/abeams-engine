@@ -39,5 +39,5 @@ int main()
 
 void shutdownSystem() {
     logSys.info("Shutting down system...");
-    delete comps->comSocket;
+    delete components::comSocket;
 }
