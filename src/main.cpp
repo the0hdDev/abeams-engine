@@ -20,22 +20,14 @@ int main()
 
     // Main loop
     logSys.info("Entering main loop");
-    std::cout.clear();
-    for (;;) {
+    comps->cliInstance->printHeader();
+    std::cout << "\n\n\n\n";
+    while (true) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
-
         // CLI
-        std::string input{};
-        std::cin >> input;
-        if (input == "exit" || input == "eexit") {
-            delete comps->comSocket;
-            shutdownSystem();
-            return 0;
-        } else if (input == "info") {
-            logSys.info("Received info command");
-        } else {
-            logSys.warning("Unknown command: " + input);
-        }
+        comps->cliInstance->startCLI();
+
+
     };
 }
 

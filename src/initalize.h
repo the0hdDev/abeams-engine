@@ -9,6 +9,7 @@
 #include "io/util/parseConfig.h"
 #include "com/estbComFD.h"
 #include "thread/threadpool/threadpool.h"
+#include "cli/cli.h"
 
 class components {
 public:
@@ -18,10 +19,12 @@ public:
         delete threadpool;
     }
 
+    cli* cliInstance = nullptr;
     estbComFD* comSocket = nullptr;
     std::unique_ptr<std::thread> serverThread;
     readConfig* conf = nullptr;
     threadPool* threadpool = nullptr;
+
 };
 
 class init {
@@ -63,6 +66,7 @@ public:
         comps->conf = new readConfig("config.json");
         comps->comSocket = new estbComFD(comps->conf->getPort());
         comps->threadpool = new threadPool(std::thread::hardware_concurrency());
+        comps->cliInstance = new cli();
         logSys.setLogLevel(6);
 
 

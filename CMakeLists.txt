@@ -31,6 +31,8 @@ add_executable(engine
         src/thread/threadpool/threadpool.cpp
         src/thread/threadpool/threadpool.h
         src/initalize.h
+        src/cli/cli.cpp
+        src/cli/cli.h
 
 )
 
