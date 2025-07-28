@@ -12,7 +12,7 @@ const std::string Log::BG_CYAN = "\033[46m";
 const std::string Log::WHITE = "\033[97m";
 const std::string Log::RESET = "\033[0m";
 
-std::string currentDateTime() {
+std::string Log::currentDateTime() {
     auto now = std::chrono::system_clock::now();
     std::time_t now_time = std::chrono::system_clock::to_time_t(now);
 

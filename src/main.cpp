@@ -14,20 +14,16 @@ components* comps = nullptr;
 
 int main()
 {
-
     init::initialize();
     comps = new components;
 
     // Main loop
     logSys.info("Entering main loop");
     comps->cliInstance->printHeader();
-    std::cout << "\n\n\n\n";
     while (true) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         // CLI
         comps->cliInstance->startCLI();
-
-
     };
 }
 
