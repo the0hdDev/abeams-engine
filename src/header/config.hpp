@@ -3,13 +3,9 @@
 //
 
 #pragma once
-#ifndef CONFIG_H
-#define CONFIG_H
 
-
-struct Config {
+namespace config {
     int port;
     void parseConfig();
-};
-
-#endif //CONFIG_H
+    double version = 0.01f;
+}

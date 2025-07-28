@@ -21,7 +21,6 @@ int main()
     logSys.info("Entering main loop");
     comps->cliInstance->printHeader();
     while (true) {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
         // CLI
         comps->cliInstance->startCLI();
     };

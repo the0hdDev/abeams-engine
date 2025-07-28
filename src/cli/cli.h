@@ -13,5 +13,6 @@ class cli {
         void printHelp(std::string& input);
         void printInfo(std::string& input);
         void shutdownSystem(std::string& input);
+        void printVersion(std::string& input, double& version);
         bool running = true;
 };
