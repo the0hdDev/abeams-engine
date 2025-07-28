@@ -20,7 +20,7 @@ Makefile
 *.dSYM
 *.DS_STORE
 
-
+/.vs
 
 !**/*.c
 !**/*.cpp

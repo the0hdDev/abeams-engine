@@ -21,6 +21,7 @@ private:
     logToFile_c logToFile; // persistent Logfile writer
 
 public:
+    std::string currentDateTime();
     Log() {
 #ifdef _WIN32
         Log::enableANSIColors();
