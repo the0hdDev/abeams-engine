@@ -15,9 +15,9 @@ class task
 public:
     void createTask(int taskPriority, std::function<void()> func, size_t taskId);
 private:
-    int taskPriority;
+    int taskPriority{};
     std::function<void()> taskFunction;
-    size_t taskId;
+    size_t taskId = 0;
     uint8_t maxRetryCount = 3;
     std::mutex taskMutex;
 };
@@ -27,9 +27,9 @@ class taskQueue
 public:
     taskQueue();
     ~taskQueue();
-    std::priority_queue<task> tasks;
-    std::mutex queueMutex;
-    std::condition_variable condition;
+    std::priority_queue<task> tasks{};
+    std::mutex queueMutex{};
+    std::condition_variable condition{};
     size_t maxqueueSize = 100;
     bool stop = false;
 };
@@ -37,7 +37,7 @@ public:
 class threadPool
 {
 public:
-    threadPool(uint16_t threadcount);
+    explicit threadPool(uint16_t threadcount);
     ~threadPool();
     void assingWorkerThreads(uint16_t threadcount);
 

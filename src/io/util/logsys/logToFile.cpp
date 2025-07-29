@@ -1,7 +1,8 @@
 #include "logToFile.h"
 #include <iostream>
+#include <utility>
 
-logToFile_c::logToFile_c(const std::string& path) : logPath(path) {
+logToFile_c::logToFile_c(std::string  path) : logPath(std::move(path)) {
     openLogFile();
 }
 

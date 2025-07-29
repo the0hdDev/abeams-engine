@@ -3,7 +3,6 @@
 #include <string>
 #include <cstdint>
 #include <chrono>
-#include <iomanip>
 #include <sstream>
 #include "logToFile.h"
 #ifdef _WIN32
@@ -11,7 +10,7 @@
 #include <windows.h>
 #endif
 
-std::string currentDateTime();
+static std::string currentDateTime();
 
 
 
@@ -21,7 +20,7 @@ private:
     logToFile_c logToFile; // persistent Logfile writer
 
 public:
-    std::string currentDateTime();
+    static std::string currentDateTime();
     Log() {
 #ifdef _WIN32
         Log::enableANSIColors();
@@ -33,7 +32,7 @@ public:
 
     ~Log() = default;
 #ifdef _WIN32
-    void enableANSIColors() {
+    static void enableANSIColors() {
         HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
         DWORD dwMode = 0;
         GetConsoleMode(hOut, &dwMode);
@@ -46,39 +45,34 @@ public:
         LogLevel = LogLevelSet;
     }
     template<typename T>
-    void print(const T& message) {
+    static void print(const T& message) {
         std::cout << WHITE << message << RESET << std::endl;
     }
 
     template<typename T>
     void info(const T& message) {
-        if (LogLevel >= 0) {
-            logToFile.writeInfo(currentDateTime(), message);
-            std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << message << RESET << std::endl;
-        }
+        logToFile.writeInfo(currentDateTime(), message);
+        std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << message << RESET << std::endl;
+
     }
 
     template<typename T>
-    void error(const T& msg, uint16_t code = 0) {
-        if (LogLevel >= 0) {
-            std::cerr << RED << "[" << currentDateTime() << " | ERROR:] " << msg << " Error Code: " << code << RESET << std::endl;
-        }
+    static void error(const T& msg, uint16_t code = 0) {
+
+        std::cerr << RED << "[" << currentDateTime() << " | ERROR:] " << msg << " Error Code: " << code << RESET << std::endl;
+
     }
 
     template<typename T>
     void critical(const T& msg, uint16_t code = 0) {
-        if (LogLevel >= 0) {
             logToFile.writeCritical(currentDateTime(), msg);
             std::cerr << RED << "[" << currentDateTime() << " | CRITICAL ERROR:] " << msg << " Error Code: " << code << RESET << std::endl;
-        }
     }
 
     template<typename T>
     void severe(const T& msg, uint16_t code = 0) {
-        if (LogLevel >= 0) {
             logToFile.writeSevere(currentDateTime(), msg);
             std::cerr << RED << "[" << currentDateTime() << " | SEVERE ERROR:] " << msg << " Error Code: " << code << RESET << std::endl;
-        }
     }
 
     template<typename T>

@@ -1,10 +1,11 @@
 #include "parseConfig.h"
 #include "logsys/logsys.h"
 #include <fstream>
+#include <utility>
 
 using json = nlohmann::json;
 
-readConfig::readConfig(const std::string& path) : configPath(path) {}
+readConfig::readConfig(std::string  path) : configPath(std::move(path)) {}
 
 json readConfig::parseConfig() {
     if (configPath.empty()) {

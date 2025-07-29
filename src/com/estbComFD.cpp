@@ -1,6 +1,10 @@
 #include "estbComFD.h"
 #include <../io/util/logsys/logsys.h>
 #include <string>
+#include <boost/asio/ip/tcp.hpp>
+#include <boost/beast/websocket.hpp>
+#include "httpReqResHandler.h"
+
 
 namespace beast = boost::beast;
 namespace websocket = beast::websocket;
@@ -8,10 +12,11 @@ namespace net = boost::asio;
 using tcp = net::ip::tcp;
 
 
-estbComFD::estbComFD(unsigned short port)
-    : port_(port) {
-        logSys.info("Starting File Descriptor");
-    }
+estbComFD::estbComFD(uint16_t port)
+{
+      estbComFD::port = port;
+      logSys.info("Starting File Descriptor");
+}
 
 estbComFD::~estbComFD() {
       websocket::close_code::normal;
@@ -28,8 +33,8 @@ void estbComFD::run() const {
       net::io_context ioc;
 
       // generate tcp acceptor at given port
-      tcp::acceptor acceptor(ioc, tcp::endpoint(tcp::v4(), port_));
-      logSys.info("Communication Server is running at: " + std::to_string(port_));
+      tcp::acceptor acceptor(ioc, tcp::endpoint(tcp::v4(), estbComFD::port));
+      logSys.info("Communication Server is running at: " + std::to_string(estbComFD::port));
       // wait for incoming connections
       tcp::socket socket(ioc);
       acceptor.accept(socket);

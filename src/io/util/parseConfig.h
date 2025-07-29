@@ -5,14 +5,14 @@
 
 class readConfig {
 public:
-    readConfig(std::string& confPath)
+    explicit readConfig(std::string& confPath)
     {
         confPath = readConfig::configPath;
         logSys.info("Config path set to: " + confPath);
     };
     ;
-    ~readConfig() {};
-    explicit readConfig(const std::string& path);
+    ~readConfig() = default;
+    explicit readConfig(std::string  path);
     nlohmann::json parseConfig();
     uint32_t getPort();
     uint32_t getLogLevel();

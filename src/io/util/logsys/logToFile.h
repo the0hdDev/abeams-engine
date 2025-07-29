@@ -4,7 +4,7 @@
 
 class logToFile_c {
 public:
-    explicit logToFile_c(const std::string& path = "log/default.log");
+    explicit logToFile_c(std::string  path = "log/default.log");
     ~logToFile_c();
     void writeLog(const std::string& level, const std::string& time, const std::string& message);
     void writeInfo(const std::string& time, const std::string& message);

@@ -32,7 +32,7 @@ public:
     static void initialize() {
         // Init File System + Logging
         std::filesystem::create_directory("log");
-        std::ofstream("log/default.log");
+        std::ofstream logFile("log/default.log");
         std::ifstream configCheck("config.json");
 
 
@@ -61,7 +61,6 @@ public:
         auto comps = std::make_unique<components>();
 
         // Variables
-        uint16_t threadcount = std::thread::hardware_concurrency();
 
         comps->conf = new readConfig("config.json");
         comps->comSocket = new estbComFD(comps->conf->getPort());

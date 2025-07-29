@@ -5,7 +5,7 @@
 #pragma once
 
 namespace config {
-    int port;
+    inline int port{};
     void parseConfig();
-    double version = 0.01f;
+    inline double version = 0.01f;
 }

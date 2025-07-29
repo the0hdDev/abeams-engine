@@ -6,13 +6,13 @@
 class cli {
     public:
         cli();
-        ~cli();
+        ~cli() = default;
         void startCLI();
-        void printHeader();
+        static void printHeader();
     private:
-        void printHelp(std::string& input);
-        void printInfo(std::string& input);
-        void shutdownSystem(std::string& input);
-        void printVersion(std::string& input, double& version);
+        static void printHelp(const std::string& input);
+        static void printInfo(const std::string& input);
+        static void shutdownSystem(const std::string& input);
+        static void printVersion(const std::string& input, double& version);
         bool running = true;
 };

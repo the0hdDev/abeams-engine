@@ -6,8 +6,7 @@
 #include "../io/util/logsys/logsys.h"
 #include "../io/util/logsys/logToFile.h"
 #include <cstdlib>
-#include <iostream>  // Für std::cout, std::cin
-#include <algorithm> // Optional: für string tolower
+#include <iostream>
 #include <thread>
 #include "../header/config.hpp"
 
@@ -35,20 +34,19 @@ void cli::printHeader() {
     logToFile->writeInfo(logSys.currentDateTime(), "CLI header printed successfully");
 }
 
-// Konstruktor
+// construktor
 cli::cli() {
     logSys.info("Created CLI successfully");
     logToFile = std::make_unique<logToFile_c>("log/default.log");
 }
 
-// Muss definiert sein, sonst Linker Error
-void cli::shutdownSystem(std::string& input) {
+void cli::shutdownSystem(const std::string& input) {
     logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
     logSys.info("Shutting down...");
-    std::exit(0); // Oder Systemcalls, je nachdem
+    std::exit(0); // Exit syscall
 }
 
-void cli::printHelp(std::string& input) {
+void cli::printHelp(const std::string& input) {
     std::cout << Log::YELLOW << "Available commands:" << Log::RESET << std::endl;
     std::cout << "  help               - Show this help message" << std::endl;
     std::cout << "  info               - Show system information" << std::endl;
@@ -57,12 +55,12 @@ void cli::printHelp(std::string& input) {
     logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
 }
 
-void cli::printInfo(std::string& input) {
+void cli::printInfo(const std::string& input) {
     logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
     logSys.info("System information:");
 }
 
-void cli::printVersion(std::string& input, double& version) {
+void cli::printVersion(const std::string& input, double& version) {
     logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
     logSys.info("Current version: " + std::to_string(version));
 }
