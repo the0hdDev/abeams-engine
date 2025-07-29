@@ -67,17 +67,18 @@ void cli::printVersion(std::string& input, double& version) {
     logSys.info("Current version: " + std::to_string(version));
 }
 
+void getInput(std::string& input) {
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    std::cout << "> ";
+    std::cin >> input;
+}
 
 void cli::startCLI() {
 
-
     std::string input{};
-    std::cin >> input;
+    getInput(input);
 
-    // Optional: Input lowercase machen
-    std::transform(input.begin(), input.end(), input.begin(), [](unsigned char c) {
-        return std::tolower(c);
-    });
 
     if (input == "help") {
         printHelp(input);

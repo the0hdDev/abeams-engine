@@ -22,6 +22,7 @@ int main()
     comps->cliInstance->printHeader();
     while (true) {
         // CLI
+
         comps->cliInstance->startCLI();
     };
 }
