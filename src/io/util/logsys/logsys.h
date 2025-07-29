@@ -100,7 +100,7 @@ public:
     template<typename T>
     void warning(const T& msg, uint16_t code = 0) {
         if (LogLevel >= 2) {
-            if (!code == 0) {
+            if ((code != 0)) {
                 logToFile.writeWarning(currentDateTime(), msg);
                 std::cerr << YELLOW << "[" << currentDateTime() << " | WARNING:] " << msg << " Warning Code: " << code << RESET << std::endl;
             }
