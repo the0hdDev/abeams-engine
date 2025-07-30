@@ -12,7 +12,9 @@ taskQueue::~taskQueue() {
 }
 
 void doWork(int i) {
-    std::this_thread::sleep_for(std::chrono::microseconds(100)); // Simulate work
+        while (true) {
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+        }
 }
 
 threadPool::threadPool(uint16_t threadcount) {

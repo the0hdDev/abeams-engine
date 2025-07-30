@@ -46,6 +46,22 @@ jobs:
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y build-essential
 
+      # Install cppcheck (Linux/macOS only)
+      - name: Install cppcheck (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: |
+          sudo apt-get install -y cppcheck || brew install cppcheck
+
+      # Run cppcheck
+      - name: Static analysis with cppcheck
+        if: runner.os != 'Windows'
+        run: |
+          cppcheck --enable=warning,style,performance,portability \
+                   --quiet --inline-suppr \
+                   --std=c++20 --suppress=missingIncludeSystem \
+                   --project=build/compile_commands.json
+      
+
       # Vcpkg bootstrappen je nach OS
       - name: Bootstrap vcpkg (Windows)
         if: runner.os == 'Windows'
