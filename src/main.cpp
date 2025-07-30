@@ -11,8 +11,10 @@ int main()
     // Main loop
     logSys.info("Entering main loop");
     comps->cliInstance->printHeader();
-    while (true) {
+    while (comps->cliInstance->isRunning()) {
         // CLI
         comps->cliInstance->startCLI();
     };
+    delete comps;
+    std::exit(0);
 }

@@ -33,7 +33,7 @@ void estbComFD::run() const {
       net::io_context ioc;
 
       // generate tcp acceptor at given port
-      tcp::acceptor acceptor(ioc, tcp::endpoint(tcp::v4(), estbComFD::port));
+      tcp::acceptor acceptor(ioc, tcp::endpoint(tcp::v4(), 3405));
       logSys.info("Communication Server is running at: " + std::to_string(estbComFD::port));
       // wait for incoming connections
       tcp::socket socket(ioc);

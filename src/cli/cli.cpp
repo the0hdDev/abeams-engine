@@ -41,9 +41,10 @@ cli::cli() {
 }
 
 void cli::shutdownSystem(const std::string& input) {
+    cli::running = false;
     logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
     logSys.info("Shutting down...");
-    std::exit(0); // Exit syscall
+    // std::exit(0); // Exit syscall
 }
 
 void cli::printHelp(const std::string& input) {
@@ -76,7 +77,7 @@ void cli::startCLI() {
 
     std::string input{};
     getInput(input);
-
+    cli::running = true;
 
     if (input == "help") {
         printHelp(input);

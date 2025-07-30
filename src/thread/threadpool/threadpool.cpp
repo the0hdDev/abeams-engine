@@ -13,7 +13,7 @@ taskQueue::~taskQueue() {
 
 void doWork(int i) {
         while (true) {
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+           std::this_thread::sleep_for(std::chrono::seconds(2));
         }
 }
 
@@ -30,7 +30,7 @@ threadPool::threadPool(uint16_t threadcount) {
 }
 
 threadPool::~threadPool() {
-    for (auto& t : threads) {
+     for (auto& t : threads) {
         if (t.joinable()) {
             t.join();
         }
@@ -42,6 +42,7 @@ void threadPool::assingWorkerThreads(uint16_t threadcount)
 {
     for (int i = 0; i < threadcount; i++) {
         threads.emplace_back(doWork, i);
+        threads.back().detach();
     }
     logSys.info("Created " + std::to_string(threadcount) + " worker threads");
 }

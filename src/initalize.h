@@ -16,12 +16,15 @@ public:
     components() = default;
     ~components() {
         delete conf;
+        delete cliInstance;
+        delete comSocket;
         delete threadpool;
+        logSys.info("Components destroyed");
     }
 
     cli* cliInstance = nullptr;
     estbComFD* comSocket = nullptr;
-    std::unique_ptr<std::thread> serverThread;
+    std::shared_ptr<std::thread> serverThread = nullptr;
     readConfig* conf = nullptr;
     threadPool* threadpool = nullptr;
 
