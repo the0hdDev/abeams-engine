@@ -3,7 +3,7 @@
 #include <string>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
-#include "httpReqResHandler.h"
+#include "wsReqResHandler.h"
 #include <../initialize.h>
 
 namespace beast = boost::beast;

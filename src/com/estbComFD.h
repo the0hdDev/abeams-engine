@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "httpReqResHandler.h"
+#include "wsReqResHandler.h"
 class estbComFD {
     public:
         // Konstruktor: Port setzen (Standard 8080).
