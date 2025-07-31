@@ -47,7 +47,7 @@ add_executable(engine
         src/io/util/logsys/logToFile.h
         src/thread/threadpool/threadpool.cpp
         src/thread/threadpool/threadpool.h
-        src/initalize.h
+        src/initialize.h
         src/cli/cli.cpp
         src/cli/cli.h
 )

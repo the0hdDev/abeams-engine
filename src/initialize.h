@@ -1,6 +1,3 @@
-//
-// Created by theow on 26.07.2025.
-//
 #pragma once
 #include <filesystem>
 #include <fstream>
@@ -11,10 +8,14 @@
 #include "thread/threadpool/threadpool.h"
 #include "cli/cli.h"
 
+extern class components* comps;
+
 class components {
 public:
     components() = default;
+
     ~components() {
+        logSys.info("Destroying Components");
         delete conf;
         delete cliInstance;
         delete comSocket;
@@ -27,7 +28,6 @@ public:
     std::shared_ptr<std::thread> serverThread = nullptr;
     readConfig* conf = nullptr;
     threadPool* threadpool = nullptr;
-
 };
 
 class init {
@@ -37,7 +37,6 @@ public:
         std::filesystem::create_directory("log");
         std::ofstream logFile("log/default.log");
         std::ifstream configCheck("config.json");
-
 
         if (configCheck.tellg() == std::ifstream::traits_type::eof()) {
             std::ofstream configFile("config.json");
@@ -56,14 +55,10 @@ public:
                     "logFile": "app.log"
                     }
             })";
-
         }
-                  ;
 
-        // Init Components
-        auto comps = std::make_unique<components>();
 
-        // Variables
+        comps = new components();
 
         comps->conf = new readConfig("config.json");
         comps->comSocket = new estbComFD(comps->conf->getPort());
@@ -71,8 +66,7 @@ public:
         comps->cliInstance = new cli();
         logSys.setLogLevel(6);
 
-
-        comps->serverThread = std::make_unique<std::thread>([compsPtr = comps.get()]() {
+        comps->serverThread = std::make_shared<std::thread>([compsPtr = comps]() {
             compsPtr->comSocket->run();
         });
 

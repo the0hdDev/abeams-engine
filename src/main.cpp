@@ -1,20 +1,18 @@
+#include "initialize.h"
 #include "io/util/logsys/logsys.h"
-#include "initalize.h"
 
 components* comps = nullptr;
 
 int main()
 {
     init::initialize();
-    comps = new components;
 
-    // Main loop
     logSys.info("Entering main loop");
     comps->cliInstance->printHeader();
     while (comps->cliInstance->isRunning()) {
-        // CLI
         comps->cliInstance->startCLI();
-    };
+    }
+
     delete comps;
     std::exit(0);
 }
