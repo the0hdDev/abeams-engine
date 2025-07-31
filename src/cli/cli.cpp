@@ -69,7 +69,7 @@ void cli::printVersion(const std::string& input, double& version) {
 void getInput(std::string& input) {
 
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    std::cout << "> ";
+    std::cout << "\n> ";
     std::cin >> input;
 }
 

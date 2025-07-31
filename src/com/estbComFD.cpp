@@ -4,7 +4,7 @@
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
 #include "httpReqResHandler.h"
-
+#include <../initialize.h>
 
 namespace beast = boost::beast;
 namespace websocket = beast::websocket;
@@ -16,17 +16,21 @@ estbComFD::estbComFD(uint16_t port)
 {
       estbComFD::port = port;
       logSys.info("Starting File Descriptor");
+
 }
 
 estbComFD::~estbComFD() {
       websocket::close_code::normal;
       logSys.info("Communication Server stopped");
+
 }
 
 
-Handler handler;
 
 void estbComFD::run() const {
+
+   Handler* handler = new Handler();
+
 
    try {
 
@@ -46,10 +50,17 @@ void estbComFD::run() const {
       logSys.info("websocket handshake completed successfully");
 
       // enter the main loop to handle incoming messages
-      for (;;) {
+      while (true) {
+
          beast::flat_buffer buffer;
-         handler.echo(ws, buffer);
+         handler->echo(ws, buffer);
+         handler->wsHandler(ws, buffer);
+
+         // pretty cli thing on but in the com thread
+
+         std::cout << "\n> ";
       }
+      delete handler;
    } catch (const std::exception& e) {
 
       std::cout << "error" << e.what() << std::endl;
