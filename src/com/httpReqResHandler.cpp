@@ -4,7 +4,7 @@
 
 Handler::Handler()
 {
-    logSys.info("WebSocketHandler created successfully");
+    logSys.info("WebSocket Handler created successfully");
 }
 
 Handler::~Handler()
@@ -14,6 +14,8 @@ Handler::~Handler()
 
 void Handler::wsHandler(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws, boost::beast::flat_buffer& buffer)
 {
+    buffer.clear();
+    ws.read(buffer);
 
 }
 void Handler::echo(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws, boost::beast::flat_buffer& buffer)
