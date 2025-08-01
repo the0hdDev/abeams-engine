@@ -40,7 +40,7 @@ add_executable(engine
         src/com/estbComFD.cpp
         src/com/estbComFD.h
         src/com/wsReqResHandler.cpp
-        src/com/WSReqResHandler.h
+        src/com/wsReqResHandler.h
         src/io/util/logsys/logsys.cpp
         src/io/util/logsys/logsys.h
         src/io/util/logsys/logToFile.cpp
