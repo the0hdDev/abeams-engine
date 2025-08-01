@@ -71,6 +71,10 @@ void getInput(std::string& input) {
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
     std::cout << "\n> ";
     std::cin >> input;
+    if (input.empty()) {
+        std::cout << "\n> "; // Default command if no input is given
+    }
+
 }
 
 void cli::startCLI() {
