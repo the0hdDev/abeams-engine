@@ -1,3 +1,5 @@
+
+
 #pragma once
 #include <filesystem>
 #include <fstream>
@@ -75,3 +77,17 @@ public:
         comps->serverThread->detach();
     }
 };
+namespace misc {
+    class utillity {
+        public:
+            static bool isRootPrivileges() {
+                #ifdef _WIN32
+                    return true;
+                #else
+                    #include <unistd.h>
+                return (geteuid() == 0);
+                #endif
+            }
+    };
+
+}
