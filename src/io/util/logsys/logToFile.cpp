@@ -14,7 +14,7 @@ logToFile_c::~logToFile_c() {
 
 void logToFile_c::openLogFile() {
     if (logFile.is_open()) logFile.close();
-    logFile.open(logPath, std::ios::app);
+    logFile.open(logPath, std::ios::out | std::ios::app);
     if (!logFile.is_open()) {
         std::cerr << "Failed to open log file: " << logPath << std::endl;
     }

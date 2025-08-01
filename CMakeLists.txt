@@ -39,8 +39,8 @@ add_executable(engine
         src/datapull/pullDataSpdr.h
         src/com/estbComFD.cpp
         src/com/estbComFD.h
-        src/com/httpReqResHandler.cpp
-        src/com/httpReqResHandler.h
+        src/com/wsReqResHandler.cpp
+        src/com/WSReqResHandler.h
         src/io/util/logsys/logsys.cpp
         src/io/util/logsys/logsys.h
         src/io/util/logsys/logToFile.cpp

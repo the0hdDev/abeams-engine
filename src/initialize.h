@@ -34,8 +34,10 @@ class init {
 public:
     static void initialize() {
         // Init File System + Logging
-        std::filesystem::create_directory("log");
-        std::ofstream logFile("log/default.log");
+        if (!std::filesystem::exists("log/default.log")) {
+            std::filesystem::create_directory("log");
+            std::ofstream logFile("log/default.log");
+        }
         std::ifstream configCheck("config.json");
 
         if (configCheck.tellg() == std::ifstream::traits_type::eof()) {
