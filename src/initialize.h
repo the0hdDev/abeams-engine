@@ -6,7 +6,7 @@
 #include <thread>
 #include "io/util/logsys/logsys.h"
 #include "io/util/parseConfig.h"
-#include "com/estbComFD.h"
+#include "com/wsServer.h"
 #include "thread/threadpool/threadpool.h"
 #include "cli/cli.h"
 
@@ -26,7 +26,7 @@ public:
     }
 
     cli* cliInstance = nullptr;
-    estbComFD* comSocket = nullptr;
+    wsServer* comSocket = nullptr;
     std::shared_ptr<std::thread> serverThread = nullptr;
     readConfig* conf = nullptr;
     threadPool* threadpool = nullptr;
@@ -65,7 +65,7 @@ public:
         comps = new components();
 
         comps->conf = new readConfig("config.json");
-        comps->comSocket = new estbComFD(comps->conf->getPort());
+        comps->comSocket = new wsServer(comps->conf->getPort());
         comps->threadpool = new threadPool(std::thread::hardware_concurrency());
         comps->cliInstance = new cli();
         logSys.setLogLevel(6);

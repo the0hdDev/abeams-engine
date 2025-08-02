@@ -1,9 +1,9 @@
-#include "estbComFD.h"
+#include "wsServer.h"
 #include <../io/util/logsys/logsys.h>
 #include <string>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
-#include "wsReqResHandler.h"
+#include "wsHandler.h"
 #include <../initialize.h>
 
 namespace beast = boost::beast;
@@ -12,14 +12,14 @@ namespace net = boost::asio;
 using tcp = net::ip::tcp;
 
 
-estbComFD::estbComFD(uint16_t port)
+wsServer::wsServer(uint16_t port)
 {
-      estbComFD::port = port;
+      wsServer::port = port;
       logSys.info("Starting File Descriptor");
 
 }
 
-estbComFD::~estbComFD() {
+wsServer::~wsServer() {
       websocket::close_code::normal;
       logSys.info("Communication Server stopped");
 
@@ -27,9 +27,9 @@ estbComFD::~estbComFD() {
 
 
 
-void estbComFD::run() const {
+void wsServer::run() const {
 
-   Handler* handler = new Handler();
+   wsHandler* handler = new wsHandler();
 
 
    try {
@@ -53,12 +53,8 @@ void estbComFD::run() const {
       while (true) {
 
          beast::flat_buffer buffer;
-         handler->echo(ws, buffer);
-         handler->wsHandler(ws, buffer);
+         handler->wsHandlerLoop(ws, buffer);
 
-         // pretty cli thing on but in the com thread
-
-         std::cout << "\n> ";
       }
       delete handler;
    } catch (const std::exception& e) {
