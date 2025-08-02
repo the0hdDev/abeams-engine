@@ -9,11 +9,11 @@
 #include <string>
 
 
-class Handler {
+class wsHandler {
 public:
-    Handler();
-    ~Handler();
-    static void wsHandler(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws, boost::beast::flat_buffer& buffer);
+    wsHandler();
+    ~wsHandler();
+    static void wsHandlerLoop(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws, boost::beast::flat_buffer& buffer);
     static void echo(boost::beast::websocket::stream<boost::asio::ip::tcp::socket>& ws, boost::beast::flat_buffer& buffer);
 
 };

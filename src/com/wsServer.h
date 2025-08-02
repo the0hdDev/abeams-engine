@@ -1,11 +1,11 @@
 #pragma once
 #include <cstdint>
-#include "wsReqResHandler.h"
-class estbComFD {
+#include "wsHandler.h"
+class wsServer {
     public:
         // Konstruktor: Port setzen (Standard 8080).
-        explicit estbComFD(uint16_t port = 3405);
-        ~estbComFD();
+        explicit wsServer(uint16_t port = 3405);
+        ~wsServer();
         void run() const;
 
     private:
