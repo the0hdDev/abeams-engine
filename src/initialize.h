@@ -30,12 +30,26 @@ public:
     std::shared_ptr<std::thread> serverThread = nullptr;
     readConfig* conf = nullptr;
     threadPool* threadpool = nullptr;
+    static void stopRunning() {
+        running = false;
+    }
+    static bool isRunning() {
+        return running;
+    }
+    inline static bool running = true;
 };
 
 class init {
 public:
     static void initialize() {
         // Init File System + Logging
+        #ifdef NDEBUG
+                if (!misc::utillity::isRootPrivileges()) {
+                    logSys.critical("Program is not running with root privileges. Please run as root / admin!");
+                    std::exit(2);
+                }
+        #endif
+
         if (!std::filesystem::exists("log/default.log")) {
             std::filesystem::create_directory("log");
             std::ofstream logFile("log/default.log");
