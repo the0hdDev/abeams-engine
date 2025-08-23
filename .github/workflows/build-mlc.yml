@@ -1,4 +1,4 @@
-name: Build MacOS Linux Windows
+name: Build MacOS Linux Windows Debug
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        build_type: [Release]
+        build_type: [Debug]
         include:
           - os: ubuntu-latest
             c_compiler: clang
