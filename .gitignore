@@ -4,6 +4,7 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 
+/ignore
 
 /vcpkg/
 /vcpkg_installed/
