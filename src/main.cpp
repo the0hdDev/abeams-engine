@@ -4,16 +4,28 @@
 components* comps = nullptr;
 
 
+
+
+void leck(int signum)
+{
+    std::cout << "Leck meine Eier. Signal: " << signum << std::endl;
+}
+
 int main(int argc, char* arcv[])
 {
     std::this_thread::sleep_for(std::chrono::seconds(1));
     init::initialize();
 
     logSys.info("Entering main loop");
-    comps->cliInstance->printHeader();
-    while (comps->cliInstance->isRunning()) {
-        comps->cliInstance->startCLI();
+    // comps->cliInstance->printHeader();
+    // while (comps->cliInstance->isRunning()) {
+    //    comps->cliInstance->startCLI();
+    // }
+    
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+
     comps->stopRunning();
     delete comps;
 

@@ -3,19 +3,15 @@
 //
 #pragma once
 #include <string>
+#include "../io/util/logsys/logsys.h"
 class cli {
     public:
         cli();
         ~cli() = default;
         void startCLI();
         static void printHeader();
-        bool isRunning() const {
-            return running;
-        }
-        inline static bool running = true;
+        bool isRunning() const { return running; }
     private:
-        static void printHelp(const std::string& input);
-        static void printInfo(const std::string& input);
-        static void shutdownSystem(const std::string& input);
-        static void printVersion(const std::string& input, double& version);
+        inline static bool running = true;
+        std::unordered_map<std::string, std::function<void(const std::string&)>> commands;
 };
