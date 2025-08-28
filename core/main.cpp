@@ -14,6 +14,7 @@ int main(int argc, char* arcv[])
     while (comps->cliInstance->isRunning()) {
         comps->cliInstance->startCLI();
     }
+
     comps->stopRunning();
     delete comps;
 
