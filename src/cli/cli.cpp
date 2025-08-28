@@ -33,3 +33,9 @@ void cli::startCLI() {
 void cli::printHeader() {
 
 }
+
+void cli::stopRunning() {
+
+
+    cli::running = false;
+}

@@ -10,7 +10,8 @@ class cli {
         ~cli() = default;
         void startCLI();
         static void printHeader();
-        bool isRunning() const { return running; }
+        static void stopRunning();
+        inline static bool isRunning() { return running; }
     private:
         inline static bool running = true;
         std::unordered_map<std::string, std::function<void(const std::string&)>> commands;

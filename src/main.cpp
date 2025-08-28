@@ -6,11 +6,6 @@ components* comps = nullptr;
 
 
 
-void leck(int signum)
-{
-    std::cout << "Leck meine Eier. Signal: " << signum << std::endl;
-}
-
 int main(int argc, char* arcv[])
 {
     std::this_thread::sleep_for(std::chrono::seconds(1));
