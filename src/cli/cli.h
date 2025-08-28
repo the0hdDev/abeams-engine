@@ -4,6 +4,7 @@
 #pragma once
 #include <string>
 #include "../io/util/logsys/logsys.h"
+#include <thread>
 class cli {
     public:
         cli();
