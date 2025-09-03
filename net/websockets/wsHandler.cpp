@@ -1,6 +1,6 @@
 #include "wsHandler.h"
 
-#include "../io/util/logsys/logsys.h"
+#include "util/logsys/logsys.h"
 
 wsHandler::wsHandler()
 {

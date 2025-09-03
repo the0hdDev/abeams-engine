@@ -1,5 +1,5 @@
 #include "threadpool.h"
-#include "../../io/util/logsys/logsys.h"
+#include "util/logsys/logsys.h"
 
 taskQueue::taskQueue() {
 

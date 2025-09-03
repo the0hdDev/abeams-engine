@@ -1,5 +1,5 @@
 #include "initialize.h"
-#include "io/util/logsys/logsys.h"
+#include "util/logsys/logsys.h"
 
 components* comps = nullptr;
 

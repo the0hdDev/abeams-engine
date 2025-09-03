@@ -1,10 +1,10 @@
 #include "wsServer.h"
-#include <../io/util/logsys/logsys.h>
+#include <util/logsys/logsys.h>
 #include <string>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/beast/websocket.hpp>
 #include "wsHandler.h"
-#include <../initialize.h>
+#include <core/initialize.h>
 
 namespace beast = boost::beast;
 namespace websocket = beast::websocket;
