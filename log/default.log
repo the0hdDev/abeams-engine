@@ -1,9 +1,0 @@
-[ 2025-07-27 21:46:52 | INFO: ] Config loaded successfully from: config.json
-[ 2025-07-27 21:46:52 | INFO: ] Starting File Descriptor
-[ 2025-07-27 21:46:52 | INFO: ] Task Queue created
-[ 2025-07-27 21:46:52 | INFO: ] Created 16 worker threads
-[ 2025-07-27 21:46:52 | INFO: ] Pool created
-[ 2025-07-27 21:46:52 | INFO: ] Pool destroyed
-[ 2025-07-27 21:46:52 | INFO: ] Task Queue destroyed
-[ 2025-07-27 21:46:52 | INFO: ] Communication Server is running at: 3405
-[ 2025-07-27 21:46:52 | INFO: ] Entering main loop
