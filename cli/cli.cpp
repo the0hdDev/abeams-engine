@@ -3,12 +3,12 @@
 //
 
 #include "cli.h"
-#include "../io/util/logsys/logsys.h"
-#include "../io/util/logsys/logToFile.h"
+#include "util/logsys/logsys.h"
+#include "util/logsys/logToFile.h"
 #include <cstdlib>
 #include <iostream>
 #include <thread>
-#include "../header/config.hpp"
+#include "util/abeams_deps/config.hpp"
 
 void clearConsole() {
     std::cout << "\033[2J\033[1;1H";

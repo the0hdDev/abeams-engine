@@ -5,7 +5,7 @@
 #include "boost/beast/websocket/stream.hpp"
 #include <nlohmann/json.hpp>
 #include <boost/beast/core.hpp>
-#include <../io/util/logsys/logsys.h>
+#include <util/logsys/logsys.h>
 #include <string>
 
 

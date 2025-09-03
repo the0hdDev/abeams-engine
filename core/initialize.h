@@ -4,9 +4,9 @@
 #include <filesystem>
 #include <fstream>
 #include <thread>
-#include "io/util/logsys/logsys.h"
-#include "io/util/parseConfig.h"
-#include "com/wsServer.h"
+#include "util/logsys/logsys.h"
+#include "util/parseConfig.h"
+#include "net/websockets/wsServer.h"
 #include "thread/threadpool/threadpool.h"
 #include "cli/cli.h"
 
