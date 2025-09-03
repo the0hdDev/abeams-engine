@@ -2,7 +2,7 @@
 ----
 [![GitHub license](https://img.shields.io/github/license/the0hdDev/beams-engine?style=flat-square)](127.0.0.1)
 [![GitHub stars](https://img.shields.io/github/stars/the0hdDev/beams-engine?style=social)](127.0.0.1)
-[![GitHub forks](https://img.shields.io/github/forks/the0hdDev/beams-engine?style=social)](
+[![GitHub forks](https://img.shields.io/github/forks/the0hdDev/beams-engine?style=social)]()
 [![GitHub contributors](https://img.shields.io/github/contributors/the0hdDev/beams-engine?style=flat-square)](127.0.0.1)
 [![GitHub repo size](https://img.shields.io/github/repo-size/the0hdDev/beams-engine?style=flat-square)](github.com/the0hdDev/abeams-engine)
 [![wakatime](https://wakatime.com/badge/user/eb9893e1-ec3a-4a52-94f4-337993c32696/project/0575ae3c-e5e0-40b7-a902-535f58426f61.svg)](https://wakatime.com/badge/user/eb9893e1-ec3a-4a52-94f4-337993c32696/project/0575ae3c-e5e0-40b7-a902-535f58426f61)
