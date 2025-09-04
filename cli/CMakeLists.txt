@@ -1,5 +1,5 @@
 
-add_library(abeams_cli STATIC
+add_library(abeams_cli SHARED
         cli.cpp
         cli.h
 )

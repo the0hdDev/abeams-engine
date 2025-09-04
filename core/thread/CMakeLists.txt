@@ -1,5 +1,5 @@
 
-add_library(abeams_thread STATIC
+add_library(abeams_thread SHARED
         threadpool/threadpool.cpp
         threadpool/threadpool.h
 )

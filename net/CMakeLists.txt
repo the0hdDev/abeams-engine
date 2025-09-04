@@ -1,5 +1,5 @@
 
-add_library(abeams_net STATIC
+add_library(abeams_net SHARED
         websockets/wsServer.cpp
         websockets/wsServer.h
         websockets/wsHandler.cpp

@@ -1,4 +1,4 @@
-add_library(abeams_sim STATIC
+add_library(abeams_sim SHARED
         sim.cpp
         sim.h
 )

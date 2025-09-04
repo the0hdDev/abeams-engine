@@ -1,4 +1,4 @@
-add_library(abeams_util STATIC
+add_library(abeams_util SHARED
         parseConfig.cpp
         parseConfig.h
         logsys/logsys.cpp
