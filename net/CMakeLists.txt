@@ -18,3 +18,10 @@ target_link_libraries(abeams_net
         nlohmann_json::nlohmann_json
 )
 
+if(WIN32)
+    target_link_libraries(abeams_net
+            PRIVATE
+            ws2_32
+            wsock32
+    )
+endif()

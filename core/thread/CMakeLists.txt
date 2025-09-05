@@ -9,3 +9,7 @@ target_include_directories(abeams_thread
         ${CMAKE_SOURCE_DIR}
 )
 
+target_link_libraries(abeams_thread
+        PUBLIC
+        abeams_util
+)
