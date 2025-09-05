@@ -1,17 +1,17 @@
 
-add_library(abeams_cli SHARED
+add_library(a_cli SHARED
         cli.cpp
         cli.h
 )
 
-target_include_directories(abeams_cli
+target_include_directories(a_cli
         PUBLIC
         ${CMAKE_SOURCE_DIR}
 )
 
-target_link_libraries(abeams_cli
+target_link_libraries(a_cli
         PUBLIC
-        abeams_util
+        a_util
         fmt::fmt
         nlohmann_json::nlohmann_json
 )

@@ -11,11 +11,11 @@ target_include_directories(abeams
 
 target_link_libraries(abeams
         PRIVATE
-        abeams_thread
-        abeams_util
-        abeams_sim
-        abeams_net
-        abeams_cli
+        a_thread
+        a_util
+        a_sim
+        a_net
+        a_cli
         spdlog::spdlog
 )
 
