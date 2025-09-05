@@ -1,7 +1,4 @@
 
-add_subdirectory(sim)
-add_subdirectory(thread)
-
 add_executable(abeams
         main.cpp
         initialize.h

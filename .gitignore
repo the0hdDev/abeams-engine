@@ -8,12 +8,13 @@ Makefile
 
 /vcpkg/
 /vcpkg_installed/
+/cmake-output/
+/cmake-build/
+/build/
 
-# Build artifacts
 /cmake-build-*/
 ./build
 
-# Other
 .DS_Store
 
 
