@@ -3,19 +3,26 @@
 //
 #pragma once
 #include <string>
+#include <unordered_map>
+#include <functional>
+#include "util/logsys/logsys.h"
+#include <thread>
+#include "util/logsys/logsys.h"
+#include "util/logsys/logToFile.h"
+#include <cstdlib>
+#include <iostream>
+#include <thread>
+#include "util/abeams_deps/config.hpp"
+
 class cli {
     public:
         cli();
         ~cli() = default;
         void startCLI();
         static void printHeader();
-        bool isRunning() const {
-            return running;
-        }
-        inline static bool running = true;
+        static void stopRunning();
+        inline static bool isRunning() { return running; }
     private:
-        static void printHelp(const std::string& input);
-        static void printInfo(const std::string& input);
-        static void shutdownSystem(const std::string& input);
-        static void printVersion(const std::string& input, double& version);
+        inline static bool running = true;
+        std::unordered_map<std::string, std::function<void()>> commandMap;
 };
