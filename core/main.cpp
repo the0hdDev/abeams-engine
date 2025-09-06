@@ -3,9 +3,6 @@
 
 components* comps = nullptr;
 
-
-
-
 int main(int argc, char* arcv[])
 {
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -16,6 +13,7 @@ int main(int argc, char* arcv[])
     while (comps->cliInstance->isRunning()) {
         comps->cliInstance->startCLI();
     }
+
 
     comps->stopRunning();
     delete comps;
