@@ -26,7 +26,7 @@ public:
         Log::enableANSIColors();
 #endif
         logToFile.writeInfo(currentDateTime(), "LogSys created successfully");
-        std::cout << WHITE << "\n[" << currentDateTime() << " | INFO:] " << "LogSys created Successfully" << RESET << std::endl;
+        std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << "LogSys created Successfully" << RESET;
 
     }
 
