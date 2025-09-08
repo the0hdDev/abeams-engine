@@ -3,7 +3,11 @@ add_library(a_cli SHARED
         cli.cpp
         cli.h
         cli_Implementations.h
-        simulationCLIHander/simulationCLIHandler.h
+        CLIHandler/configHandler/configHandler.cpp
+        CLIHandler/configHandler/configHandler.h
+        CLIHandler/simulationHandler/simulationHandler.h
+        CLIHandler/simulationHandler/simulationHandler.cpp
+        CLIHandler/simulationHandler/simulationHandler.h
 )
 
 target_include_directories(a_cli

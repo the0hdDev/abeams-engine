@@ -1,9 +1,14 @@
 #include "cli.h"
 #include "cli_Implementations.h"
+#include "CLIHandler/configHandler/configHandler.h"
+#include "CLIHandler/simulationHandler/simulationHandler.h"
 
 
 cli::cli()
 {
+    config::cliHandler configCLI = config::cliHandler();
+    simulation::cliHandler simCLI = simulation::cliHandler();
+
     commandMap["help"] = printHelp;
     commandMap["version"] = printVersion;
     commandMap["shutdown"] = shutdown;
@@ -12,11 +17,11 @@ cli::cli()
     commandMap["quit"] = shutdown;
     commandMap["restart"] = restart;
     commandMap["status"] = printStatus;
-    commandMap["config"] = configHandler;
     commandMap["clear"] = clearCLI;
-    commandMap["echo"] = [](int argc, char* argv[]){  echo(argc, argv);  };
-    commandMap["simulation"] = startCLISimulationHandler;
-    commandMap["sim"] = startCLISimulationHandler;
+    // commandMap["echo"] = [](int argc, char* argv[]){  echo(argc, argv);  };
+    commandMap["config"] = [&]() { configCLI.startCliHandler(); };
+    commandMap["simulation"] = [&]() { simCLI.startHandler(); };
+    commandMap["sim"] = [&]() { simCLI.startHandler(); };
 
 
 }
