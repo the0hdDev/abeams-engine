@@ -12,6 +12,8 @@ Makefile
 /cmake-build/
 /build/
 
+
+/valgrind
 /cmake-build-*/
 ./build
 

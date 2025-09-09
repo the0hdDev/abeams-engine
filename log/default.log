@@ -1,29 +1,144 @@
-[ 2025-07-27 21:46:52 | INFO: ] Config loaded successfully from: config.json
-[ 2025-07-27 21:46:52 | INFO: ] Starting File Descriptor
-[ 2025-07-27 21:46:52 | INFO: ] Task Queue created
-[ 2025-07-27 21:46:52 | INFO: ] Created 16 worker threads
-[ 2025-07-27 21:46:52 | INFO: ] Pool created
-[ 2025-07-27 21:46:52 | INFO: ] Pool destroyed
-[ 2025-07-27 21:46:52 | INFO: ] Task Queue destroyed
-[ 2025-07-27 21:46:52 | INFO: ] Communication Server is running at: 3405
-[ 2025-07-27 21:46:52 | INFO: ] Entering main loop
-[ 2025-08-24 12:54:30 | INFO: ] LogSys created successfully
-[ 2025-08-24 12:54:31 | INFO: ] Config loaded successfully from: config.json
-[ 2025-08-24 12:54:31 | INFO: ] Starting File Descriptor
-[ 2025-08-24 12:54:31 | INFO: ] Task Queue created
-[ 2025-08-24 12:54:31 | INFO: ] Created 4 worker threads
-[ 2025-08-24 12:54:31 | INFO: ] Pool created
-[ 2025-08-24 12:54:31 | INFO: ] cli::cli called successfully
-[ 2025-08-24 12:54:31 | INFO: ] Entering main loop
-[ 2025-08-24 12:54:31 | INFO: ] WebSocket Handler created successfully
-[ 2025-08-24 12:54:31 | INFO: ] p>::accept(implementation_type &, Socket &, endpoint_type *, boost::system::error_code &) [Protocol = boost::asio::ip::tcp, Socket = boost::asio::basic_socket<boost::asio::ip::tcp>]
-[ 2025-08-24 12:55:42 | INFO: ] LogSys created successfully
-[ 2025-08-24 12:55:43 | INFO: ] Config loaded successfully from: config.json
-[ 2025-08-24 12:55:43 | INFO: ] Starting File Descriptor
-[ 2025-08-24 12:55:43 | INFO: ] Task Queue created
-[ 2025-08-24 12:55:43 | INFO: ] Created 4 worker threads
-[ 2025-08-24 12:55:43 | INFO: ] Pool created
-[ 2025-08-24 12:55:43 | INFO: ] cli::cli called successfully
-[ 2025-08-24 12:55:43 | INFO: ] Entering main loop
-[ 2025-08-24 12:55:43 | INFO: ] WebSocket Handler created successfully
-[ 2025-08-24 12:55:43 | INFO: ] p>::accept(implementation_type &, Socket &, endpoint_type *, boost::system::error_code &) [Protocol = boost::asio::ip::tcp, Socket = boost::asio::basic_socket<boost::asio::ip::tcp>]
+[ 2025-09-04 14:19:51 | INFO: ] CLI header printed successfully
+[ 2025-09-04 15:14:34 | INFO: ] LogSys created successfully
+[ 2025-09-04 15:14:35 | INFO: ] Config loaded successfully from: config.json
+[ 2025-09-04 15:14:35 | INFO: ] Starting File Descriptor
+[ 2025-09-04 15:14:35 | INFO: ] Task Queue created
+[ 2025-09-04 15:14:35 | INFO: ] Created 16 worker threads
+[ 2025-09-04 15:14:35 | INFO: ] Pool created
+[ 2025-09-04 15:14:35 | INFO: ] Created CLI successfully
+[ 2025-09-04 15:14:35 | INFO: ] Entering main loop
+[ 2025-09-04 15:14:35 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-04 15:14:35 | INFO: ] CLI header printed successfully
+[ 2025-09-09 14:25:04 | INFO: ] LogSys created successfully
+[ 2025-09-09 14:25:06 | INFO: ] Config loaded successfully from: config.json
+[ 2025-09-09 14:25:06 | INFO: ] Starting File Descriptor
+[ 2025-09-09 14:25:06 | INFO: ] Task Queue created
+[ 2025-09-09 14:25:06 | INFO: ] Created 16 worker threads
+[ 2025-09-09 14:25:06 | INFO: ] Pool created
+[ 2025-09-09 14:25:06 | INFO: ] Created CLI successfully
+[ 2025-09-09 14:25:06 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:06 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:06 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:06 | INFO: ] l::sp_member_access<T>::type boost::shared_ptr<T>::operator->() const [with T = boost::beast::websocket::detail::service::impl_type; typename boost::detail::sp_member_access<T>::type = boost::beast::websocket::detail::service::impl_type*]
+[ 2025-09-09 14:25:06 | INFO: ] CLI header printed successfully
+[ 2025-09-09 14:25:17 | INFO: ] User issued command: shutdown
+[ 2025-09-09 14:25:17 | INFO: ] Shutting down...
+[ 2025-09-09 14:25:17 | INFO: ] Destroying Components
+[ 2025-09-09 14:25:17 | INFO: ] Communication Server stopped
+[ 2025-09-09 14:25:17 | INFO: ] Pool destroyed
+[ 2025-09-09 14:25:17 | INFO: ] Task Queue destroyed
+[ 2025-09-09 14:25:17 | INFO: ] Components destroyed
+[ 2025-09-09 14:25:19 | INFO: ] LogSys created successfully
+[ 2025-09-09 14:25:20 | INFO: ] Config loaded successfully from: config.json
+[ 2025-09-09 14:25:20 | INFO: ] Starting File Descriptor
+[ 2025-09-09 14:25:20 | INFO: ] Task Queue created
+[ 2025-09-09 14:25:20 | INFO: ] Created 16 worker threads
+[ 2025-09-09 14:25:20 | INFO: ] Pool created
+[ 2025-09-09 14:25:20 | INFO: ] Created CLI successfully
+[ 2025-09-09 14:25:20 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:20 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:20 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:20 | INFO: ] l::sp_member_access<T>::type boost::shared_ptr<T>::operator->() const [with T = boost::beast::websocket::detail::service::impl_type; typename boost::detail::sp_member_access<T>::type = boost::beast::websocket::detail::service::impl_type*]
+[ 2025-09-09 14:25:20 | INFO: ] CLI header printed successfully
+[ 2025-09-09 14:25:25 | INFO: ] User issued command: shutdown
+[ 2025-09-09 14:25:25 | INFO: ] Shutting down...
+[ 2025-09-09 14:25:25 | INFO: ] Destroying Components
+[ 2025-09-09 14:25:25 | INFO: ] Communication Server stopped
+[ 2025-09-09 14:25:25 | INFO: ] Pool destroyed
+[ 2025-09-09 14:25:25 | INFO: ] Task Queue destroyed
+[ 2025-09-09 14:25:25 | INFO: ] Components destroyed
+[ 2025-09-09 14:25:26 | INFO: ] LogSys created successfully
+[ 2025-09-09 14:25:27 | INFO: ] Config loaded successfully from: config.json
+[ 2025-09-09 14:25:27 | INFO: ] Starting File Descriptor
+[ 2025-09-09 14:25:27 | INFO: ] Task Queue created
+[ 2025-09-09 14:25:27 | INFO: ] Created 16 worker threads
+[ 2025-09-09 14:25:27 | INFO: ] Pool created
+[ 2025-09-09 14:25:27 | INFO: ] Created CLI successfully
+[ 2025-09-09 14:25:27 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:27 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:27 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:27 | INFO: ] l::sp_member_access<T>::type boost::shared_ptr<T>::operator->() const [with T = boost::beast::websocket::detail::service::impl_type; typename boost::detail::sp_member_access<T>::type = boost::beast::websocket::detail::service::impl_type*]
+[ 2025-09-09 14:25:27 | INFO: ] CLI header printed successfully
+[ 2025-09-09 14:25:29 | INFO: ] User issued command: shutdown
+[ 2025-09-09 14:25:29 | INFO: ] Shutting down...
+[ 2025-09-09 14:25:29 | INFO: ] Destroying Components
+[ 2025-09-09 14:25:29 | INFO: ] Communication Server stopped
+[ 2025-09-09 14:25:29 | INFO: ] Pool destroyed
+[ 2025-09-09 14:25:29 | INFO: ] Task Queue destroyed
+[ 2025-09-09 14:25:29 | INFO: ] Components destroyed
+[ 2025-09-09 14:25:30 | INFO: ] LogSys created successfully
+[ 2025-09-09 14:25:31 | INFO: ] Config loaded successfully from: config.json
+[ 2025-09-09 14:25:31 | INFO: ] Starting File Descriptor
+[ 2025-09-09 14:25:31 | INFO: ] Task Queue created
+[ 2025-09-09 14:25:31 | INFO: ] Created 16 worker threads
+[ 2025-09-09 14:25:31 | INFO: ] Pool created
+[ 2025-09-09 14:25:31 | INFO: ] Created CLI successfully
+[ 2025-09-09 14:25:31 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:31 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:31 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:31 | INFO: ] l::sp_member_access<T>::type boost::shared_ptr<T>::operator->() const [with T = boost::beast::websocket::detail::service::impl_type; typename boost::detail::sp_member_access<T>::type = boost::beast::websocket::detail::service::impl_type*]
+[ 2025-09-09 14:25:31 | INFO: ] CLI header printed successfully
+[ 2025-09-09 14:25:35 | INFO: ] User issued command: quit
+[ 2025-09-09 14:25:35 | INFO: ] Shutting down...
+[ 2025-09-09 14:25:35 | INFO: ] Destroying Components
+[ 2025-09-09 14:25:35 | INFO: ] Communication Server stopped
+[ 2025-09-09 14:25:35 | INFO: ] Pool destroyed
+[ 2025-09-09 14:25:35 | INFO: ] Task Queue destroyed
+[ 2025-09-09 14:25:35 | INFO: ] Components destroyed
+[ 2025-09-09 14:25:35 | INFO: ] LogSys created successfully
+[ 2025-09-09 14:25:36 | INFO: ] Config loaded successfully from: config.json
+[ 2025-09-09 14:25:36 | INFO: ] Starting File Descriptor
+[ 2025-09-09 14:25:36 | INFO: ] Task Queue created
+[ 2025-09-09 14:25:36 | INFO: ] Created 16 worker threads
+[ 2025-09-09 14:25:36 | INFO: ] Pool created
+[ 2025-09-09 14:25:36 | INFO: ] Created CLI successfully
+[ 2025-09-09 14:25:37 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:37 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:37 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:37 | INFO: ] l::sp_member_access<T>::type boost::shared_ptr<T>::operator->() const [with T = boost::beast::websocket::detail::service::impl_type; typename boost::detail::sp_member_access<T>::type = boost::beast::websocket::detail::service::impl_type*]
+[ 2025-09-09 14:25:37 | INFO: ] CLI header printed successfully
+[ 2025-09-09 14:25:38 | INFO: ] User issued command: quit
+[ 2025-09-09 14:25:38 | INFO: ] Shutting down...
+[ 2025-09-09 14:25:38 | INFO: ] Destroying Components
+[ 2025-09-09 14:25:38 | INFO: ] Communication Server stopped
+[ 2025-09-09 14:25:38 | INFO: ] Pool destroyed
+[ 2025-09-09 14:25:38 | INFO: ] Task Queue destroyed
+[ 2025-09-09 14:25:38 | INFO: ] Components destroyed
+[ 2025-09-09 14:25:38 | INFO: ] LogSys created successfully
+[ 2025-09-09 14:25:39 | INFO: ] Config loaded successfully from: config.json
+[ 2025-09-09 14:25:39 | INFO: ] Starting File Descriptor
+[ 2025-09-09 14:25:39 | INFO: ] Task Queue created
+[ 2025-09-09 14:25:39 | INFO: ] Created 16 worker threads
+[ 2025-09-09 14:25:39 | INFO: ] Pool created
+[ 2025-09-09 14:25:39 | INFO: ] Created CLI successfully
+[ 2025-09-09 14:25:39 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:39 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:39 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:39 | INFO: ] l::sp_member_access<T>::type boost::shared_ptr<T>::operator->() const [with T = boost::beast::websocket::detail::service::impl_type; typename boost::detail::sp_member_access<T>::type = boost::beast::websocket::detail::service::impl_type*]
+[ 2025-09-09 14:25:39 | INFO: ] CLI header printed successfully
+[ 2025-09-09 14:25:41 | INFO: ] User issued command: quit
+[ 2025-09-09 14:25:41 | INFO: ] Shutting down...
+[ 2025-09-09 14:25:41 | INFO: ] Destroying Components
+[ 2025-09-09 14:25:41 | INFO: ] Communication Server stopped
+[ 2025-09-09 14:25:41 | INFO: ] Pool destroyed
+[ 2025-09-09 14:25:41 | INFO: ] Task Queue destroyed
+[ 2025-09-09 14:25:41 | INFO: ] Components destroyed
+[ 2025-09-09 14:25:42 | INFO: ] LogSys created successfully
+[ 2025-09-09 14:25:43 | INFO: ] Config loaded successfully from: config.json
+[ 2025-09-09 14:25:43 | INFO: ] Starting File Descriptor
+[ 2025-09-09 14:25:43 | INFO: ] Task Queue created
+[ 2025-09-09 14:25:43 | INFO: ] Created 16 worker threads
+[ 2025-09-09 14:25:43 | INFO: ] Pool created
+[ 2025-09-09 14:25:43 | INFO: ] Created CLI successfully
+[ 2025-09-09 14:25:43 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:43 | INFO: ] WebSocket Handler created successfully
+[ 2025-09-09 14:25:43 | INFO: ] Entering main loop
+[ 2025-09-09 14:25:43 | INFO: ] l::sp_member_access<T>::type boost::shared_ptr<T>::operator->() const [with T = boost::beast::websocket::detail::service::impl_type; typename boost::detail::sp_member_access<T>::type = boost::beast::websocket::detail::service::impl_type*]
+[ 2025-09-09 14:25:43 | INFO: ] CLI header printed successfully
+[ 2025-09-09 14:25:45 | INFO: ] User issued command: quit
+[ 2025-09-09 14:25:45 | INFO: ] Shutting down...
+[ 2025-09-09 14:25:45 | INFO: ] Destroying Components
+[ 2025-09-09 14:25:45 | INFO: ] Communication Server stopped
+[ 2025-09-09 14:25:45 | INFO: ] Pool destroyed
+[ 2025-09-09 14:25:45 | INFO: ] Task Queue destroyed
+[ 2025-09-09 14:25:45 | INFO: ] Components destroyed
