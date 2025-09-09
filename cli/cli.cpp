@@ -1,105 +1,44 @@
-//
-// Created by Theo Wimber on 28.07.25.
-//
-
 #include "cli.h"
-#include "util/logsys/logsys.h"
-#include "util/logsys/logToFile.h"
-#include <cstdlib>
-#include <iostream>
-#include <thread>
-#include "util/abeams_deps/config.hpp"
+#include "cli_Implementations.h"
+#include "CLIHandler/configHandler/configHandler.h"
+#include "CLIHandler/simulationHandler/simulationHandler.h"
 
-void clearConsole() {
-    std::cout << "\033[2J\033[1;1H";
-}
-std::unique_ptr<logToFile_c> logToFile = nullptr;
 
-void cli::printHeader() {
-    std::this_thread::sleep_for(std::chrono::microseconds(1000));
-    clearConsole();
-    std::cout << Log::GREEN << R"(
-      █████╗ ██████╗  ███████╗ █████╗ ███╗   ███╗  ███████╗    ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
-     ██╔══██╗██╔══██╗ ██╔════╝██╔══██╗████╗ ████║ ██╔══════╝   ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
-     ███████║██████ ║ █████╗  ███████║██╔████╔██║ ███████╗     █████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
-     ██╔══██║██╔══██║ ██╔══╝  ██╔══██║██║╚██╔╝██║ ╚══════██╗   ██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝
-     ██║  ██║██████╔╝ ███████╗██║  ██║██║ ╚═╝ ██║ █████████║   ███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗
-     ╚═╝  ╚═╝╚═════╝  ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚════════╝   ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
-    )" << Log::RESET << std::endl;
+cli::cli()
+{
+    std::shared_ptr<config::cliHandler> configCLI = std::make_shared<config::cliHandler>();
+    std::shared_ptr<simulation::cliHandler> simCLI = std::make_shared<simulation::cliHandler>();
 
-    std::cout << Log::WHITE
-              << "      -------------------------------- [ Type 'help' for a list of commands. ] --------------------------------"
-              << Log::RESET << std::endl;
-    std::cout << "\n\n";
-    logToFile->writeInfo(logSys.currentDateTime(), "CLI header printed successfully");
-}
+    commandMap["help"] = [](int argc, char* argv[]) {  commands::shutdown(argc, argv); };
+    commandMap["version"] = [](int argc, char* argv[]) {  commands::shutdown(argc, argv); };
+    commandMap["shutdown"] = [](int argc, char* argv[]) {  commands::shutdown(argc, argv); };
+    commandMap["exit"] = [](int argc, char* argv[]) {  commands::shutdown(argc, argv); };
+    commandMap["poweroff"] = [](int argc, char* argv[]) {  commands::shutdown(argc, argv); };
+    commandMap["quit"] = [](int argc, char* argv[]) {  commands::shutdown(argc, argv); };
+    commandMap["restart"] = [](int argc, char* argv[]) {  commands::restart(argc, argv); };
+    commandMap["status"] = [](int argc, char* argv[]) {  commands::printStatus(argc, argv); };
+    commandMap["clear"] = [](int argc, char* argv[]) {  commands::clearCLI(argc, argv); };
+    commandMap["config"] = [configCLI](int argc, char* argv[]) { configCLI->startHandler(argc, argv); };
+    commandMap["simulation"] = [simCLI](int argc, char* argv[]) { simCLI->startHandler(argc, argv); };
+    commandMap["sim"] = [simCLI](int argc, char* argv[]) { simCLI->startHandler(argc, argv); };
 
-// construktor
-cli::cli() {
-    logSys.info("Created CLI successfully");
-    logToFile = std::make_unique<logToFile_c>("log/default.log");
-}
-
-void cli::shutdownSystem(const std::string& input) {
-    cli::running = false;
-    logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
-    logSys.info("Shutting down...");
-    // std::exit(0); // Exit syscall
-}
-
-void cli::printHelp(const std::string& input) {
-    std::cout << Log::YELLOW << "Available commands:" << Log::RESET << std::endl;
-    std::cout << "  help               - Show this help message" << std::endl;
-    std::cout << "  info               - Show system information" << std::endl;
-    std::cout << "  exit/quit/shutdown - Shutdown the system" << std::endl;
-    std::cout << "  version            - Shows current version" << std::endl;
-    logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
-}
-
-void cli::printInfo(const std::string& input) {
-    logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
-    logSys.info("System information:");
-}
-
-void cli::printVersion(const std::string& input, double& version) {
-    logToFile->writeInfo(logSys.currentDateTime(), "User issued command: " + input);
-    logSys.info("Current version: " + std::to_string(version));
-}
-
-void getInput(std::string& input) {
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    std::cout << "\n> ";
-    std::cin >> input;
-    if (input.empty()) {
-        std::cout << "\n> "; // Default command if no input is given
-    }
 
 }
 
-void cli::startCLI() {
+void cli::startCLI()
+{
 
-    std::string input{};
-    getInput(input);
-    cli::running = true;
-
-    if (input == "help") {
-        printHelp(input);
-    }
-    else if (input == "info") {
-        printInfo(input);
-    }
-    else if (input == "exit" || input == "quit" || input == "shutdown") {
-        shutdownSystem(input);
-    } else if (input == "version") {
-        printVersion(input,  config::version); // Beispielversion
-    }
-    else if (input == "clear" || input == "cls") {
-        clearConsole();
-        logToFile->writeInfo(logSys.currentDateTime(), "Console cleared");
-    }
-
-    else {
-        logSys.warning("Unknown command: " + input);
-    }
 }
+
+
+void cli::printHeader()
+{
+
+}
+
+void cli::stopRunning()
+{
+
+}
+
+

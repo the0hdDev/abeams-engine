@@ -10,10 +10,11 @@ int main(int argc, char* arcv[])
     init::initialize();
 
     logSys.info("Entering main loop");
-    comps->cliInstance->printHeader();
+
     while (comps->cliInstance->isRunning()) {
         comps->cliInstance->startCLI();
     }
+
     comps->stopRunning();
     delete comps;
 

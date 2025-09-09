@@ -74,7 +74,7 @@ jobs:
 
       # Dependencies installieren
       - name: Install dependencies with vcpkg
-        run: ./vcpkg/vcpkg install fmt boost-beast boost-asio spdlog nlohmann-json
+        run: ./vcpkg/vcpkg install fmt boost-beast boost-asio spdlog nlohmann-json ftxui
         working-directory: ${{ github.workspace }}
         shell: bash
 

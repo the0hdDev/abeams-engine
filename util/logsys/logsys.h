@@ -26,7 +26,7 @@ public:
         Log::enableANSIColors();
 #endif
         logToFile.writeInfo(currentDateTime(), "LogSys created successfully");
-        std::cout << WHITE << "\n[" << currentDateTime() << " | INFO:] " << "LogSys created Successfully" << RESET << std::endl;
+        std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << "LogSys created Successfully" << RESET;
 
     }
 
@@ -46,40 +46,40 @@ public:
     }
     template<typename T>
     static void print(const T& message) {
-        std::cout << WHITE << message << RESET;
+        std::cout << WHITE << message << RESET << '\n';
     }
 
     template<typename T>
     void info(const T& message) {
         logToFile.writeInfo(currentDateTime(), message);
-        std::cout << WHITE << "\n[" << currentDateTime() << " | INFO:] " << message << RESET;
+        std::cout << WHITE << "[" << currentDateTime() << " | INFO:] " << message << RESET << '\n';
 
     }
 
     template<typename T>
     static void error(const T& msg, uint16_t code = 0) {
 
-        std::cerr << RED << "\n[" << currentDateTime() << " | ERROR:] " << msg << " Error Code: " << code << RESET;
+        std::cerr << RED << "[" << currentDateTime() << " | ERROR:] " << msg << " Error Code: " << code << RESET << '\n';
 
     }
 
     template<typename T>
     void critical(const T& msg, uint16_t code = 0) {
             logToFile.writeCritical(currentDateTime(), msg);
-            std::cerr << RED << "\n[" << currentDateTime() << " | CRITICAL ERROR:] " << msg << " Error Code: " << code << RESET;
+            std::cerr << RED << "[" << currentDateTime() << " | CRITICAL ERROR:] " << msg << " Error Code: " << code << RESET << '\n';;
     }
 
     template<typename T>
     void severe(const T& msg, uint16_t code = 0) {
             logToFile.writeSevere(currentDateTime(), msg);
-            std::cerr << RED << "\n[" << currentDateTime() << " | SEVERE ERROR:] " << msg << " Error Code: " << code << RESET;
+            std::cerr << RED << "[" << currentDateTime() << " | SEVERE ERROR:] " << msg << " Error Code: " << code << RESET << '\n';
     }
 
     template<typename T>
     void trace(const T& msg) {
         if (LogLevel >= 3) {
             logToFile.writeTrace(currentDateTime(), msg);
-            std::cout << BLUE << "\n[" << currentDateTime() << " | TRACE:] " << msg << RESET;
+            std::cout << BLUE << "[" << currentDateTime() << " | TRACE:] " << msg << RESET << '\n';
         }
     }
 
@@ -87,7 +87,7 @@ public:
     void debug(const T& msg) {
         if (LogLevel >= 1) {
             logToFile.writeDebug(currentDateTime(), msg);
-            std::cout << GREEN << "\n[" << currentDateTime() << " | DEBUG:] " << msg << RESET;
+            std::cout << GREEN << "[" << currentDateTime() << " | DEBUG:] " << msg << RESET << '\n';
         }
     }
 
@@ -96,11 +96,11 @@ public:
         if (LogLevel >= 2) {
             if ((code != 0)) {
                 logToFile.writeWarning(currentDateTime(), msg);
-                std::cerr << YELLOW << "\n[" << currentDateTime() << " | WARNING:] " << msg << " Warning Code: " << code << RESET;
+                std::cerr << YELLOW << "[" << currentDateTime() << " | WARNING:] " << msg << " Warning Code: " << code << RESET << '\n';
             }
             else {
                 logToFile.writeWarning(currentDateTime(), msg);
-                std::cerr << YELLOW << "\n[" << currentDateTime() << " | WARNING:] " << msg << RESET;
+                std::cerr << YELLOW << "[" << currentDateTime() << " | WARNING:] " << msg << RESET << '\n';
             }
         }
     }
