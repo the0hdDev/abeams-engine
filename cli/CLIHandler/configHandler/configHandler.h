@@ -2,14 +2,15 @@
 #include <functional>
 #include <unordered_map>
 
-namespace config {
+namespace config
+{
     class cliHandler
     {
         public:
             cliHandler();
             ~cliHandler() = default;
-            void startCliHandler();
+            void startHandler(int argc, char* argv[]);
         private:
-            std::unordered_map<std::string, std::function<void()>> configCommandMap;
+            std::unordered_map<std::string, std::function<void(int argc, char* argv[])>> commandMap;
     };
 }

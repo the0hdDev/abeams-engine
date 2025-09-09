@@ -24,5 +24,5 @@ class cli {
         inline static bool isRunning() { return running; }
     private:
         inline static bool running = true;
-        std::unordered_map<std::string, std::function<void()>> commandMap;
+        std::unordered_map<std::string, std::function<void(int argc, char* argv[])>> commandMap;
 };

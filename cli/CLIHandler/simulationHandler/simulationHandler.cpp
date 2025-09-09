@@ -5,13 +5,12 @@
 #include "simulationHandler.h"
 
 
-using namespace simulation;
 
-cliHandler::cliHandler() {
+simulation::cliHandler::cliHandler() {
 
 }
 
-void cliHandler::startHandler() {
+void simulation::cliHandler::startHandler(int argc, char* argv[]) {
 
 }
 

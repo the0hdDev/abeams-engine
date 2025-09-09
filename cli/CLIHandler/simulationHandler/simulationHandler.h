@@ -10,8 +10,8 @@ namespace simulation
         public:
             cliHandler();
             ~cliHandler() = default;
-            void startHandler();
+            void startHandler(int argc, char* argv[]);
         private:
-            std::unordered_map<std::string, std::function<void()>> configCommandMap;
+            std::unordered_map<std::string, std::function<void(int argc, char* argv[])>> commandMap;
     };
 }

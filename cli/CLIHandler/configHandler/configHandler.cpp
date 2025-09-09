@@ -5,13 +5,12 @@
 #include "configHandler.h"
 
 
-using namespace config;
 
-cliHandler::cliHandler() {
+config::cliHandler::cliHandler() {
 
 }
 
-void cliHandler::startCliHandler() {
+void config::cliHandler::startHandler(int argc, char* argv[]) {
 
 }
 
