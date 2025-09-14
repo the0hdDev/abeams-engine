@@ -1,3 +1,6 @@
 [submodule "vcpkg"]
 	path = vcpkg
 	url = https://github.com/microsoft/vcpkg
+[submodule "unilog"]
+	path = unilog
+	url = https://www.github.com/the0hdDev/unilog

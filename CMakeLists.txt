@@ -57,6 +57,7 @@ add_subdirectory(util)
 add_subdirectory(net)
 add_subdirectory(cli)
 add_subdirectory(core)
+add_subdirectory(unilog)
 
 # Only add sim and thread subdirectories if they exist
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/core/sim/CMakeLists.txt")

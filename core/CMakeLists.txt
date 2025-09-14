@@ -16,6 +16,7 @@ target_link_libraries(abeams
         a_sim
         a_net
         a_cli
+        unilog
         spdlog::spdlog
 )
 
